@@ -28,18 +28,18 @@ document.onreadystatechange = function () {
                 localStorage.setItem('myGold', myGold.toString());
             }
             // get myPacks on page load from local storage
-            var myPacks = Number(localStorage.getItem('myPacks'));
-            if (typeof myPacks === 'undefined') {
-                var myPacks = 0;
-                localStorage.setItem('myPacks', myPacks.toString());
-            }
+            // var myPacks = Number(localStorage.getItem('myPacks'));
+            // if (typeof myPacks === 'undefined') {
+            //     var myPacks = 0;
+            //     localStorage.setItem('myPacks', myPacks.toString());
+            // }
             // set innerText of myGold and innerText
             document.getElementById("myGold").innerText = myGold + "🪙";
-            document.getElementById("myPacks").innerText = myPacks;
+            // document.getElementById("myPacks").innerText = myPacks;
             // make an element and set innerText to myPacks in mainmenu
-            for (let i = 0; i < myPacks; i++) {
-                createPack();
-            }
+            // for (let i = 0; i < myPacks; i++) {
+            //     createPack();
+            // }
             document.getElementById("preventCORS").style.visibility = "visible";
         },250);
     }

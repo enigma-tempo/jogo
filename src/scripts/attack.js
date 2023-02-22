@@ -124,9 +124,8 @@ function setAttacked(e) {
   }
   setTimeout(function() {
     if(currentAttackerHealth <= 0) {
-      if (document.querySelector('.playerHeroHealth').innerText <= 0) {
-        alert("You've Lost!")
-        location.reload();
+      if (document.querySelector('.playerHeroHealth').innerText < 1) {
+        gameLose();
       }
       if (currentAttackerElement.classList.contains("hasTaunt")) {
         tauntExists = false;
@@ -243,7 +242,15 @@ function clearAttackEvents(){
   document.getElementById('opposinghero').removeEventListener('mousedown', setAttacked);
 }
 
+function saveResult(result) {
+  gameEndAt = Date.now();
+  game_result = {'player': data_game[0]['id'], 'player_hero': data_game[0]['hero_id'], 'enemy_hero': data_game[1]['hero_id'], deck: data_game[0]['deck'], 'starts' : gameStartsAt, 'ends' : gameEndAt, 'result' : result};
+  response = postRequest( 'https://api-enigma-tempo.onrender.com/api/matches' , game_result);
+  console.log(response);
+}
+
 function gameWon() {
+  saveResult(true);
   if (isTutorial == true) {
     let victorySnd = new Audio("src/sounds/victorytutorial.mp3");
     victorySnd.play();
@@ -297,7 +304,7 @@ function gameWon() {
     setTimeout(function() {
       document.getElementById('fireworkCanvas').style.display = "none";
       setTimeout(function() {
-        location.reload();
+        // location.reload();
       },9000);
       if (isTutorial == false) {
         setTimeout(function() {
@@ -312,4 +319,11 @@ function gameWon() {
     },1000);
   },5000);
 },5000);
+
+}
+
+function gameLose() {
+  saveResult(false);
+  alert("You've Lost!")
+  location.reload();
 }

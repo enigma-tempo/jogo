@@ -1,9 +1,9 @@
 var openmenuSnd = new Audio("src/sounds/openmenu.mp3");
 var menubtnsSnd = new Audio("src/sounds/menubtnpress.mp3");
-var purchaseSnd = new Audio("src/sounds/purchase.mp3");
+// var purchaseSnd = new Audio("src/sounds/purchase.mp3");
 var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
-var shophoverSnd = new Audio("src/sounds/shophover.mp3");
-var shoponclickSnd = new Audio("src/sounds/shoponclick.mp3")
+// var shophoverSnd = new Audio("src/sounds/shophover.mp3");
+// var shoponclickSnd = new Audio("src/sounds/shoponclick.mp3")
 var startTutorialSnd = new Audio("src/voiceovers/innkeeper_starttutorial.mp3");
 var battlebeginSnd = new Audio("src/voiceovers/innkeeper_tutorialbattle.mp3");
 var jainathreatSnd = new Audio("src/voiceovers/jaina_tutorialbattle.mp3");
@@ -87,14 +87,14 @@ var endturnbtn = document.getElementById("endturn");
 
 var playbtn = document.querySelector('#playbutton');
 var tutorialbtn = document.querySelector('#tutorialbutton');
-var howtoplaybtn = document.querySelector('#howtoplaybutton');
-var openpacksbtn = document.querySelector('#openpacksbutton');
-var shopbtn = document.querySelector('#shopbutton');
-var buybtn = document.querySelector('#buybutton');
+// var howtoplaybtn = document.querySelector('#howtoplaybutton');
+// var openpacksbtn = document.querySelector('#openpacksbutton');
+// var shopbtn = document.querySelector('#shopbutton');
+// var buybtn = document.querySelector('#buybutton');
 
 var starttutorialbtn = document.querySelector('#starttutorialbutton');
-var backfrompackbtn = document.querySelector('#backfrompackbtn');
-var donepackbtn = document.querySelector('#donepackbutton');
+// var backfrompackbtn = document.querySelector('#backfrompackbtn');
+// var donepackbtn = document.querySelector('#donepackbutton');
 var skipcinematicbtn = document.querySelector('#skipcinematicbtn');
 
 concedebtn.addEventListener('mouseover', function(){
@@ -118,30 +118,30 @@ playbtn.addEventListener('mouseover', function(){
 tutorialbtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
 })
-howtoplaybtn.addEventListener('mouseover', function(){
-    menuhoverSnd.play();
-})
-openpacksbtn.addEventListener('mouseover', function(){
-    menuhoverSnd.play();
-})
+// howtoplaybtn.addEventListener('mouseover', function(){
+//     menuhoverSnd.play();
+// })
+// openpacksbtn.addEventListener('mouseover', function(){
+//     menuhoverSnd.play();
+// })
 starttutorialbtn.addEventListener('mouseover', function(){
     menuhoverSnd.play();
 })
-backfrompackbtn.addEventListener('mouseover', function(){
-    menuhoverSnd.play();
-})
-shopbtn.addEventListener('mouseover', function(){
-    shophoverSnd.play();
-})
-buybtn.addEventListener('mouseover', function(){
-    menuhoverSnd.play();
-})
+// backfrompackbtn.addEventListener('mouseover', function(){
+//     menuhoverSnd.play();
+// })
+// shopbtn.addEventListener('mouseover', function(){
+//     shophoverSnd.play();
+// })
+// buybtn.addEventListener('mouseover', function(){
+//     menuhoverSnd.play();
+// })
 
 
 concedebtn.onclick = function () {
-    openmenuSnd.play()
-    alert("You've Lost!")
-    location.reload();
+    openmenuSnd.play();
+    gameLose(false);
+    // location.reload();
 };
 
 optionsbtn.onclick = function () {
@@ -438,88 +438,88 @@ tutorialbtn.onclick = function () {
     tutorial();
 };
 
-howtoplaybtn.onclick = function () {
-    menubtnsSnd.play();
-    document.querySelector("#mainmenu").style.display = "none";
-    document.querySelector("#howtoplay").style.display = "block";
-};
+// howtoplaybtn.onclick = function () {
+//     menubtnsSnd.play();
+//     document.querySelector("#mainmenu").style.display = "none";
+//     document.querySelector("#howtoplay").style.display = "block";
+// };
 
-openpacksbtn.onclick = function () {
-    openmenuSnd.play();
-    // fade out the volume of the mainmenuOST
-    var fadeout = setInterval(
-        function() {
-            // Reduce volume by 0.05 as long as it is above 0
-            // This works as long as you start with a multiple of 0.05!
-            if (vol > 0.05) {
-            vol -= 0.05;
-            mainmenuOST.volume = vol;
-            }
-            else {
-            // Stop the setInterval when 0 is reached
-            clearInterval(fadeout);
-            }
-        }, interval);
-    setTimeout(function() {
-        mainmenuOST.pause();
-    },1750);
-    crowdSnd.pause();
-    var packElements = document.getElementsByClassName("pack");
-    document.querySelector("#mainmenu").style.display = "none";
-    document.querySelector("#openpacks").style.display = "block";
-    document.querySelector("#pkcollisionbox").style.display = "block";
-    for (let i = 0; i < packElements.length; i++) {
-        document.getElementsByClassName("pack")[i].style.display = "block";
-    }
-    var myPacks = Number(localStorage.getItem('myPacks'));
-    if (myPacks >= 1) {
-        init();
-    }
-};
-// shop function called on shop button on click
-function shop() {
-    shoponclickSnd.play();
-    document.getElementById("shopmenu").style.display = "block";
-    document.getElementById("shopmenuContent").style.display = "block";
-    document.getElementById("shopmenuContent").classList.add("openMenuAnim");
-    document.getElementById("mainmenu").style.filter = "blur(5px)";
-}
-// shop button on click calls the shop function
-shopbtn.onclick = function () {
-    shop();
-};
+// openpacksbtn.onclick = function () {
+//     openmenuSnd.play();
+//     // fade out the volume of the mainmenuOST
+//     var fadeout = setInterval(
+//         function() {
+//             // Reduce volume by 0.05 as long as it is above 0
+//             // This works as long as you start with a multiple of 0.05!
+//             if (vol > 0.05) {
+//             vol -= 0.05;
+//             mainmenuOST.volume = vol;
+//             }
+//             else {
+//             // Stop the setInterval when 0 is reached
+//             clearInterval(fadeout);
+//             }
+//         }, interval);
+//     setTimeout(function() {
+//         mainmenuOST.pause();
+//     },1750);
+//     crowdSnd.pause();
+//     var packElements = document.getElementsByClassName("pack");
+//     document.querySelector("#mainmenu").style.display = "none";
+//     document.querySelector("#openpacks").style.display = "block";
+//     document.querySelector("#pkcollisionbox").style.display = "block";
+//     for (let i = 0; i < packElements.length; i++) {
+//         document.getElementsByClassName("pack")[i].style.display = "block";
+//     }
+//     var myPacks = Number(localStorage.getItem('myPacks'));
+//     if (myPacks >= 1) {
+//         init();
+//     }
+// };
+// // shop function called on shop button on click
+// function shop() {
+//     shoponclickSnd.play();
+//     document.getElementById("shopmenu").style.display = "block";
+//     document.getElementById("shopmenuContent").style.display = "block";
+//     document.getElementById("shopmenuContent").classList.add("openMenuAnim");
+//     document.getElementById("mainmenu").style.filter = "blur(5px)";
+// }
+// // shop button on click calls the shop function
+// shopbtn.onclick = function () {
+//     shop();
+// };
 
-buybtn.onclick = function () {
-    openmenuSnd.play();
-    var myGold = Number(localStorage.getItem('myGold'));
-    myGold -= 100;
-    if (myGold >= 0) {
-        setTimeout(function() {
-            purchaseSnd.play();
-        },150)
-        createPack();
-        var myPacks = Number(localStorage.getItem('myPacks'));
-        myPacks++;
-        localStorage.setItem('myGold', myGold.toString());
-        localStorage.setItem('myPacks', myPacks.toString());
-        document.getElementById("myGold").innerText = myGold + "🪙";
-        document.getElementById("myPacks").innerText = myPacks;
-    } else {
-        myGold += 100;
-    }
-};
+// buybtn.onclick = function () {
+//     openmenuSnd.play();
+//     var myGold = Number(localStorage.getItem('myGold'));
+//     myGold -= 100;
+//     if (myGold >= 0) {
+//         setTimeout(function() {
+//             purchaseSnd.play();
+//         },150)
+//         createPack();
+//         var myPacks = Number(localStorage.getItem('myPacks'));
+//         myPacks++;
+//         localStorage.setItem('myGold', myGold.toString());
+//         localStorage.setItem('myPacks', myPacks.toString());
+//         document.getElementById("myGold").innerText = myGold + "🪙";
+//         document.getElementById("myPacks").innerText = myPacks;
+//     } else {
+//         myGold += 100;
+//     }
+// };
 // back button when in the pack screen
-backfrompackbtn.onclick = function () {
-    openmenuSnd.play();
-    crowdSnd.play();
-    var packElements = document.getElementsByClassName("pack");
-    document.querySelector("#mainmenu").style.display = "block";
-    document.querySelector("#openpacks").style.display = "none";
-    document.querySelector("#pkcollisionbox").style.display = "none";
-    for (let i = 0; i < packElements.length; i++) {
-        document.getElementsByClassName("pack")[i].style.display = "none";
-    }
-};
+// backfrompackbtn.onclick = function () {
+//     openmenuSnd.play();
+//     crowdSnd.play();
+//     var packElements = document.getElementsByClassName("pack");
+//     document.querySelector("#mainmenu").style.display = "block";
+//     document.querySelector("#openpacks").style.display = "none";
+//     document.querySelector("#pkcollisionbox").style.display = "none";
+//     for (let i = 0; i < packElements.length; i++) {
+//         document.getElementsByClassName("pack")[i].style.display = "none";
+//     }
+// };
 // start tutorial button on click
 starttutorialbtn.onclick = function () {
     openmenuSnd.play();
@@ -719,30 +719,30 @@ starttutorialbtn.onclick = function () {
     },125);
 };
 // done pack button on click
-donepackbtn.onclick = function () {
-    document.getElementById('openpacks').classList.remove("openPackShakeScreenAnim");
-    var packElements = document.getElementsByClassName("pack");
-    for (let i = 0; i < packElements.length; i++) {
-        document.getElementsByClassName("pack")[i].style.display = "none";
-    }
-    var packElements = document.getElementsByClassName("pack");
-    for (let i = 0; i < packElements.length; i++) {
-        document.getElementsByClassName("pack")[i].style.display = "block";
-    }
-    // if remaining packs still exist run this function again
-    var myPacks = Number(localStorage.getItem('myPacks'));
-    if (myPacks >= 1) {
-        init();
-    }
-    donepackbtn.style.display = "none";
-    document.getElementById("openpacks").style.filter = "none";
-    document.getElementById("backfrompackbtn").disabled = false;
-    document.getElementById("containerOpenPack").style.display = "none";
-    elementsToRemove = document.querySelectorAll(".flip-card");
-    for (let i = 0; i < 5; i++) {
-        elementsToRemove[i].remove();
-    }
-}
+// donepackbtn.onclick = function () {
+//     document.getElementById('openpacks').classList.remove("openPackShakeScreenAnim");
+//     var packElements = document.getElementsByClassName("pack");
+//     for (let i = 0; i < packElements.length; i++) {
+//         document.getElementsByClassName("pack")[i].style.display = "none";
+//     }
+//     var packElements = document.getElementsByClassName("pack");
+//     for (let i = 0; i < packElements.length; i++) {
+//         document.getElementsByClassName("pack")[i].style.display = "block";
+//     }
+//     // if remaining packs still exist run this function again
+//     var myPacks = Number(localStorage.getItem('myPacks'));
+//     if (myPacks >= 1) {
+//         init();
+//     }
+//     donepackbtn.style.display = "none";
+//     document.getElementById("openpacks").style.filter = "none";
+//     document.getElementById("backfrompackbtn").disabled = false;
+//     document.getElementById("containerOpenPack").style.display = "none";
+//     elementsToRemove = document.querySelectorAll(".flip-card");
+//     for (let i = 0; i < 5; i++) {
+//         elementsToRemove[i].remove();
+//     }
+// }
 
 const targetDiv = document.getElementById("fps");
 const fpsbtn = document.getElementById('togglefps')

@@ -84,8 +84,7 @@ function checkForLoss() {
   }
   if (window.getComputedStyle(playerHero).display === "none") {
     setTimeout(function() {
-      alert("You've Lost!")
-      location.reload();
+      gameLose(false);
     },1000);
   }
   return true

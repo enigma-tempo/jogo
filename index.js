@@ -1,6 +1,8 @@
 // imports module 'Deck' from deck.js
 // import Deck from "./deck.js"
 // defines global variables
+var gameStartsAt;
+var gameEndAt;
 var iElements = null;
 var currentAttacker = null;
 var collision = new Boolean(false);
@@ -434,16 +436,17 @@ function getGameData() {
   //Stock model = {player_id, hero_id, deck_id, enemy_id} <- fromGet
   mockData = [
     {
-      id:1, 
-      hero_id: 1, 
-      hero: 'Dom Pedro I', 
-      hero_txt: 'Independência<br>ou morte!;',
-      deck: 1, 
+      id:'63f652354ca4510da989a8c8', 
+      hero_id: '63f652a14ca4510da989a8c9', 
+      hero: 'Dom Pedro II', 
+      hero_txt: 'A política não é para mim senão<br> o duro cumprimento do dever.;',
+      deck: '63f65348675fec0ebbaea754', 
      },
     {
       id:2,
-      hero:'Zumbi dos Palmares',
-      hero_txt: 'Só fica escravo aquele<br>que tem medo de morrer<br>sobre donos.;',
+      hero_id: '63f652fc675fec0ebbaea752', 
+      hero:'Marechal Deodoro da Fonseca',
+      hero_txt: 'Digam ao povo que a<br>República está feita.;',
       deck:2
     }
   ]
@@ -451,6 +454,7 @@ function getGameData() {
 }
 
 function setGameConfig(data_game) {
+  gameStartsAt = Date.now();
   //player
   // playerHero.style.backgroundImage = "url('src/images/"& data_game[0]['hero'].replaceAll(' ','-') &".png')";
   document.getElementsByClassName('playerhero')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +".png')";
@@ -462,4 +466,17 @@ function setGameConfig(data_game) {
   document.getElementsByClassName('opponenthero')[0].style.backgroundImage = "url('src/images/"+ data_game[1]['hero'].replaceAll(' ','-') +".png')";
   document.getElementById('opponentlabel').innerText = data_game[1]['hero'];
   document.getElementById('computerbubble').innerHTML = data_game[1]['hero_txt'].split(';')[0];
+}
+function getRequest(url){
+  let request = new XMLHttpRequest()
+  request.open("GET", url, false)
+  request.send()
+  return request.responseText
+}
+function postRequest(url, json){
+  let request = new XMLHttpRequest()
+  request.open("POST", url, false)
+  request.setRequestHeader('Content-Type', 'application/json');
+  request.send(JSON.stringify(json));
+  return request.responseText;
 }

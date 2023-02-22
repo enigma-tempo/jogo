@@ -218,7 +218,7 @@ function healHero(who, params){
     let target = who;
     let targethealth = 'player';
     if (who == 'computer') {
-        let targethealth = 'opposing';
+        targethealth = 'opposing';
     }
     let playerHeroHealth = parseInt(document.querySelector("."+targethealth+"HeroHealth").innerText);
     let newHp = playerHeroHealth + heal;

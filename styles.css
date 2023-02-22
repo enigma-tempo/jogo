@@ -64,7 +64,8 @@ head {
 	text-align: center;
 	user-select: none;
 	color: white;
-	background-image: url("src/images/loading.gif") !important;
+	background-color: #9d4b1c;
+	background-image: url("src/images/loading.webp") !important;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -570,7 +571,7 @@ head {
 	}
 
 	#endturn {
-		left: 76.5%;
+		left: 79%;
 		top: 42.5%;
 	}
 
@@ -649,7 +650,7 @@ head {
 	}
 
 	#playerbubble {
-		font-size: 25px;
+		font-size: 18px;
 	}
 
 	#computerbubble {
@@ -1014,7 +1015,7 @@ svg {
 	position: absolute;
 	width: 11%;
 	height: 17%;
-	left: 18%;
+	left: 12.5%;
 	top: 60%;
 	z-index: 20;
 	/* background-image: url(src/images/Dom-Pedro-I.png); */
@@ -1050,7 +1051,7 @@ svg {
 	position: absolute;
 	width: 11%;
 	height: 17%;
-	left: 18%;
+	left: 12.5%;
 	top: 24%;
 	z-index: 11;
 	/* background-image: url(src/images/zumbi.png); */
@@ -1265,7 +1266,7 @@ svg {
 	user-select: none;
 	/* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-	left: 80%;
+	left: 81.5%;
 }
 
 .player-deck {
@@ -2562,7 +2563,7 @@ svg {
 	box-shadow: 0px 1px 0px 5px #000000;
 	text-align: center;
 	width: 15%;
-	height: 13%;
+	height: 22%;
 	border-radius: 50px;
 	visibility: hidden;
 	z-index: 20;
