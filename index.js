@@ -40,7 +40,7 @@ const cardinplay = document.getElementsByClassName('cardinplay')
 const collisionbox = document.getElementById("collisionbox");
 const draggableElements = document.getElementsByClassName("card");
 const manaElement = document.getElementById('mana');
-let originalDeck, playerDeck, computerDeck, inRound;
+let originalPlayerDeck, originalComputerDeck, playerDeck, computerDeck, inRound;
 
 let data_game = getGameData();
 
@@ -48,17 +48,11 @@ let data_game = getGameData();
 required functions when the page is loaded. */
 function startGame() {
   setGameConfig(data_game);
-  /* creates a new deck where cards split into 2 equal decks for both 
-  the player and AI and shuffled */
-  //isso aqui é bizarro...
-	// const deck = new Deck()
-	// const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
-  // originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
+  originalPlayerDeck = new Deck(data_game[0]['deck'])
   playerDeck = new Deck(data_game[0]['deck'])
-	// playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
   playerDeck.shuffle()
-	// computerDeck = new Deck(deck.cards.slice(deckMidpoint+1, deck.numberOfCards))
   computerDeck = new Deck(data_game[1]['deck'])
+  originalComputerDeck = new Deck(data_game[1]['deck']);
   computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
@@ -111,16 +105,16 @@ function placeCardFunc() {
   if(collision == true) {
     var found = false;
     setTimeout(function() {
-    for(var i = 0; i < playerDeck.cards.length; i++) {
-      if ((playerDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount < 7)) {
+    for(var i = 0; i < originalPlayerDeck.cards.length; i++) {
+      if ((originalPlayerDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount < 7)) {
         found = true;
-        var manaCost = parseInt(playerDeck.cards[i]['mana']);
+        var manaCost = parseInt(originalPlayerDeck.cards[i]['mana']);
         mana -= manaCost;
         manaElement.innerHTML = mana + "/" + manaCapacity;
-        playerCardSlot2.appendChild(playerDeck.cards[i].getPlayerHTML())
+        playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
         checkForRequiredMana();
         updateManaGUI();
-        cardPlace('player',playerDeck.cards[i]);
+        cardPlace('player',originalPlayerDeck.cards[i]);
         cardplaceSnd.play();
         /* lets the user know to press the end turn button as they have 
         no more cards left to play */
@@ -228,7 +222,6 @@ function computerCardPlace(numero_cartas) {
   function iterate_(){
     let card = parseInt(Math.random() * (computerDeck.cards.length - 1) + 1);
     if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
-      console.log("Achou a carta.");
       let opponentCard = computerDeck.cards[card].getComputerHTML();
       computerCardSlot.appendChild(opponentCard);
       cardPlace('computer',computerDeck.cards[card]);
@@ -256,7 +249,7 @@ function computerCardPlace(numero_cartas) {
 
   return new Promise((resolve, reject) => {
     var draw = setInterval(() => {
-      if ((mana > 0) && (hand < 5) && (numero_cartas > 0) && (computerCardSlot.childElementCount < 10)) {
+      if ((mana > 0) && (hand < 5) && (numero_cartas > 0) && (computerCardSlot.childElementCount < 8)) {
         setTimeout(() => {
           iterate_()
         }, 400);
@@ -281,9 +274,7 @@ function playerTurn() {
     manaCapacity++;
     createManaCrystal();
   }
-  console.log("Atualizando mana: mana = ",mana," manacapacity = ", manaCapacity);
   mana = manaCapacity
-  console.log("Atualizada mana: mana = ",mana," manacapacity = ", manaCapacity);
   manaElement.innerHTML = mana + "/" + manaCapacity;
   var manaCrystals = document.getElementsByClassName("manabox");
   for (let i=0; i<manaCrystals.length; i++) {
@@ -377,7 +368,6 @@ function dragElement(elmnt) {
     function dragMouseDown(e) {
         e = e || window.event;
         iElements = e.target;
-        console.log(iElements);
         elmnt.style.position = "absolute";
         elmnt.style.left = e.clientX + "px";
         pos3 = parseInt(e.clientX);
@@ -434,10 +424,8 @@ var isScreenShake = new Boolean(true);
 screenshakebtn.onclick = function () {
   if (isScreenShake == true) {
       isScreenShake = false;
-      console.log("Screen Shaking has been set to " + isScreenShake);
     } else if (isScreenShake == false) {
       isScreenShake = true;
-      console.log("Screen Shaking has been set to " + isScreenShake);
     }
 };
 

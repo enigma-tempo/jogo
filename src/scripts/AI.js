@@ -125,7 +125,6 @@ function showDamageLabel(currentAttackerAttack) {
 
 // AI RELATED
 function attackPlayerHero(damage) {
-  console.log(damage);
   document.getElementById('playerhero').children[1].innerText -= damage;
   showDamageLabel(damage);
 }
@@ -218,7 +217,6 @@ function action() {
     while (!playerCardSlot2.children[allied].classList.contains("hasTaunt")) {
       allied++;
     }
-    console.log("Attacking Taunt...");
     for (let i=0; i<numOfOpponentCards; i++) {
       if (playerCardSlot2.children[allied].classList.contains("hasTaunt")) {
         var maxOpponentAttack = findMaxOf('attack','computer',0);
@@ -229,7 +227,6 @@ function action() {
     }
   }
   else if((document.getElementById('playerhero').children[1].innerText <= healthModifier) || numOfAlliedCards == 0) {
-    console.log("Attacking Player...");
     attackPlayerHero(getSumOfAttack());
   }
   // otherwise attacks the highest attack card on the board and attacks the hero with the other
@@ -250,7 +247,6 @@ function ai_attack_move(numOfOpponentCards){
       attackPlayerHero(getAttack(maxOpponentAttack));
     }
     else{
-      console.log("Attacking...");
       if((getHealth(maxPlayerAttack) <= getAttack(maxOpponentAttack)) || (getHealth(maxPlayerAttack) <= sumOfAttack))
         ai_attack(maxOpponentAttack, maxPlayerAttack);
       else attackPlayerHero(getAttack(maxOpponentAttack));

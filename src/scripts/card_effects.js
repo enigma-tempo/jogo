@@ -1,6 +1,6 @@
-effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf}
+effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies}
 
-who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck} }
+who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
 
 function getEffectNames(mob){
     return mob.children[4].innerText;
@@ -10,6 +10,60 @@ function getParamText(mob){
 }
 
 //Effects
+function damageEnemies(who, params){
+    [enemies, health] = params.toString().split(',');
+    if (who == 'player') {
+        who = "computer";
+        look = ilookForTaunts;
+    }else{
+        who = "player";
+        look = lookForTaunts;
+    }
+    if(parseInt(enemies) == 0)
+        enemies_count = who_dict[who]['slot'].childElementCount;
+    else 
+        enemies_count = parseInt(enemies);
+    
+    for (let i = 0; i < enemies_count; i++) {
+        let targetI = i;
+        if (look()) {
+            for (let j = 0; j < who_dict[who]['slot'].childElementCount; j++) {
+                if(who_dict[who]['slot'].children[j].classList.contains("hasTaunt")){
+                    targetI = j;
+                    break;
+                }                
+            }
+        }else if (parseInt(enemies) != 0) targetI = Math.floor(Math.random() * who_dict[who]['slot'].childElementCount);
+        let target = who_dict[who]['slot'].children[targetI];
+        if (target == null) {
+            continue
+        }
+        target.style["boxShadow"] = "0px 0px 35px #f20301";
+        if (target.classList.contains("hasDivineShield")) {
+            target.classList.remove("hasDivineShield");
+            target.children[2].classList.add("divineShieldBreak");
+            setTimeout(function() {
+                target.children[2].style.visibility = "hidden";
+            },400);
+        }else{
+            let h = parseInt(target.children[1].children[0].innerText);
+            target.children[1].children[0].innerText = h - parseInt(health);
+            target.children[1].children[0].style.color = "#f20301";
+            setTimeout(function() {
+                target.style["boxShadow"] = "";
+                if(parseInt(target.children[1].children[0].innerText) < 1){
+                    if(target.classList.contains("hasTaunt")){
+                        clearAttackEvents();
+                        attack(true);
+                    }
+                    target.remove();
+                } 
+            }, 1000);
+
+        }
+    }
+}
+
 function buffSelf(who, params){
     [atk, hp] = params.toString().split(',');
     n_allieds = who_dict[who]['slot'].childElementCount  - 1;
@@ -66,10 +120,10 @@ function taunt(who, mob){
 
 function summon(who, params){
     [card_name, quantity] = params.toString().split(',');
-    for(var i = 0; i < who_dict[who]['deck'].cards.length; i++) {
-        if ((who_dict[who]['deck'].cards[i]['name'] == card_name) && (who_dict[who]['slot'].childElementCount != 7)) {
+    for(var i = 0; i < who_dict[who]['original_deck'].cards.length; i++) {
+        if ((who_dict[who]['original_deck'].cards[i]['name'] == card_name) && (who_dict[who]['slot'].childElementCount != 7)) {
             for (let j = 0; j < quantity; j++) {
-                let mob = who_dict[who]['deck'].cards[i];
+                let mob = who_dict[who]['original_deck'].cards[i];
                 let mob_html = null;
                 if(who == 'player'){
                     mob_html = mob.getPlayerHTML();

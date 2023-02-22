@@ -58,7 +58,6 @@ class MinionCard {
 		divineShield.classList.add("divineShield");
 		taunt.classList.add("taunt");
 		effect.classList.add("effects");
-		// effect.classList.add(this.effect);
 		params.classList.add('params');
 		params.style.visibility = "hidden";
 
@@ -107,7 +106,6 @@ class MinionCard {
 		divineShield.classList.add("divineShield");
 		taunt.classList.add("taunt");
 		effect.classList.add("effects");
-		// effect.classList.add(this.effect);
 		params.classList.add('params');
 		params.style.visibility = "hidden";
 
@@ -232,10 +230,6 @@ function freshDeck(deck_id) {
 	cards = data['cards']
 	listCards = []
 	cards.forEach(element => {
-		// atributes = []
-		// Object.keys(element).forEach((key) => {
-		// 	atributes.push(element[key])
-		// })
 		let name = element['name'];
 		let attack = parseInt(element['attack'])
 		let health = parseInt(element['health'])

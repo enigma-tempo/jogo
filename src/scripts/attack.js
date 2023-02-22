@@ -133,8 +133,6 @@ function setAttacked(e) {
       }
       currentAttackerElement.remove();
     } else if( currentAttackerElement.children[4].innerText.includes('frenesi')){
-      console.log(currentAttackerElement.children[4].innerText);
-      console.log(currentAttackerElement.children[5].innerHTML);
       frenesi(currentAttackerElement);
     }
     if(targetHealth <= 0) {
@@ -165,8 +163,6 @@ function setAttacked(e) {
       }
     }
   } else if(targetElement.id != "opposinghero" && targetElement.children[4].innerText.includes('frenesi')){
-    console.log(targetElement.children[4].innerText);
-    console.log(targetElement.children[5].innerHTML);
     frenesi(targetElement);
   }
   },250);
@@ -200,7 +196,6 @@ function setAttacked(e) {
   }
   currentAttacker = null;
   if(!ilookForTaunts()){
-    console.log("Taunt morreu");
     clearAttackEvents();
     attack(true);
   }

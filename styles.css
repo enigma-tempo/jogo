@@ -1029,7 +1029,7 @@ svg {
 	height: 13%;
 	top: 75%;
 	left: 60%;
-	z-index: -10;
+	z-index: 1;
 	/* background-image: url(src/images/heropower.png); */
 	background-repeat: no-repeat;
 	/* Do not repeat the image */
