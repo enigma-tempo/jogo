@@ -23,6 +23,8 @@ var amount = 0;
 var oldNumOfChild = 0;
 var playerHandArray = []
 var getNameOfElement = "";
+var getElementEffect = "";
+var getElementEffectParams = "";
 // defines constant variables to refer to HTML elements
 const computerCardSlot = document.querySelector('.board--opponent')
 const playerCardSlot2 = document.querySelector('.board--player')
@@ -38,19 +40,25 @@ const cardinplay = document.getElementsByClassName('cardinplay')
 const collisionbox = document.getElementById("collisionbox");
 const draggableElements = document.getElementsByClassName("card");
 const manaElement = document.getElementById('mana');
-let originalDeck, playerDeck, computerDeck, inRound
+let originalDeck, playerDeck, computerDeck, inRound;
+
+let data_game = getGameData();
 
 /* calls and defines the startGame function to perform 
 required functions when the page is loaded. */
 function startGame() {
+  setGameConfig(data_game);
   /* creates a new deck where cards split into 2 equal decks for both 
   the player and AI and shuffled */
-	const deck = new Deck()
-	const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
-  originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
-	playerDeck = new Deck(deck.cards.slice(0, 30))
+  //isso aqui é bizarro...
+	// const deck = new Deck()
+	// const deckMidpoint = Math.ceil(deck.numberOfCards / 2)
+  // originalDeck = new Deck(deck.cards.slice(0, deck.numberOfCards))
+  playerDeck = new Deck(data_game[0]['deck'])
+	// playerDeck = new Deck(deck.cards.slice(0, deckMidpoint))
   playerDeck.shuffle()
-	computerDeck = new Deck(deck.cards.slice(31, 60))
+	// computerDeck = new Deck(deck.cards.slice(deckMidpoint+1, deck.numberOfCards))
+  computerDeck = new Deck(data_game[1]['deck'])
   computerDeck.shuffle()
 	inRound = false
 	updateDeckCount()
@@ -97,23 +105,22 @@ function startGame() {
     isTutorial = true;
   }
 }
-/* defines new function that when boolean collision is true between the card and collisionbox element and element is 
-created using the getPlayerHTML() function defined in deck.js and is appended as a child into the players' board
-and mana is made = to mana - the mana cost of the card */
-function placeCardFunc(e) {
+
+function placeCardFunc() {
+
   if(collision == true) {
     var found = false;
     setTimeout(function() {
-    for(var i = 0; i < originalDeck.cards.length; i++) {
-      if ((originalDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount != 7)) {
+    for(var i = 0; i < playerDeck.cards.length; i++) {
+      if ((playerDeck.cards[i]['name'] == getNameOfElement) && (playerCardSlot2.childElementCount < 7)) {
         found = true;
-        var manaCost = originalDeck.cards[i]['mana'];
+        var manaCost = parseInt(playerDeck.cards[i]['mana']);
         mana -= manaCost;
         manaElement.innerHTML = mana + "/" + manaCapacity;
-        playerCardSlot2.appendChild(originalDeck.cards[i].getPlayerHTML())
+        playerCardSlot2.appendChild(playerDeck.cards[i].getPlayerHTML())
         checkForRequiredMana();
         updateManaGUI();
-        cardPlaceSnds();
+        cardPlace('player',playerDeck.cards[i]);
         cardplaceSnd.play();
         /* lets the user know to press the end turn button as they have 
         no more cards left to play */
@@ -124,37 +131,19 @@ function placeCardFunc(e) {
         break;
       }
     }
-  },0.01);
+  },0.2);
   }
 }
 
 /* defines function that updates the mana GUI at the bottom left of the screen
-whenever mana is spent or the player's turn has just started */
+whenever mana is spent or the player's turn has just started  WTF*/
 function updateManaGUI() {
   var manaCrystals = document.getElementsByClassName("manabox");
   for (let i=0; i<manaCrystals.length; i++) {
-    if (i == 1) {
-      manaCrystals[manaCrystals.length-1].style.backgroundColor = "black";
-    }
-    else if (i == 2) {
-      manaCrystals[manaCrystals.length-2].style.backgroundColor = "black";
-    }
-    else if (i == 3) {
-      manaCrystals[manaCrystals.length-3].style.backgroundColor = "black";
-    }
-    else if (i == 4) {
-      manaCrystals[manaCrystals.length-4].style.backgroundColor = "black";
-    }
-    else if (i == 5) {
-      manaCrystals[manaCrystals.length-5].style.backgroundColor = "black";
-    }
-    else if (i == 6) {
-      manaCrystals[manaCrystals.length-6].style.backgroundColor = "black";
-    }
-    // once the amount of iterations is equal to the mana cost stop the loop
     if (i == manaCost) {
-      break
+      break;
     }
+    manaCrystals[manaCrystals.length-(i+1)].style.backgroundColor = "black";
   }
 }
 
@@ -191,6 +180,7 @@ document.getElementById("endturn").addEventListener("click", function() {
   document.querySelector("#endturn").style.zIndex = "50";
   document.getElementById("gifhint").style.backgroundImage = "url('src/hints/attack.gif')";
   document.getElementById("texthint").innerText = "Click on an green glowing allied card then click on an enemy to attack.";
+  document.getElementById('opposinghero').removeEventListener('mousedown', setAttacked);
   opponentTurn()
 });
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
@@ -208,65 +198,75 @@ function opponentTurn() {
   document.getElementById("computerTurn").style.display = "block";
   document.getElementById("endturn").style.backgroundColor = "grey";
   document.getElementById("endturn").innerText = "ENEMY TURN";
-  if (computerCardSlot.childElementCount != 0) {
-  /* calls function defined in AI.js (determines what the computer 
-  attacks and with what minions) */
-  setTimeout(function() {
-    AI();
-  },1250)
-  // stops the AI from having more than 7 cards on the board at a time
-  setTimeout(function() {
-    let opponentCardsInPlay = computerCardSlot.childElementCount;
-    if(opponentCardsInPlay != maxOpponentCardsInPlay) {
-      computerCardPlace();
-      // to fix position of board GUI onclick
-      if(opponentCardsInPlay >= 0) {
-        computerCardSlot.style.transform = "translateY(17.5%)"; 
-      }
-    }
+  if (document.querySelector('.board--opponent').childElementCount > 0) {
+    /* calls function defined in AI.js (determines what the computer 
+    attacks and with what minions) */
     setTimeout(function() {
-      playerTurn();
-    },1000)
-  },2500)
-  } else {
-    // places card if number of cards on board has not reached the max amount (10)
-    setTimeout(function() {
+      AI();
+    },1250)
+  }
+  // places card if number of cards on board has not reached the max amount (10)
+  async function e(){
       let opponentCardsInPlay = computerCardSlot.childElementCount;
-      if(opponentCardsInPlay != maxOpponentCardsInPlay) {
-        computerCardPlace();
-        // to fix position of board GUI onclick
+      if(opponentCardsInPlay < maxOpponentCardsInPlay) {
         if(opponentCardsInPlay >= 0) {
           computerCardSlot.style.transform = "translateY(17.5%)"; 
         }
+        await computerCardPlace( maxOpponentCardsInPlay - opponentCardsInPlay );
+        // to fix position of board GUI onclick
       }
       // then calls the player turn function allowing the player to play his turn
-      setTimeout(function() {
-        playerTurn();
-      },1000)
-    },1250)
+      playerTurn();
   }
+  e();
 }
-
 /* places a card onto the computers board whose mana is equal 
 to the player's mana capacity */
-function computerCardPlace() {
-  for (let i=0; i<computerDeck.cards.length; i++) {
-    if (computerDeck.cards[i]['mana'] == manaCapacity) {
-      computerCardSlot.appendChild(computerDeck.cards[i].getComputerHTML())
-      var index = computerDeck.cards.indexOf(i);
-      cardplaceSnd.play();
-      break
-    /* if the player's mana capacity is at the maxiumum (10) then 
-    plays the card at the top of the computer's deck */
-    } else if (manaCapacity == 10) {
-      computerCardSlot.appendChild(computerDeck.cards[0].getComputerHTML())
-      break
+function computerCardPlace(numero_cartas) {
+  var mana = manaCapacity;
+  var hand = 0;
+  function iterate_(){
+    let card = parseInt(Math.random() * (computerDeck.cards.length - 1) + 1);
+    if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
+      console.log("Achou a carta.");
+      let opponentCard = computerDeck.cards[card].getComputerHTML();
+      computerCardSlot.appendChild(opponentCard);
+      cardPlace('computer',computerDeck.cards[card]);
+      numero_cartas--;
+      mana = mana - parseInt(computerDeck.cards[card]['mana']);
+      hand++;
     }
+  }   
+
+  function complement(){
+    if(mana > 0){
+      for (let i = 0; i < computerDeck.cards.length; i++) {
+        if (computerDeck.cards[i]['mana'] <= mana) {
+          setTimeout(function() {
+            computerCardSlot.appendChild(computerDeck.cards[i].getComputerHTML())
+            mana -= computerDeck.cards[i]['mana'];
+            computerDeck.cards.splice(computerDeck.cards.indexOf(i), 1);
+          }, 800);
+          break;
+        }
+      }
+    }
+    updateDeckCount();
   }
-  // removes the card that was placed from the deck
-  computerDeck.cards.splice(index, 1);
-  // updates the deck count innerHTML
-  updateDeckCount();
+
+  return new Promise((resolve, reject) => {
+    var draw = setInterval(() => {
+      if ((mana > 0) && (hand < 5) && (numero_cartas > 0) && (computerCardSlot.childElementCount < 10)) {
+        setTimeout(() => {
+          iterate_()
+        }, 400);
+      }else{
+        clearInterval(draw);
+        complement();
+        resolve();
+      }
+    }, 1000)
+  })
 }
 
 /* the player turn function allows the player ot place cards and attack 
@@ -277,11 +277,13 @@ required mana to play the card for every card in the player's hand and
 if so makes the boxShadow css property green*/
 function playerTurn() {
   playersTurn = true;
-  if (manaCapacity != 10) {
+  if (manaCapacity < 10) {
     manaCapacity++;
     createManaCrystal();
   }
+  console.log("Atualizando mana: mana = ",mana," manacapacity = ", manaCapacity);
   mana = manaCapacity
+  console.log("Atualizada mana: mana = ",mana," manacapacity = ", manaCapacity);
   manaElement.innerHTML = mana + "/" + manaCapacity;
   var manaCrystals = document.getElementsByClassName("manabox");
   for (let i=0; i<manaCrystals.length; i++) {
@@ -301,7 +303,7 @@ function playerTurn() {
       alreadyMocked = true;
       mockSnd.play();
       setTimeout(function() {
-        document.querySelector("#computerbubble").innerText = "Go ahead. End\nyour turn, so that\nI can end you!";
+        document.querySelector("#computerbubble").innerText = "Vá em frente,\ntermine seu turno e então\nterminarei com você!";
         document.querySelector("#computerbubble").style.visibility = "visible";
         document.querySelector('#computerbubble').classList.add("openMenuAnim");
         setTimeout(function() {
@@ -320,6 +322,7 @@ function playerTurn() {
     hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML())
   }
   checkForRequiredMana();
+  clearAttackEvents();
   attack();
   enableDrag();
   /* Removes all event listeners from elements with the class name 'card' for function placeCardFunc
@@ -374,43 +377,46 @@ function dragElement(elmnt) {
     function dragMouseDown(e) {
         e = e || window.event;
         iElements = e.target;
+        console.log(iElements);
         elmnt.style.position = "absolute";
         elmnt.style.left = e.clientX + "px";
         pos3 = parseInt(e.clientX);
         pos4 = parseInt(e.clientY);
-        document.onmouseup = closeDragElement;
         document.onmousemove = elementDrag;
+        document.onmouseup = closeDragElement;
         return false;
     }
 
     function elementDrag(e) {
-        e = e || window.event;
-        pos1 = pos3 - parseInt(e.clientX);
-        pos2 = pos4 - parseInt(e.clientY);
-        pos3 = parseInt(e.clientX);
-        pos4 = parseInt(e.clientY);
-        // sets the position of the element to the position of the mouse
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        // Checks for collision between elements (the card and collisionbox)
-          var aRect = collisionbox.getBoundingClientRect();
-          var bRect = iElements.getBoundingClientRect();
-          if (
-            ((aRect.top + aRect.height) < (bRect.top)) ||
-            (aRect.top > (bRect.top + bRect.height)) ||
+      e = e || window.event;
+      pos1 = pos3 - parseInt(e.clientX);
+      pos2 = pos4 - parseInt(e.clientY);
+      pos3 = parseInt(e.clientX);
+      pos4 = parseInt(e.clientY);
+      // sets the position of the element to the position of the mouse
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      // Checks for collision between elements (the card and collisionbox)
+      var aRect = collisionbox.getBoundingClientRect();
+      var bRect = iElements.getBoundingClientRect();
+      if (
+        ((aRect.top + aRect.height) < (bRect.top)) ||
+        (aRect.top > (bRect.top + bRect.height)) ||
             ((aRect.left + aRect.width) < bRect.left) ||
             (aRect.left > (bRect.left + bRect.width))) {
               collision = false;
-          } else {
-            collision = true;
-            document.querySelectorAll('.card').forEach(function(e){
-            e.addEventListener('mouseup', function(e) {
-              if((collision == true) && (playerCardSlot2.childElementCount != 7)) {
-                getNameOfElement = iElements.children[0].children[5].innerText;
-                iElements.remove();
-              }
-          });
-          });
+            } else {
+              collision = true;
+              document.querySelectorAll('.card').forEach(function(e){
+              e.addEventListener('mouseup', function a(e) {
+                if((collision == true) && (playerCardSlot2.childElementCount <= 7)) {
+                  getNameOfElement = iElements.children[0].children[5].innerText;
+                  iElements.removeEventListener('mouseup', a);
+                  iElements.addEventListener('mouseup', placeCardFunc);
+                  iElements.remove();
+                }
+              });
+            });
       }
     }
     function closeDragElement() {
@@ -434,3 +440,38 @@ screenshakebtn.onclick = function () {
       console.log("Screen Shaking has been set to " + isScreenShake);
     }
 };
+
+function getGameData() {
+  //getFromDB
+  //Stock model = {player_id, hero_id, deck_id, enemy_id} <- fromGet
+  mockData = [
+    {
+      id:1, 
+      hero_id: 1, 
+      hero: 'Dom Pedro I', 
+      hero_txt: 'Independência<br>ou morte!;',
+      deck: 1, 
+     },
+    {
+      id:2,
+      hero:'Zumbi dos Palmares',
+      hero_txt: 'Só fica escravo aquele<br>que tem medo de morrer<br>sobre donos.;',
+      deck:2
+    }
+  ]
+  return mockData;
+}
+
+function setGameConfig(data_game) {
+  //player
+  // playerHero.style.backgroundImage = "url('src/images/"& data_game[0]['hero'].replaceAll(' ','-') &".png')";
+  document.getElementsByClassName('playerhero')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +".png')";
+  document.getElementById('playerlabel').innerText = data_game[0]['hero'];
+  document.getElementById('playerbubble').innerHTML = data_game[0]['hero_txt'].split(';')[0];
+  document.getElementsByClassName('playerheropower')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +"_power.png')";
+  
+  //opponent
+  document.getElementsByClassName('opponenthero')[0].style.backgroundImage = "url('src/images/"+ data_game[1]['hero'].replaceAll(' ','-') +".png')";
+  document.getElementById('opponentlabel').innerText = data_game[1]['hero'];
+  document.getElementById('computerbubble').innerHTML = data_game[1]['hero_txt'].split(';')[0];
+}

@@ -10,173 +10,11 @@ function AI() {
   const numOfOpponentCards = computerCardSlot2.childElementCount;
   const alliedCards = document.querySelectorAll('.player-cardinplay')
   const numOfAlliedCards = playerCardSlot.childElementCount;
-  if((numOfOpponentCards == 1) && (numOfAlliedCards == 0)){
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 0)) {
-    noAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 1)){
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 1)) {
-    oneAlliedCard();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 2)){
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 2)) {
-    twoAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 3)) {
-    threeAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 4)) {
-    fourAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 5)) {
-    fiveAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 6)) {
-    sixAlliedCards();
-  }
-  else if((numOfOpponentCards == 1) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 2) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 3) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 4) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 5) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 6) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
-  }
-  else if((numOfOpponentCards == 7) && (numOfAlliedCards == 7)) {
-    sevenAlliedCards();
+
+  if(numOfAlliedCards == 0){
+    attackPlayerHero(getSumOfAttack());
+  } else { 
+    action();
   }
   
   // checks if the player has lost
@@ -206,152 +44,39 @@ function AI() {
   return true
 }
 
-
-
-/* returns the element with the largest attack on the opponent's side 
+/* returns the element with the largest attack or health on the opponent's or player's side 
 where the parameter 'largestValue' determines the value of n 
 when nth value is returned*/
-function findMaxOpponentAttack(largestValue) {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const alliedCards = document.querySelectorAll('player-cardinplay')
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  let attackValues = []
+function findMaxOf(option, player, largestValue) {
+  option = option == 'attack' ? 0 : 1;
+  const cards = document.querySelectorAll('.'+player+'-cardinplay')
+  let values = []
   let biggestValue = 0
-  for(let i=0; i<opponentCards.length; i++) {
-    attackValues.push(opponentCards[i].children[0].children[0].innerText);
+  for(let i=0; i<cards.length; i++) {
+    values.push(cards[i].children[option].children[0].innerText);
   }
-  for(let i=0; i<attackValues.length; i++) {
-    if(opponentCards[i].children[0].children[0].innerText > biggestValue) {
-      biggestValue = opponentCards[i].children[0].children[0].innerText;
+  for(let i=0; i<values.length; i++) {
+    if(cards[i].children[0].children[0].innerText > biggestValue) {
+      biggestValue = cards[i].children[option].children[0].innerText;
     }
   }
   for (let i=0; i<largestValue; i++) {
-    let index = attackValues.indexOf(biggestValue);
-    attackValues.splice(index, 1);
+    let index = values.indexOf(biggestValue);
+    values.splice(index, 1);
     biggestValue = 0;
-    for(let i=0; i<attackValues.length; i++) {
-      if(opponentCards[i].children[0].children[0].innerText > biggestValue) {
-        biggestValue = opponentCards[i].children[0].children[0].innerText;
+    for(let i=0; i<values.length; i++) {
+      if(cards[i].children[0].children[0].innerText > biggestValue) {
+        biggestValue = cards[i].children[option].children[0].innerText;
       }
     }
   }
-  for(let i=0; i<opponentCards.length; i++) {
-    if(opponentCards[i].children[0].children[0].innerText == biggestValue) {
-      return opponentCards[i]
+  for(let i=0; i<cards.length; i++) {
+    if(cards[i].children[option].children[0].innerText == biggestValue) {
+      return cards[i]
     }
   }
-  return true
+  return null;
 }
-
-/* returns the element with the largest attack on the player's side 
-where the parameter 'largestValue' determines wheather the 2nd largest value
-3rd largest value 4th largest etc. is returned*/
-function findMaxPlayerAttack(largestValue) {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  let attackValues = []
-  let biggestValue = 0
-  for(let i=0; i<alliedCards.length; i++) {
-    attackValues.push(alliedCards[i].children[0].children[0].innerText);
-  }
-  for(let i=0; i<attackValues.length; i++) {
-    if(alliedCards[i].children[0].children[0].innerText > biggestValue) {
-      biggestValue = alliedCards[i].children[0].children[0].innerText;
-    }
-  }
-  for (let i=0; i<largestValue; i++) {
-    let index = attackValues.indexOf(biggestValue);
-    attackValues.splice(index, 1);
-    biggestValue = 0;
-    for(let i=0; i<attackValues.length; i++) {
-      if(alliedCards[i].children[0].children[0].innerText > biggestValue) {
-        biggestValue = alliedCards[i].children[0].children[0].innerText;
-      }
-    }
-  }
-  for(let i=0; i<alliedCards.length; i++) {
-    if(alliedCards[i].children[0].children[0].innerText == biggestValue) {
-      return alliedCards[i]
-    }
-  }
-  return true
-}
-
-/* returns the element with the largest health on the opponent's side 
-where the parameter 'largestValue' determines wheather the 2nd largest value
-3rd largest value 4th largest etc. is returned*/
-function findMaxOpponentHealth(largestValue) {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const alliedCards = document.querySelectorAll('player-cardinplay')
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  let healthValues = []
-  let biggestValue = 0
-  for(let i=0; i<opponentCards.length; i++) {
-    healthValues.push(opponentCards[i].children[1].children[0].innerText);
-  }
-  for(let i=0; i<healthValues.length; i++) {
-    if(opponentCards[i].children[0].children[0].innerText > biggestValue) {
-      biggestValue = opponentCards[i].children[1].children[0].innerText;
-    }
-  }
-  for (let i=0; i<largestValue; i++) {
-    let index = healthValues.indexOf(biggestValue);
-    healthValues.splice(index, 1);
-    for(let i=0; i<healthValues.length; i++) {
-      if(opponentCards[i].children[0].children[0].innerText > biggestValue) {
-        biggestValue = opponentCards[i].children[1].children[0].innerText;
-      }
-    }
-  }
-  for(let i=0; i<opponentCards.length; i++) {
-    if(opponentCards[i].children[1].children[0].innerText == biggestValue) {
-      return opponentCards[i]
-    }
-  }
-  return true
-}
-
-/* returns the element with the largest health on the player's side 
-where the parameter 'largestValue' determines wheather the 2nd largest value
-3rd largest value 4th largest etc. is returned*/
-function findMaxPlayerHealth(largestValue) {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  let healthValues = []
-  let biggestValue = 0
-  for(let i=0; i<alliedCards.length; i++) {
-    healthValues.push(alliedCards[i].children[1].children[0].innerText);
-  }
-  for(let i=0; i<healthValues.length; i++) {
-    if(alliedCards[i].children[0].children[0].innerText > biggestValue) {
-      biggestValue = alliedCards[i].children[1].children[0].innerText;
-    }
-  }
-  for (let i=0; i<largestValue; i++) {
-    let index = attackValues.indexOf(biggestValue);
-    attackValues.splice(index, 1);
-    for(let i=0; i<healthValues.length; i++) {
-      if(alliedCards[i].children[0].children[0].innerText > biggestValue) {
-        biggestValue = alliedCards[i].children[1].children[0].innerText;
-      }
-    }
-  }
-  for(let i=0; i<alliedCards.length; i++) {
-    if(alliedCards[i].children[1].children[0].innerText == biggestValue) {
-      return alliedCards[i]
-    }
-  }
-  return true
-}
-
-
-
 
 function checkForLoss() {
   if (document.getElementById('playerhero').children[1].innerText <= 0) {
@@ -370,11 +95,10 @@ function getSumOfAttack() {
   let sumOfAttack = 0;
   const opponentCards = document.querySelectorAll('.computer-cardinplay')
   const numOfOpponentCards = computerCardSlot2.childElementCount;
-  var heroHealth = document.getElementById('playerhero').children[1].innerText;
   for(let i = 0; i < numOfOpponentCards; i++) {
     sumOfAttack += parseInt(opponentCards[i].children[0].children[0].innerText);
   }
-  return sumOfAttack
+  return sumOfAttack;
 }
 
 function showDamageLabel(currentAttackerAttack) {
@@ -399,801 +123,137 @@ function showDamageLabel(currentAttackerAttack) {
   return true
 }
 
-
 // AI RELATED
-function noAlliedCards() {
-  var sumOfAttack = getSumOfAttack();
-  document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-  showDamageLabel(sumOfAttack);
+function attackPlayerHero(damage) {
+  console.log(damage);
+  document.getElementById('playerhero').children[1].innerText -= damage;
+  showDamageLabel(damage);
 }
 
-function oneAlliedCard() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  var maxAttack = findMaxOpponentAttack(0)
-  // attacks hero if the hero is on 12 hp or lower
-  // starts at 10 increments by 2 every time +1 opponent card
-  let healthModifier = 10;
+function get_health_Modifier(numOfOpponentCards, start){
+  let healthModifier = start;
   if (numOfOpponentCards == 2) {
     healthModifier += 2;
+  } else{
+    healthModifier = (numOfOpponentCards-1)*2;
   }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
+  return healthModifier;
+}
+
+function getAttack(slot) {
+  if (slot == null) {
+    return 0;
   }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
+  return slot.children[0].children[0].innerText;
+}
+function getHealth(slot){
+  if (slot == null) {
+    return 0;
   }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
+  return slot.children[1].children[0].innerText;
+}
+function setHealth(slot, value){
+  slot.children[1].children[0].innerText = value; 
+}
+function ai_attack(attacker, attacked){
+
+  if(attacker == null || attacked == null){
+    return null;
   }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
+
+
+  var attackerAttack = getAttack(attacker);
+  var attackerHealth = getHealth(attacker);
+  var attackedAttack = getAttack(attacked);
+  var attackedHealth = getHealth(attacked);
+
+  if (attacked.classList.contains("hasDivineShield")) {
+    attacked.classList.remove("hasDivineShield");
+    attacked.children[2].classList.add("divineShieldBreak");
+    setTimeout(function() {
+      attacked.children[2].style.visibility = "hidden";
+    },400);
+  } else {
+    setHealth(attacked, (attackedHealth - attackerAttack));
   }
-  if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
+
+  if (attacker.classList.contains("hasDivineShield")) {
+    attacker.classList.remove("hasDivineShield");
+    attacker.children[2].classList.add("divineShieldBreak");
+    setTimeout(function() {
+      attacker.children[2].style.visibility = "hidden";
+    },400);
+  }
+  else {
+    setHealth(attacker, (attackerHealth - attackedAttack));
+  }
+
+  if(getHealth(attacked) < 1) { 
+    attacked.remove();
+  }
+  if(getHealth(attacker) < 1) { 
+    attacker.remove();
+  }
+
+}
+
+function lookForTaunts(){
+  const alliedCards = document.querySelectorAll('.player-cardinplay');
+  for (let index = 0; index < alliedCards.length; index++) {
+    if (alliedCards[index].classList.contains("hasTaunt")) {
+      return true;
     }
+  }
+  return false;
+}
+
+function action() {
+  const numOfOpponentCards = computerCardSlot2.childElementCount;
+  const numOfAlliedCards = playerCardSlot2.childElementCount;
+
+  let healthModifier = get_health_Modifier(numOfOpponentCards, (11 - numOfAlliedCards) );
+
+  if (lookForTaunts()) {
+    var allied = 0;
+    while (!playerCardSlot2.children[allied].classList.contains("hasTaunt")) {
+      allied++;
+    }
+    console.log("Attacking Taunt...");
+    for (let i=0; i<numOfOpponentCards; i++) {
+      if (playerCardSlot2.children[allied].classList.contains("hasTaunt")) {
+        var maxOpponentAttack = findMaxOf('attack','computer',0);
+        ai_attack(maxOpponentAttack, playerCardSlot2.children[allied]);
+      } else {
+        action();
+      }
+    }
+  }
+  else if((document.getElementById('playerhero').children[1].innerText <= healthModifier) || numOfAlliedCards == 0) {
+    console.log("Attacking Player...");
+    attackPlayerHero(getSumOfAttack());
   }
   // otherwise attacks the highest attack card on the board and attacks the hero with the other
   else {
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    var opponentAttack = parseInt(maxAttack.children[0].children[0].innerText);
-    var opponentHealth = maxAttack.children[1].children[0].innerText;
-    var alliedAttack = alliedCards[0].children[0].children[0].innerText;
-    var alliedHealth = alliedCards[0].children[1].children[0].innerText;
-    maxAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-    if (alliedCards[0].classList.contains("hasDivineShield")) {
-      alliedCards[0].classList.remove("hasDivineShield");
-      playerCardSlot2.children[0].children[2].classList.add("divineShieldBreak");
-      setTimeout(function() {
-        playerCardSlot2.children[0].children[2].style.visibility = "hidden";
-      },400);
-    } else {
-      alliedCards[0].children[1].children[0].innerText = alliedHealth - opponentAttack;
-    }
-    var totalAttack = 0;
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      totalAttack += parseInt(opponentCards[i].children[0].children[0].innerText);
-    }
-    var heroHealth = document.getElementById('playerhero').children[1].innerText;
-    totalAttack -= opponentAttack;
-    document.getElementById('playerhero').children[1].innerText = heroHealth - totalAttack;
-    if (numOfOpponentCards >= 2) {
-      showDamageLabel(totalAttack);
-    }
-    setTimeout(function() {
-      if (alliedCards[0].classList.contains("hasDivineShield")) {
-        alliedCards[0].classList.remove("hasDivineShield");
-        alliedCards[0].children[2].classList.add("divineShieldBreak");
-        setTimeout(function() {
-          alliedCards[0].children[2].style.visibility = "hidden";
-        },400);
-      }
-      else if(alliedCards[0].children[1].children[0].innerHTML <= 0) { 
-        alliedCards[0].remove();
-      }
-      if(maxAttack.children[1].children[0].innerHTML <= 0) {
-        maxAttack.remove();
-      }
-    },250);
-  }
+        if (numOfOpponentCards > 0) {
+          ai_attack_move(numOfOpponentCards);
+        }
+      } 
   return true
 }
 
-function twoAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 9;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
+function ai_attack_move(numOfOpponentCards){
+  let sumOfAttack = getSumOfAttack();
+  for (let i=0; i<numOfOpponentCards; i++) {
+    var maxOpponentAttack = findMaxOf('attack','computer',i);
+    var maxPlayerAttack = findMaxOf('attack','player',i);
+    if(maxPlayerAttack == null){
+      attackPlayerHero(getAttack(maxOpponentAttack));
+    }
+    else{
+      console.log("Attacking...");
+      if((getHealth(maxPlayerAttack) <= getAttack(maxOpponentAttack)) || (getHealth(maxPlayerAttack) <= sumOfAttack))
+        ai_attack(maxOpponentAttack, maxPlayerAttack);
+      else attackPlayerHero(getAttack(maxOpponentAttack));
     }
   }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 2) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-      } else if (numOfOpponentCards >= 3) {
-          var opponentAttackSum = 0;
-          for (let i=0; i<2; i++) {
-            var maxOpponentAttack = findMaxOpponentAttack(i)
-            var maxPlayerAttack = findMaxPlayerAttack(i)
-            var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-            var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-            var opponentAttack = parseInt(maxOpponentAttack.children[0].children[0].innerText);
-            var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-            opponentAttackSum += opponentAttack;
-            maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-            setTimeout(function() {
-              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-                maxPlayerAttack.classList.remove("hasDivineShield");
-                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-                setTimeout(function() {
-                  maxPlayerAttack.children[2].style.visibility = "hidden";
-                },400);
-              }
-              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
-                maxPlayerAttack.remove();
-              }
-              if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
-                maxOpponentAttack.remove();
-              }
-            },250);
-          }
-          var sumOfAttack = getSumOfAttack();
-          sumOfAttack -= opponentAttackSum;
-          console.log(sumOfAttack)
-          document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-          showDamageLabel(sumOfAttack);
-    }
-  }
-  return true
-}
-
-
-function threeAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 8;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
-    }
-  }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 3) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-      } else if (numOfOpponentCards >= 4) {
-          var opponentAttackSum = 0;
-          for (let i=0; i<2; i++) {
-            var maxOpponentAttack = findMaxOpponentAttack(i)
-            var maxPlayerAttack = findMaxPlayerAttack(i)
-            var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-            var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-            var opponentAttack = parseInt(maxOpponentAttack.children[0].children[0].innerText);
-            var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-            opponentAttackSum += opponentAttack;
-            maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-              playerCardSlot2.children[i].classList.remove("hasDivineShield");
-              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-              setTimeout(function() {
-                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-              },400);
-            } else {
-              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-            }
-            setTimeout(function() {
-              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-                maxPlayerAttack.classList.remove("hasDivineShield");
-                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-                setTimeout(function() {
-                  maxPlayerAttack.children[2].style.visibility = "hidden";
-                },400);
-              }
-              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
-                maxPlayerAttack.remove();
-              }
-              if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
-                maxOpponentAttack.remove();
-              }
-            },250);
-          }
-          var sumOfAttack = getSumOfAttack();
-          sumOfAttack -= opponentAttackSum;
-          console.log(sumOfAttack)
-          document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-          showDamageLabel(sumOfAttack);
-    }
-  }
-  return true
-}
-
-function fourAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 7;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
-    }
-  }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 4) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-      } else if (numOfOpponentCards >= 5) {
-          var opponentAttackSum = 0;
-          for (let i=0; i<2; i++) {
-            var maxOpponentAttack = findMaxOpponentAttack(i)
-            var maxPlayerAttack = findMaxPlayerAttack(i)
-            var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-            var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-            var opponentAttack = parseInt(maxOpponentAttack.children[0].children[0].innerText);
-            var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-            opponentAttackSum += opponentAttack;
-            maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-              playerCardSlot2.children[i].classList.remove("hasDivineShield");
-              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-              setTimeout(function() {
-                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-              },400);
-            } else {
-              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-            }
-            setTimeout(function() {
-              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-                maxPlayerAttack.classList.remove("hasDivineShield");
-                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-                setTimeout(function() {
-                  maxPlayerAttack.children[2].style.visibility = "hidden";
-                },400);
-              }
-              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
-                maxPlayerAttack.remove();
-              }
-              if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
-                maxOpponentAttack.remove();
-              }
-            },250);
-          }
-          var sumOfAttack = getSumOfAttack();
-          sumOfAttack -= opponentAttackSum;
-          console.log(sumOfAttack)
-          document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-          showDamageLabel(sumOfAttack);
-    }
-  }
-  return true
-}
-
-function fiveAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 6;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
-    }
-  }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 5) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-      } else if (numOfOpponentCards >= 6) {
-          var opponentAttackSum = 0;
-          for (let i=0; i<2; i++) {
-            var maxOpponentAttack = findMaxOpponentAttack(i)
-            var maxPlayerAttack = findMaxPlayerAttack(i)
-            var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-            var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-            var opponentAttack = parseInt(maxOpponentAttack.children[0].children[0].innerText);
-            var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-            opponentAttackSum += opponentAttack;
-            maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-              playerCardSlot2.children[i].classList.remove("hasDivineShield");
-              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-              setTimeout(function() {
-                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-              },400);
-            } else {
-              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-            }
-            setTimeout(function() {
-              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-                maxPlayerAttack.classList.remove("hasDivineShield");
-                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-                setTimeout(function() {
-                  maxPlayerAttack.children[2].style.visibility = "hidden";
-                },400);
-              }
-              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
-                maxPlayerAttack.remove();
-              }
-              if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
-                maxOpponentAttack.remove();
-              }
-            },250);
-          }
-          var sumOfAttack = getSumOfAttack();
-          sumOfAttack -= opponentAttackSum;
-          console.log(sumOfAttack)
-          document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-          showDamageLabel(sumOfAttack);
-    }
-  }
-  return true
-}
-
-function sixAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 5;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
-    }
-  }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 6) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-      } else if (numOfOpponentCards >= 7) {
-          var opponentAttackSum = 0;
-          for (let i=0; i<2; i++) {
-            var maxOpponentAttack = findMaxOpponentAttack(i)
-            var maxPlayerAttack = findMaxPlayerAttack(i)
-            var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-            var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-            var opponentAttack = parseInt(maxOpponentAttack.children[0].children[0].innerText);
-            var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-            opponentAttackSum += opponentAttack;
-            maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-            if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-              playerCardSlot2.children[i].classList.remove("hasDivineShield");
-              playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-              setTimeout(function() {
-                playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-              },400);
-            } else {
-              maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-            }
-            setTimeout(function() {
-              if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-                maxPlayerAttack.classList.remove("hasDivineShield");
-                maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-                setTimeout(function() {
-                  maxPlayerAttack.children[2].style.visibility = "hidden";
-                },400);
-              }
-              else if(parseInt(maxPlayerAttack.children[1].children[0].innerText) <= 0) { 
-                maxPlayerAttack.remove();
-              }
-              if(parseInt(maxOpponentAttack.children[1].children[0].innerText) <= 0) {
-                maxOpponentAttack.remove();
-              }
-            },250);
-          }
-          var sumOfAttack = getSumOfAttack();
-          sumOfAttack -= opponentAttackSum;
-          console.log(sumOfAttack)
-          document.getElementById('playerhero').children[1].innerText -= sumOfAttack;
-          showDamageLabel(sumOfAttack);
-    }
-  }
-  return true
-}
-
-function sevenAlliedCards() {
-  const opponentCards = document.querySelectorAll('.computer-cardinplay')
-  const alliedCards = document.querySelectorAll('.player-cardinplay')
-  const numOfOpponentCards = computerCardSlot2.childElementCount;
-  const numOfAlliedCards = playerCardSlot.childElementCount;
-  var remainingToAttack = numOfOpponentCards - numOfAlliedCards;
-
-  let healthModifier = 4;
-  if (numOfOpponentCards == 2) {
-    healthModifier += 2;
-  }
-  else if (numOfOpponentCards == 3) {
-    healthModifier += 4;
-  }
-  else if (numOfOpponentCards == 4) {
-    healthModifier += 6;
-  }
-  else if (numOfOpponentCards == 6) {
-    healthModifier += 8;
-  }
-  else if (numOfOpponentCards == 7) {
-    healthModifier += 10;
-  }
-  if ((tauntExists == true) && (numOfOpponentCards <= 1)) {
-    for (let i=0; i<playerCardSlot2.childElementCount; i++) {
-      if (playerCardSlot2.children[i].classList.contains("hasTaunt")) {
-        var maxOpponentAttack = findMaxOpponentAttack(0);
-        var alliedAttack = playerCardSlot2.children[i].children[0].children[0].innerText;
-        var alliedHealth = playerCardSlot2.children[i].children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        playerCardSlot2.children[i].children[1].children[0].innerText = alliedHealth - opponentAttack;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        break
-      }
-    }
-  }
-  else if(document.getElementById('playerhero').children[1].innerText <= healthModifier) {
-    for(let i = 0; i < numOfOpponentCards; i++) {
-      var opponentAttack = parseInt(opponentCards[i].children[0].children[0].innerText);
-      var heroHealth = document.getElementById('playerhero').children[1].innerText;
-      document.getElementById('playerhero').children[1].innerText = heroHealth - opponentAttack;
-      showDamageLabel(opponentAttack);
-    }
-  }
-  // otherwise attacks with the highest attack card on the board and attacks the player hero with the other
-  else {
-    if (numOfOpponentCards <= 7) {
-      for (let i=0; i<numOfOpponentCards; i++) {
-        var maxOpponentAttack = findMaxOpponentAttack(i)
-        var maxPlayerAttack = findMaxPlayerAttack(i)
-        var alliedAttack = maxPlayerAttack.children[0].children[0].innerText;
-        var alliedHealth = maxPlayerAttack.children[1].children[0].innerText;
-        var opponentAttack = maxOpponentAttack.children[0].children[0].innerText;
-        var opponentHealth = maxOpponentAttack.children[1].children[0].innerText;
-        maxOpponentAttack.children[1].children[0].innerText = opponentHealth - alliedAttack;
-        if (playerCardSlot2.children[i].classList.contains("hasDivineShield")) {
-          playerCardSlot2.children[i].classList.remove("hasDivineShield");
-          playerCardSlot2.children[i].children[2].classList.add("divineShieldBreak");
-          setTimeout(function() {
-            playerCardSlot2.children[i].children[2].style.visibility = "hidden";
-          },400);
-        } else {
-          maxPlayerAttack.children[1].children[0].innerText = alliedHealth - opponentAttack;
-        }
-        setTimeout(function() {
-          if (maxPlayerAttack.classList.contains("hasDivineShield")) {
-            maxPlayerAttack.classList.remove("hasDivineShield");
-            maxPlayerAttack.children[2].classList.add("divineShieldBreak");
-            setTimeout(function() {
-              maxPlayerAttack.children[2].style.visibility = "hidden";
-            },400);
-          }
-          else if(maxPlayerAttack.children[1].children[0].innerHTML <= 0) { 
-            maxPlayerAttack.remove();
-          }
-          if(maxOpponentAttack.children[1].children[0].innerHTML <= 0) {
-            maxOpponentAttack.remove();
-          }
-        },250);
-      }
-    }
-  }
-  return true
 }
