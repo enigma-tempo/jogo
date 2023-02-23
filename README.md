@@ -1,10 +1,18 @@
-# hearthstone-web
+# Enigma Tempo
 
-## A web clone of blizzard's card game 'hearthstone'
-hearthstone-web is a JS web clone of blizzard's popular card game 'hearthstone' developed to run in browsers.
+## A educational game inspired on blizzard's card game 'hearthstone' and based on Rymedy's ['hearthston-web'](https://rymedy.github.io/hearthstone-web/) project.
+Enigma Tempo is a simple clone version of hearthstone-web, created by Rymedy, developed in JS to be a demo game and part of a final paper. 
 
-## Where can I play?
-To play the hearthstone-web clone click [here](https://rymedy.github.io/hearthstone-web/).
+##Whats new?
+The effects were implemented and can be used by any card. Now, effects can receive parameters to customize the card behaviour. 
+Computer cards can use the effects too, to improve the battle dinamics.
+AI was refactored and a little bit smarter. (Was developed before the computer cards effects, so need more work)
+Now is possible costumize the match by passing some data. This data came from the [site](https://github.com/daniellydsa/SiteEnigmaTempo), another project part.
+We optate to change the visual elements to disassociate from Blizzard's Hearthstone. By now, there's only placeholders.
+The game consume data from a node.js [api], the last project part. All game database are there.
+
+<!-- ## Where can I play?
+To play the hearthstone-web clone click [here](https://rymedy.github.io/hearthstone-web/). -->
 
 Current preview of the game:
 ![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/gamepreview.PNG)
