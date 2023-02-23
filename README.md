@@ -3,7 +3,7 @@
 ## A educational game inspired on blizzard's card game 'hearthstone' and based on Rymedy's [hearthstone-web'](https://rymedy.github.io/hearthstone-web/) project.
 Enigma Tempo is a simple clone version of hearthstone-web, created by Rymedy, developed in JS to be a demo game and part of a final paper. 
 
-##Whats new?
+## Whats new?
 The effects were implemented and can be used by any card. Now, effects can receive parameters to customize the card behaviour. 
 Computer cards can use the effects too, to improve the battle dinamics.
 AI was refactored and a little bit smarter. (Was developed before the computer cards effects, so need more work)
