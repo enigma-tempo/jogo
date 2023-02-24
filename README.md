@@ -9,10 +9,10 @@ Enigma Tempo is a simple clone version of hearthstone-web, created by Rymedy, de
 ### AI was refactored and a little bit smarter. (Was developed before the computer cards effects, so need more work)
 ### Now is possible costumize the match by passing some data. This data came from the [site](https://github.com/daniellydsa/SiteEnigmaTempo), another project part.
 ### We optate to change the visual elements to disassociate from Blizzard's Hearthstone. By now, there's some placeholders. (Yes, we still working on this step)
-### The game consume data from a node.js [api], the last project part. All game database are there.
+### The game consume data from a node.js [api](https://github.com/RafaelZapata/api_enigma_tempo), the last project part. All game database are there.
 
 ## Where can I play?
-To play the Enigma Tempo click [here](https://diogoasp.github.io/enigmaTempo-web-master/).
+To play the Enigma Tempo click [here](https://diogoasp.github.io/enigmaTempo/).
 
 The hearthstone-web preview of the game:
 ![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/gamepreview.PNG)
