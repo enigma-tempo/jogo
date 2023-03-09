@@ -224,7 +224,7 @@ class MinionCard {
 }
 // function to create the full deck both the player and the opponent's deck
 function freshDeck(deck_id) {
-	// data = getRequest("https://api-enigma-tempo.onrender.com/api/deck/"+deck_id)
+	// data = getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+deck_id)
 	data = getRequest("https://api-enigma-tempo.onrender.com/api/cards")
 	data = JSON.parse(data)
 	cards = data['cards']

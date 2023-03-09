@@ -434,20 +434,38 @@ screenshakebtn.onclick = function () {
 function getGameData() {
   //getFromDB
   //Stock model = {player_id, hero_id, deck_id, enemy_id} <- fromGet
+  const opponent_user_default = "xyz";
+  const player_id = new URL(location.href).searchParams.get("id_jogador");
+  const hero_id = new URL(location.href).searchParams.get("id_personalidade");
+  const opponent_id = new URL(location.href).searchParams.get("id_oponente");
+  
+  
+  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/users/'+player_id);
+  const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id));
+  const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+opponent_id));
+
+  const deck_id = new URL(location.href).searchParams.get("id_baralho");
+  const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/deck/jogador/"+opponent_user_default+"/personalidade/"+opponent_id))['id'];
+
   mockData = [
     {
-      id:'63f652354ca4510da989a8c8', 
-      hero_id: '63f652a14ca4510da989a8c9', 
-      hero: 'Dom Pedro II', 
-      hero_txt: 'A política não é para mim senão<br> o duro cumprimento do dever.;',
-      deck: '63f65348675fec0ebbaea754', 
+      id: player_id, 
+      hero_id: hero_id, 
+      hero: hero_data['name'], 
+      hero_txt: hero_data['txt'],
+      // hero_txt_taunt: hero_data['provacao_txt'],
+      // hero_txt_winner: hero_data['vitoria_txt'],
+      // hero_txt_loser: hero_data['derrota_txt'],
+      deck: deck_id
      },
     {
-      id:2,
-      hero_id: '63f652fc675fec0ebbaea752', 
-      hero:'Marechal Deodoro da Fonseca',
-      hero_txt: 'Digam ao povo que a<br>República está feita.;',
-      deck:2
+      hero_id: opponent_id, 
+      hero: opponent_data['name'], 
+      hero_txt: opponent_data['txt'],
+      // hero_txt_taunt: opponent_data['provacao_txt'],
+      // hero_txt_winner: opponent_data['vitoria_txt'],
+      // hero_txt_loser: opponent_data['derrota_txt'],
+      deck: opponent_deck_id
     }
   ]
   return mockData;
