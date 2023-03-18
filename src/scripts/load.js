@@ -8,7 +8,8 @@ var items = [
     ]
 // randomly selects an element from the array 'items'
 var item = items[Math.floor(Math.random()*items.length)];
-var hasPlayedTutorial_deserailized = JSON.parse(localStorage.getItem("hasPlayedTutorial"));
+// var hasPlayedTutorial_deserailized = JSON.parse(localStorage.getItem("hasPlayedTutorial"));
+var hasPlayedTutorial_deserailized = "a";
 // converts the string into an audio element
 var voiceover = new Audio(item);
 document.onreadystatechange = function () {

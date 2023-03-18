@@ -23,7 +23,7 @@ class Deck {
 }
 // class to make objects for each card including the card stats and properties
 class MinionCard {
-	constructor(attack, health, mana, info, imageString, name, rarity, effect = "none", params = "none") {
+	constructor(attack, health, mana, info, imageString, name, rarity, effect = "none", params = "none", type = "minion") {
 		this.imageString = imageString;
 		this.attack = attack;
 		this.health = health;
@@ -33,6 +33,7 @@ class MinionCard {
 		this.rarity = rarity;
 		this.effect = effect;
 		this.params = params;
+		this.type = type;
 	}
 	// function to create the card in play element for the opponent
 	getComputerHTML() {
@@ -45,6 +46,7 @@ class MinionCard {
 		const taunt = document.createElement('div');
 		const effect = document.createElement('div');
 		const params = document.createElement('div');
+		const type = document.createElement('div');
 
 		computerCardDiv.id = "cpuCardInPlay" + id2;
 		computerCardDiv.classList.add("cardinplay");
@@ -58,8 +60,11 @@ class MinionCard {
 		divineShield.classList.add("divineShield");
 		taunt.classList.add("taunt");
 		effect.classList.add("effects");
+		effect.style.visibility = "hidden";
 		params.classList.add('params');
 		params.style.visibility = "hidden";
+		type.classList.add('type');
+		type.style.visibility = "hidden";
 
 		computerCardDiv.classList.add('placeCardAnim')
 
@@ -69,6 +74,7 @@ class MinionCard {
 		computerCardDiv.appendChild(taunt)
 		computerCardDiv.appendChild(effect)
 		computerCardDiv.appendChild(params)
+		computerCardDiv.appendChild(type)
 
 		computerAttackValueBackground.appendChild(computerAttackValue)
 		computerHealthValueBackground.appendChild(computerHealthValue)
@@ -77,6 +83,7 @@ class MinionCard {
 		computerHealthValue.innerText = this.health
 		effect.innerText = this.effect;
 		params.innerText = this.params;
+		type.innerText = this.type;
 		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id2 += 1;
 		return computerCardDiv
@@ -93,6 +100,7 @@ class MinionCard {
 		const taunt = document.createElement('div');
 		const effect = document.createElement('div');
 		const params = document.createElement('div');
+		const type = document.createElement('div');
 
 		playerCardDiv.id = "playerCardInPlay" + id1;
 		playerCardDiv.classList.add("cardinplay");
@@ -106,8 +114,11 @@ class MinionCard {
 		divineShield.classList.add("divineShield");
 		taunt.classList.add("taunt");
 		effect.classList.add("effects");
+		effect.style.visibility = "hidden";
 		params.classList.add('params');
 		params.style.visibility = "hidden";
+		type.classList.add('type');
+		type.style.visibility = "hidden";
 
 		playerCardDiv.appendChild(playerAttackValueBackground)
 		playerCardDiv.appendChild(playerHealthValueBackground)
@@ -115,6 +126,7 @@ class MinionCard {
 		playerCardDiv.appendChild(taunt)
 		playerCardDiv.appendChild(effect)
 		playerCardDiv.appendChild(params)
+		playerCardDiv.appendChild(type)
 		playerCardDiv.appendChild(legendary)
 
 		playerAttackValueBackground.appendChild(playerAttackValue)
@@ -124,6 +136,7 @@ class MinionCard {
 		playerHealthValue.innerText = this.health
 		effect.innerText = this.effect;
 		params.innerText = this.params;
+		type.innerText = this.type;
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id1 += 1
 
@@ -184,6 +197,7 @@ class MinionCard {
 		const tutorialHintValueInHand = document.createElement('div');
 		const effectsInHand = document.createElement('div');
 		const paramsInHand = document.createElement('div');
+		const typeInHand = document.createElement('div');
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
@@ -195,6 +209,7 @@ class MinionCard {
 		tutorialHintValueInHand.classList.add("cardtutorialhint")
 		effectsInHand.classList.add("effects");
 		paramsInHand.classList.add("params");
+		typeInHand.classList.add("type");
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		playerCardFaceInHandDiv.appendChild(playerAttackValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
@@ -205,8 +220,10 @@ class MinionCard {
 		playerCardFaceInHandDiv.appendChild(tutorialHintValueInHand)
 		playerCardFaceInHandDiv.appendChild(effectsInHand)
 		playerCardFaceInHandDiv.appendChild(paramsInHand)
+		playerCardFaceInHandDiv.appendChild(typeInHand)
 		effectsInHand.style.visibility = "hidden";
 		paramsInHand.style.visibility = "hidden";
+		typeInHand.style.visibility = "hidden";
 		// effectsInHand.appendChild(paramsInHand)
 		// if (isTutorial == true) {}
 		let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
@@ -218,6 +235,7 @@ class MinionCard {
 		playerNameValueInHand.innerText = this.name
 		effectsInHand.innerText = this.effect
 		paramsInHand.innerText = this.params
+		typeInHand.innerText = this.type
 		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		return playerCardInHandDiv
 	}
@@ -236,15 +254,20 @@ function freshDeck(deck_id) {
 		let mana = parseInt(element['mana'])
 		let info = element['description']
 		let imageString =  "src/cards/"+element['sprite'];
-		let rarity = 'commom'
+		let rarity = element['rarity'] !== undefined ? element['rarity']['name'] : "commom"
 		let effect = element['effect']
 		let params = element['params']
+		let type = element['type'] !== undefined ? element['type']['name'] : "Monstro"
 		if (effect == 'taunt') {
 			mana = 1;
 		}
-		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params)
+		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type)
 		listCards.push(card)
-		listCards.push(card)
+		if(type == "Magia"){
+			listCards.push(card)
+			listCards.push(card)
+
+		} 
 	})
 	return listCards
 }

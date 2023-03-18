@@ -113,7 +113,7 @@ function placeCardFunc() {
         var manaCost = parseInt(originalPlayerDeck.cards[i]['mana']);
         mana -= manaCost;
         manaElement.innerHTML = mana + "/" + manaCapacity;
-        playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
+        if(originalPlayerDeck.cards[i]['type'] == "Monstro") playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
         checkForRequiredMana();
         updateManaGUI();
         cardPlace('player',originalPlayerDeck.cards[i]);
@@ -224,9 +224,12 @@ function computerCardPlace(numero_cartas) {
   function iterate_(){
     let card = parseInt(Math.random() * (computerDeck.cards.length - 1) + 1);
     if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
-      let opponentCard = computerDeck.cards[card].getComputerHTML();
-      computerCardSlot.appendChild(opponentCard);
+      if(computerDeck.cards[card]['type'] == "Monstro"){
+        let opponentCard = computerDeck.cards[card].getComputerHTML();
+        computerCardSlot.appendChild(opponentCard);
+      }
       cardPlace('computer',computerDeck.cards[card]);
+      computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
       numero_cartas--;
       mana = mana - parseInt(computerDeck.cards[card]['mana']);
       hand++;
@@ -434,37 +437,32 @@ screenshakebtn.onclick = function () {
 function getGameData() {
   //getFromDB
   //Stock model = {player_id, hero_id, deck_id, enemy_id} <- fromGet
-  const opponent_user_default = "xyz";
+  const opponent_user_default = "640b648ee7c1910330a7be5d";
   const player_id = new URL(location.href).searchParams.get("id_jogador");
   const hero_id = new URL(location.href).searchParams.get("id_personalidade");
   const opponent_id = new URL(location.href).searchParams.get("id_oponente");
   
   
-  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/users/'+player_id);
-  const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id));
-  const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+opponent_id));
+  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id);
+  const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id))['hero'];
+  
+  const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id))['hero'];
 
   const deck_id = new URL(location.href).searchParams.get("id_baralho");
-  const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/deck/jogador/"+opponent_user_default+"/personalidade/"+opponent_id))['id'];
+  const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['id'];
 
   mockData = [
     {
       id: player_id, 
       hero_id: hero_id, 
       hero: hero_data['name'], 
-      hero_txt: hero_data['txt'],
-      // hero_txt_taunt: hero_data['provacao_txt'],
-      // hero_txt_winner: hero_data['vitoria_txt'],
-      // hero_txt_loser: hero_data['derrota_txt'],
+      hero_txt: hero_data['txt'] ?? 'Olá;Sua vez',
       deck: deck_id
      },
     {
       hero_id: opponent_id, 
       hero: opponent_data['name'], 
-      hero_txt: opponent_data['txt'],
-      // hero_txt_taunt: opponent_data['provacao_txt'],
-      // hero_txt_winner: opponent_data['vitoria_txt'],
-      // hero_txt_loser: opponent_data['derrota_txt'],
+      hero_txt: opponent_data['txt'] ?? 'Olá;Sua vez',
       deck: opponent_deck_id
     }
   ]
@@ -474,7 +472,6 @@ function getGameData() {
 function setGameConfig(data_game) {
   gameStartsAt = Date.now();
   //player
-  // playerHero.style.backgroundImage = "url('src/images/"& data_game[0]['hero'].replaceAll(' ','-') &".png')";
   document.getElementsByClassName('playerhero')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +".png')";
   document.getElementById('playerlabel').innerText = data_game[0]['hero'];
   document.getElementById('playerbubble').innerHTML = data_game[0]['hero_txt'].split(';')[0];
