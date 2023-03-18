@@ -32,6 +32,18 @@ function setAttacker(e){
     });
 }
 
+function useHeroPower(e){
+  mana -= 2;
+  manaElement.innerHTML = mana + "/" + manaCapacity;
+  checkForRequiredMana();
+  updateManaGUI();
+  setTimeout(function() {
+    hero_effect_dict[data_game[0]['hero_power']]('player',data_game[0]['hero_power_params']);
+  },1000);
+  document.getElementById("playerheropower").removeEventListener('click', useHeroPower);
+  document.getElementById("playerheropower").style.boxShadow = "none";
+}
+
 function setAttacked(e) {
   playerCardSlot2.style.zIndex = "1"
   computerCardSlot.style.zIndex = "1"
@@ -46,52 +58,28 @@ function setAttacked(e) {
   var currentAttackerHealth = currentAttackerElement.children[1].children[0].innerHTML;
   var targetAttack = targetElement.children[0].children[0].innerHTML;
   var targetHealth = targetElement.children[1].children[0].innerHTML;
-  if (currentAttacker == "playerheropower") {
-    mana -= 2;
-    manaElement.innerHTML = mana + "/" + manaCapacity;
-    checkForRequiredMana();
-    updateManaGUI();
+
+  if (currentAttackerElement.classList.contains("hasDivineShield")) {
+    currentAttackerElement.classList.remove("hasDivineShield");
+    currentAttackerElement.children[2].classList.add("divineShieldBreak");
     setTimeout(function() {
-      currentAttackerHealth -= targetAttack;
-      targetHealth -= currentAttackerAttack;
-      currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
-      targetElement.children[1].children[0].innerHTML = targetHealth;
-      if (targetElement.id != "opposinghero") {
-        currentAttackerElement.children[1].children[0].style.color = "#f20301";
-      }
-      targetElement.children[1].children[0].style.color = "#f20301";
-      if (targetHealth <= 0) {
-        setTimeout(function() {
-          if (targetElement.id == "opposinghero") {
-            gameWon();
-          }
-          targetElement.remove();
-        },200);
-      }
-  },1000);
+      currentAttackerElement.children[2].style.visibility = "hidden";
+    },400);
   } else {
-    if (currentAttackerElement.classList.contains("hasDivineShield")) {
-      currentAttackerElement.classList.remove("hasDivineShield");
-      currentAttackerElement.children[2].classList.add("divineShieldBreak");
-      setTimeout(function() {
-        currentAttackerElement.children[2].style.visibility = "hidden";
-      },400);
-    } else {
-      currentAttackerHealth -= targetAttack;
-      if (targetElement.id != "opposinghero") {
-        currentAttackerElement.children[1].children[0].style.color = "#f20301";
-      }
+    currentAttackerHealth -= targetAttack;
+    if (targetElement.id != "opposinghero") {
+      currentAttackerElement.children[1].children[0].style.color = "#f20301";
     }
-    if (targetElement.classList.contains("hasDivineShield")) {
-      targetElement.classList.remove("hasDivineShield");
-      computerCardSlot2.lastChild.children[2].style.visibility = "hidden";
-    } else {
-      targetHealth -= currentAttackerAttack;
-      targetElement.children[1].children[0].style.color = "#f20301";
-    }
-    currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
-    targetElement.children[1].children[0].innerHTML = targetHealth;
   }
+  if (targetElement.classList.contains("hasDivineShield")) {
+    targetElement.classList.remove("hasDivineShield");
+    computerCardSlot2.lastChild.children[2].style.visibility = "hidden";
+  } else {
+    targetHealth -= currentAttackerAttack;
+    targetElement.children[1].children[0].style.color = "#f20301";
+  }
+  currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+  targetElement.children[1].children[0].innerHTML = targetHealth;
   if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
     document.getElementById("game").classList.add("bigHitAnim");
     setTimeout(function() {
@@ -203,9 +191,16 @@ function setAttacked(e) {
 function attack(charge = false) { 
   var numOfChild = playerCardSlot2.childElementCount;
   var hasTaunt = ilookForTaunts();
-
+  
   if (!charge) {
-    document.getElementById("playerheropower").classList.add("canAttack");
+    if (mana >= parseInt(data_game[0]['hero_power_cost'])) {
+      document.getElementById("playerheropower").addEventListener('click', useHeroPower);
+      document.getElementById("playerheropower").zIndex = 2;
+    } else {
+      document.getElementById("playerheropower").removeEventListener('click', useHeroPower);
+      document.getElementById("playerheropower").zIndex = 1;
+
+    }
     for(let i=0; i<numOfChild; i++) {
       document.getElementsByClassName("player-cardinplay")[i].style.boxShadow = "0px 2px 15px 12px #0FCC00"; 
       document.getElementsByClassName("player-cardinplay")[i].classList.add("canAttack");

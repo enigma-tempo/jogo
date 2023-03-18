@@ -189,8 +189,6 @@ class MinionCard {
 		const playerCardInHandDiv = document.createElement('div');
 		const playerCardFaceInHandDiv = document.createElement('div');
 		const playerCardBorderInHandDiv = document.createElement('div');
-		const playerAttackValueInHand = document.createElement('div');
-		const playerHealthValueInHand = document.createElement('div');
 		const playerManaValueInHand = document.createElement('div');
 		const playerInfoValueInHand = document.createElement('div');
 		const playerNameValueInHand = document.createElement('div');
@@ -201,8 +199,6 @@ class MinionCard {
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
-		playerAttackValueInHand.classList.add("cardAttackValue")
-		playerHealthValueInHand.classList.add("cardHealthValue")
 		playerManaValueInHand.classList.add("cardManaValue")
 		playerInfoValueInHand.classList.add("cardInfoValue")
 		playerNameValueInHand.classList.add("cardNameValue")
@@ -211,6 +207,14 @@ class MinionCard {
 		paramsInHand.classList.add("params");
 		typeInHand.classList.add("type");
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
+		const playerAttackValueInHand = document.createElement('div');
+		const playerHealthValueInHand = document.createElement('div');
+		if(this.type == "Monstro"){
+			playerAttackValueInHand.classList.add("cardAttackValue")
+			playerHealthValueInHand.classList.add("cardHealthValue")
+			playerAttackValueInHand.innerText = this.attack
+			playerHealthValueInHand.innerText = this.health
+		} 
 		playerCardFaceInHandDiv.appendChild(playerAttackValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerHealthValueInHand)
 		playerCardFaceInHandDiv.appendChild(playerManaValueInHand)
@@ -226,10 +230,8 @@ class MinionCard {
 		typeInHand.style.visibility = "hidden";
 		// effectsInHand.appendChild(paramsInHand)
 		// if (isTutorial == true) {}
-		let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
-		tutorialHintValueInHand.innerText = tutorialHintText
-		playerAttackValueInHand.innerText = this.attack
-		playerHealthValueInHand.innerText = this.health
+		// let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
+		// tutorialHintValueInHand.innerText = tutorialHintText
 		playerManaValueInHand.innerText = this.mana
 		playerInfoValueInHand.innerText = this.info
 		playerNameValueInHand.innerText = this.name
@@ -263,7 +265,8 @@ function freshDeck(deck_id) {
 		}
 		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type)
 		listCards.push(card)
-		if(type == "Magia"){
+		if(type != "Monstro"){
+			listCards.push(card)
 			listCards.push(card)
 			listCards.push(card)
 

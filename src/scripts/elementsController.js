@@ -210,7 +210,7 @@ confirmbtn.onclick = function () {
                                 document.querySelector("#computerbubble").innerHTML = "...";
                                 document.querySelector("#computerbubble").style.visibility = "visible";
                                 document.querySelector('#computerbubble').classList.add("openMenuAnim");
-                            },1000);
+                            },750);
                             document.querySelector(".opponenthero").style.zIndex = "11";
                             document.querySelector(".playerhero").style.zIndex = "9";
                             setTimeout(function(){
@@ -223,9 +223,9 @@ confirmbtn.onclick = function () {
                                         document.querySelector("#tutorialmenu").style.display = "block";
                                         document.querySelector("#tutorialmenuContent").style.display = "block";
                                         document.querySelector("#tutorialmenuContent").classList.add("openMenuAnim");
-                                    },1000);
+                                    },750);
                                 },250);
-                            },3500);
+                            },2500);
                             document.querySelector('.playerHeroHealth').style.visibility = "visible";
                             document.querySelector('.playerHeroHealth').style.opacity="1";
                             document.querySelector('.playerHeroHealth').style.transition="visibility 0.5s, opacity 0.5s linear";

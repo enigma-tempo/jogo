@@ -174,7 +174,7 @@ head {
 	height: 160px;
 	margin: -15px;
 	position: relative;
-	background-image: url(src/images/frostcardback.png);
+	background-image: url(src/images/cardback3.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	-webkit-touch-callout: none;
@@ -572,7 +572,7 @@ head {
 
 	#endturn {
 		left: 79%;
-		top: 42.5%;
+		top: 48.75%;
 	}
 
 	.enemycard {
@@ -582,7 +582,7 @@ head {
 
 	.playerHeroHealth {
 		left: 55%;
-		top: 123%;
+		top: 90%;
 	}
 
 	.opposingHeroHealth {
@@ -658,13 +658,13 @@ head {
 	}
 
 	#computerdamagelabel {
-		left: 45.5%;
-		top: 1%;
+		left: 11%;
+		top: 16%;
 	}
 
 	#playerdamagelabel {
-		left: 45.5%;
-		top: 58%;
+		left: 11%;
+		top: 52%;
 	}
 
 	#hintlabel {
@@ -768,7 +768,7 @@ head {
 	.board {
 		padding: 11rem;
 		left: 16.25%;
-		top: 6%;
+		top: -1%;
 	}
 
 	#endturn {
@@ -859,13 +859,13 @@ head {
 	}
 
 	#computerdamagelabel {
-		left: 46.5%;
-		top: 4%;
+		left: 11%;
+		top: 16%;
 	}
 
 	#playerdamagelabel {
-		left: 46.5%;
-		top: 62%;
+		left: 11%;
+		top: 52%;
 	}
 
 	#hintlabel {
@@ -1029,8 +1029,8 @@ svg {
 	width: 6%;
 	height: 13%;
 	top: 75%;
-	left: 60%;
-	z-index: 1;
+	left: 67%;
+	z-index: 2;
 	/* background-image: url(src/images/heropower.png); */
 	background-repeat: no-repeat;
 	/* Do not repeat the image */
@@ -1270,7 +1270,7 @@ svg {
 }
 
 .player-deck {
-	background-image: url(src/images/legendcardback.png);
+	background-image: url(src/images/cardback.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	color: white;
@@ -1281,7 +1281,7 @@ svg {
 }
 
 .computer-deck {
-	background-image: url(src/images/frostcardback.png);
+	background-image: url(src/images/cardback3.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 	color: white;
@@ -1297,7 +1297,8 @@ svg {
 	position: absolute;
 	user-select: none;
 	font-size: 17px;
-	background-color: #4ce322;
+	background-color: #234856;
+	color: whiteS;
 	border-top-left-radius: 120%35px;
 	border-bottom-left-radius: 120%35px;
 	border-top-right-radius: 120%35px;
@@ -1451,6 +1452,7 @@ svg {
 }
 
 .manabox {
+	background-image: url('src/images/mana.png');
 	position: relative;
 	width: 30px;
 	height: 17.32px;
@@ -2751,7 +2753,7 @@ svg {
 }
 
 #computerdamagelabel {
-	width: 9%;
+	width: 8%;
 	height: 17.5%;
 	position: absolute;
 	-webkit-mask-composite: destination-in;
@@ -2762,6 +2764,7 @@ svg {
 	color: white;
 	text-align: center;
 	margin: auto;
+	opacity: 0.75;
 }
 
 #computerdamagelabel::after,
@@ -2798,6 +2801,7 @@ svg {
 	color: white;
 	text-align: center;
 	margin: auto;
+	opacity: 0.75;
 }
 
 #playerdamagelabel::after,
@@ -2824,8 +2828,8 @@ svg {
 
 #playerdamagevalue {
 	position: absolute;
-	top: 73%;
-	left: 49.5%;
+	top: 52%;
+	left: 10%;
 	text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,
@@ -2840,8 +2844,8 @@ svg {
 
 #computerdamagevalue {
 	position: absolute;
-	top: 15%;
-	left: 49.5%;
+	top: 29%;
+	left: 15.5%;
 	text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,

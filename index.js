@@ -177,6 +177,7 @@ document.getElementById("endturn").addEventListener("click", function() {
   document.getElementById("gifhint").style.backgroundImage = "url('src/hints/attack.gif')";
   document.getElementById("texthint").innerText = "Click on an green glowing allied card then click on an enemy to attack.";
   document.getElementById('opposinghero').removeEventListener('mousedown', setAttacked);
+  document.getElementById("playerheropower").removeEventListener('click', useHeroPower);
   opponentTurn()
 });
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
@@ -456,6 +457,9 @@ function getGameData() {
       id: player_id, 
       hero_id: hero_id, 
       hero: hero_data['name'], 
+      hero_power: hero_data['power'] ?? 'buff', 
+      hero_power_cost: hero_data['mana'] ?? '2', 
+      hero_power_params: hero_data['params'] ?? '1,0,Monstro', 
       hero_txt: hero_data['txt'] ?? 'Olá;Sua vez',
       deck: deck_id
      },
