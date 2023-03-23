@@ -560,7 +560,13 @@ head {
 
 .magicCardPlaced{
 	float: right;
-	margin-right: 25%;
+	margin-right: 19%;
+	margin-top: 11%;
+}
+.magicComputerCardPlaced{
+	float: right;
+	margin-right: 19%;
+	/* margin-bottom: 11%; */
 }
 
 @media only screen and (min-width: 1000px) {
@@ -668,8 +674,8 @@ head {
 	}
 
 	#playerdamagelabel {
-		left: 11%;
-		top: 52%;
+		left: 12%;
+		top: 54%;
 	}
 
 	#hintlabel {
@@ -1036,10 +1042,10 @@ svg {
 
 .playerheropower {
 	position: absolute;
-	width: 6%;
-	height: 13%;
-	top: 75%;
-	left: 67%;
+	width: 7%;
+	height: 15%;
+	top: 73%;
+	left: 23%;
 	z-index: 2;
 	/* background-image: url(src/images/heropower.png); */
 	background-repeat: no-repeat;
@@ -1307,7 +1313,7 @@ svg {
 	position: absolute;
 	user-select: none;
 	font-size: 17px;
-	background-color: #234856;
+	/* background-color: #234856; */
 	color: whiteS;
 	border-top-left-radius: 120%35px;
 	border-bottom-left-radius: 120%35px;
@@ -1407,7 +1413,7 @@ svg {
 	height: 37%;
 	position: absolute;
 	left: 5%;
-	top: 22%;
+	top: 12%;
 	z-index: -1;
 }
 

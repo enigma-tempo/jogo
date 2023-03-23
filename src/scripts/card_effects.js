@@ -1,4 +1,4 @@
-var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies}
+var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy}
 
 who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
 
@@ -7,6 +7,65 @@ function getEffectNames(mob){
 }
 function getParamText(mob){
     return mob.children[5].innerText;
+}
+
+function damageEnemy(who, params){
+    [damage] = params.toString().split(',')[0];
+    if(who == 'player'){
+        final_target = new Promise(resolve =>{});
+        var xOrigin = document.getElementById('collisionbox').lastChild.clientX;
+        var yOrigin = document.getElementById('collisionbox').lastChild.clientY;
+        svg.style.display = "block";
+        document.getElementById("innercursor").style.visibility = "visible";
+        document.getElementById("outercursor").style.visibility = "visible";
+        document.getElementById("arrowcursor").style.visibility = "visible";
+        body.style.cursor = "none";
+        body.addEventListener('mousemove', e2 => {
+          var xDest = e2.clientX;
+          var yDest = e2.clientY;
+          var angleDeg = Math.atan2(yDest - yOrigin, xDest - xOrigin) * 180 / Math.PI;
+          var deg = angleDeg + 90;
+          document.getElementById("arrowcursor").style.transform = 'rotate('+deg+'deg) translate(-50%,-110%)';
+        //   svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
+        });
+        body.addEventListener("click", setFree =>{
+            // 
+            body.removeEventListener('click', setFree);
+        });
+
+        for (let index = 0; index < who_dict['computer']['slot'].childElementCount; index++) {
+            target = who_dict['computer']['slot'].children[index];
+            target.style.boxShadow = "0px 0px 12px red";
+            target.addEventListener('click', target_selected =>{
+                final_target = new Promise(resolve => {
+                    resolve(target)
+                }) 
+            });
+            
+        }
+
+        final_target.then((t)=>{
+            svg.style.display = "none";
+            document.getElementById("innercursor").style.visibility = "hidden";
+            document.getElementById("outercursor").style.visibility = "hidden";
+            document.getElementById("arrowcursor").style.visibility = "hidden";
+            body.style.cursor = "url(src/cursor/cursor.png) 10 2, auto";
+            let h = parseInt(t.children[1].children[0].innerText);
+            t.children[1].children[0].innerText = h - parseInt(health);
+            t.children[1].children[0].style.color = "#f20301";
+            setTimeout(function() {
+                t.style.boxShadow = "";
+                if(parseInt(t.children[1].children[0].innerText) < 1){
+                    if(t.classList.contains("hasTaunt")){
+                        clearAttackEvents();
+                        attack(true);
+                    }
+                    t.remove();
+                } 
+            }, 1500);
+        });
+
+    }
 }
 
 //Effects
@@ -65,8 +124,15 @@ function damageEnemies(who, params){
 }
 
 function buffSelf(who, params){
+    // [atk, hp, sub_class] = params.toString().split(',');
     [atk, hp] = params.toString().split(',');
-    n_allieds = who_dict[who]['slot'].childElementCount  - 1;
+    sub_class = "Colonizador";
+    n_allieds = 0;
+    for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
+        if (who_dict[who]['slot'].children[index].children[9].innerHTML == sub_class) {
+            n_allieds++;
+        } 
+    }
     let target = who_dict[who]['slot'].lastChild;
     let attackPlus = parseInt(target.children[0].children[0].innerText);
     let healthPlus = parseInt(target.children[1].children[0].innerText);
@@ -87,6 +153,8 @@ function frenesi(cardHTML){
 
 function buffAllieds(who, params){
     [allied, atk, health] = params.toString().split(',');
+    sub_class = "Colonizador";
+    // [allied, atk, health, sub_class] = params.toString().split(',');
     if(parseInt(allied) == 0){
         n_allieds = 0;
     }else{
@@ -97,12 +165,14 @@ function buffAllieds(who, params){
         if (target == null) {
             continue
         }
-        let attackPlusOne = parseInt(target.children[0].children[0].innerText);
-        let healthPlusOne = parseInt(target.children[1].children[0].innerText);
-        target.children[0].children[0].innerText = attackPlusOne + parseInt(atk);
-        target.children[1].children[0].innerText = healthPlusOne + parseInt(health);
-        target.children[0].children[0].style.color = "#00d70c";
-        target.children[1].children[0].style.color = "#00d70c";
+        if(target.children[9].innerHTML == sub_class){
+            let attackPlusOne = parseInt(target.children[0].children[0].innerText);
+            let healthPlusOne = parseInt(target.children[1].children[0].innerText);
+            target.children[0].children[0].innerText = attackPlusOne + parseInt(atk);
+            target.children[1].children[0].innerText = healthPlusOne + parseInt(health);
+            target.children[0].children[0].style.color = "#00d70c";
+            target.children[1].children[0].style.color = "#00d70c";
+        }
     }
 }
 

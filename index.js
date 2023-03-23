@@ -231,7 +231,7 @@ function computerCardPlace(numero_cartas) {
   var mana = manaCapacity;
   var hand = 0;
   function iterate_(){
-    let card = parseInt(Math.random() * (computerDeck.cards.length - 1) + 1);
+    let card = parseInt(Math.random() * (computerDeck.cards.length - 1));
     if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
       if(computerDeck.cards[card]['type'] == "Monstro"){
         let opponentCard = computerDeck.cards[card].getComputerHTML();
@@ -239,7 +239,7 @@ function computerCardPlace(numero_cartas) {
       }else{
         let ele = document.getElementById('collisionbox2');
         ele.appendChild(computerDeck.cards[card].getPlayerCardsInHandHTML());
-        ele.children[0].classList.add("magicCardPlaced");
+        ele.children[0].classList.add("magicComputerCardPlaced");
         setTimeout(()=>{
           ele.children[0].remove();
         }, 2000);
@@ -247,7 +247,8 @@ function computerCardPlace(numero_cartas) {
       cardPlace('computer',computerDeck.cards[card]);
       computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
       numero_cartas--;
-      mana = mana - parseInt(computerDeck.cards[card]['mana']);
+      let cost = parseInt(computerDeck.cards[card]['mana']) ?? 0;
+      mana = mana - cost;
       hand++;
     }
   }   
