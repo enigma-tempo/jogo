@@ -558,6 +558,11 @@ head {
 	border-radius: 100%;
 }
 
+.magicCardPlaced{
+	float: right;
+	margin-right: 25%;
+}
+
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
 		width: 4.8rem;
@@ -757,6 +762,11 @@ head {
 	#rightsideblock {
 		box-shadow: 0 0 30px 40px black;
 	}
+
+	#playerdamagevalue {
+		top: 52%;
+		left: 10%;
+	}
 }
 
 @media only screen and (min-width: 1500px) {
@@ -768,7 +778,7 @@ head {
 	.board {
 		padding: 11rem;
 		left: 16.25%;
-		top: -1%;
+		top: 6%;
 	}
 
 	#endturn {
@@ -1306,6 +1316,8 @@ svg {
 	font-family: BelweBdBTBold;
 	outline: none;
 	z-index: 2;
+	/* color: white; */
+
 }
 
 #confirm {
@@ -1389,6 +1401,14 @@ svg {
 	position: absolute;
 	left: 5%;
 	top: 52%;
+}
+.collisionbox2 {
+	width: 90%;
+	height: 37%;
+	position: absolute;
+	left: 5%;
+	top: 22%;
+	z-index: -1;
 }
 
 .mana {
@@ -2828,8 +2848,8 @@ svg {
 
 #playerdamagevalue {
 	position: absolute;
-	top: 52%;
-	left: 10%;
+	top: 65%;
+	left: 16%;
 	text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,

@@ -114,6 +114,14 @@ function placeCardFunc() {
         mana -= manaCost;
         manaElement.innerHTML = mana + "/" + manaCapacity;
         if(originalPlayerDeck.cards[i]['type'] == "Monstro") playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
+        else{
+          let ele = document.getElementById('collisionbox');
+          ele.appendChild(originalPlayerDeck.cards[i].getPlayerCardsInHandHTML());
+          ele.children[0].classList.add("magicCardPlaced");
+          setTimeout(()=>{
+            ele.children[0].remove();
+          }, 2000);
+        }
         checkForRequiredMana();
         updateManaGUI();
         cardPlace('player',originalPlayerDeck.cards[i]);
@@ -194,7 +202,7 @@ function opponentTurn() {
   document.body.style.cursor = "url(src/cursor/spectate.png) 10 2, auto";
   document.getElementById("computerTurn").style.display = "block";
   document.getElementById("endturn").style.backgroundColor = "grey";
-  document.getElementById("endturn").innerText = "ENEMY TURN";
+  document.getElementById("endturn").innerText = "TURNO INIMIGO";
   if (document.querySelector('.board--opponent').childElementCount > 0) {
     /* calls function defined in AI.js (determines what the computer 
     attacks and with what minions) */
@@ -228,6 +236,13 @@ function computerCardPlace(numero_cartas) {
       if(computerDeck.cards[card]['type'] == "Monstro"){
         let opponentCard = computerDeck.cards[card].getComputerHTML();
         computerCardSlot.appendChild(opponentCard);
+      }else{
+        let ele = document.getElementById('collisionbox2');
+        ele.appendChild(computerDeck.cards[card].getPlayerCardsInHandHTML());
+        ele.children[0].classList.add("magicCardPlaced");
+        setTimeout(()=>{
+          ele.children[0].remove();
+        }, 2000);
       }
       cardPlace('computer',computerDeck.cards[card]);
       computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
@@ -293,7 +308,7 @@ function playerTurn() {
   document.getElementById("playerheropower").classList.add("canAttack");
   document.getElementById("computerTurn").style.display = "none";
   document.getElementById("endturn").style.backgroundColor = "#4ce322";
-  document.getElementById("endturn").innerText = "END TURN";
+  document.getElementById("endturn").innerText = "ENCERRAR TURNO";
   // mock's the user (dialogue) if it has been their turn for 30secs+
   setTimeout(function() {
     if ((playersTurn == true) && (alreadyMocked == false) && (gameIsWon == false) && (isTutorial == false)) {
