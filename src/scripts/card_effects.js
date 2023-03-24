@@ -12,59 +12,16 @@ function getParamText(mob){
 function damageEnemy(who, params){
     [damage] = params.toString().split(',')[0];
     if(who == 'player'){
-        final_target = new Promise(resolve =>{});
-        var xOrigin = document.getElementById('collisionbox').lastChild.clientX;
-        var yOrigin = document.getElementById('collisionbox').lastChild.clientY;
-        svg.style.display = "block";
-        document.getElementById("innercursor").style.visibility = "visible";
-        document.getElementById("outercursor").style.visibility = "visible";
-        document.getElementById("arrowcursor").style.visibility = "visible";
-        body.style.cursor = "none";
-        body.addEventListener('mousemove', e2 => {
-          var xDest = e2.clientX;
-          var yDest = e2.clientY;
-          var angleDeg = Math.atan2(yDest - yOrigin, xDest - xOrigin) * 180 / Math.PI;
-          var deg = angleDeg + 90;
-          document.getElementById("arrowcursor").style.transform = 'rotate('+deg+'deg) translate(-50%,-110%)';
-        //   svgpath.setAttribute('d', 'M'+xDest+','+yDest+' '+xOrigin+','+yOrigin+'');
-        });
-        body.addEventListener("click", setFree =>{
-            // 
-            body.removeEventListener('click', setFree);
-        });
+        const ele = document.getElementById('collisionbox').lastChild.children[0];
+        ele.id = "magicCard";
+        ele.children[0].style.visibility = "hidden";
+        ele.children[0].style.position = "absolute";
+        ele.children[1].style.visibility = "hidden";
+        ele.children[1].style.position = "absolute";
+        ele.children[0].innerHTML = damage;
+        ele.children[1].innerHTML  = 0;
 
-        for (let index = 0; index < who_dict['computer']['slot'].childElementCount; index++) {
-            target = who_dict['computer']['slot'].children[index];
-            target.style.boxShadow = "0px 0px 12px red";
-            target.addEventListener('click', target_selected =>{
-                final_target = new Promise(resolve => {
-                    resolve(target)
-                }) 
-            });
-            
-        }
-
-        final_target.then((t)=>{
-            svg.style.display = "none";
-            document.getElementById("innercursor").style.visibility = "hidden";
-            document.getElementById("outercursor").style.visibility = "hidden";
-            document.getElementById("arrowcursor").style.visibility = "hidden";
-            body.style.cursor = "url(src/cursor/cursor.png) 10 2, auto";
-            let h = parseInt(t.children[1].children[0].innerText);
-            t.children[1].children[0].innerText = h - parseInt(health);
-            t.children[1].children[0].style.color = "#f20301";
-            setTimeout(function() {
-                t.style.boxShadow = "";
-                if(parseInt(t.children[1].children[0].innerText) < 1){
-                    if(t.classList.contains("hasTaunt")){
-                        clearAttackEvents();
-                        attack(true);
-                    }
-                    t.remove();
-                } 
-            }, 1500);
-        });
-
+        setAttacker(ele);
     }
 }
 
@@ -118,7 +75,6 @@ function damageEnemies(who, params){
                     target.remove();
                 } 
             }, 1500);
-
         }
     }
 }
@@ -339,6 +295,16 @@ function cardPlace(who, card) {
             },400);
         } 
     });
+    setTimeout(function(){
+        if (card['type'] !== "Monstro") {
+            if (!effects.split(' ').includes('damageEnemy')) {
+                let ele = document.getElementById('magicCardPlaced');
+                if (ele !== undefined) {
+                    ele.remove(); 
+                }
+            }
+        }
+    }, 2000);
 
     // ragnaros the firelord card effects
     // if (getNameOfElement == "Ragnaros the Firelord") {

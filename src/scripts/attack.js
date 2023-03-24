@@ -12,11 +12,18 @@ function ilookForTaunts(){
 }
 
 function setAttacker(e){
+  console.log(this);
     playerCardSlot2.style.zIndex = "1"
     computerCardSlot.style.zIndex = "2"
     currentAttacker = this.id
     var xOrigin = e.clientX;
     var yOrigin = e.clientY;
+    if(currentAttacker == undefined){
+      currentAttacker = e.id;
+      var xOrigin = 1000;
+      var yOrigin = 1000;
+
+    } 
     svg.style.display = "block";
     document.getElementById("innercursor").style.visibility = "visible";
     document.getElementById("outercursor").style.visibility = "visible";
@@ -53,9 +60,16 @@ function setAttacked(e) {
 
   var currentAttackerElement = document.getElementById(currentAttacker);
   var targetElement = document.getElementById(target);
-  
-  var currentAttackerAttack = currentAttackerElement.children[0].children[0].innerHTML;
-  var currentAttackerHealth = currentAttackerElement.children[1].children[0].innerHTML;
+  if (currentAttacker == "magicCard") {
+    // document.getElementById('collisionbox').lastChild.children[0]
+    var currentAttackerAttack = currentAttackerElement.children[0].innerHTML;
+    var currentAttackerHealth = 0;
+    var attackerHealth = currentAttackerElement.children[1];
+  }else{
+    var currentAttackerAttack = currentAttackerElement.children[0].children[0].innerHTML;
+    var currentAttackerHealth = currentAttackerElement.children[1].children[0].innerHTML;
+    var attackerHealth = currentAttackerElement.children[1].children[0];
+  }
   var targetAttack = targetElement.children[0].children[0].innerHTML;
   var targetHealth = targetElement.children[1].children[0].innerHTML;
 
@@ -68,7 +82,7 @@ function setAttacked(e) {
   } else {
     currentAttackerHealth -= targetAttack;
     if (targetElement.id != "opposinghero") {
-      currentAttackerElement.children[1].children[0].style.color = "#f20301";
+      attackerHealth.style.color = "#f20301";
     }
   }
   if (targetElement.classList.contains("hasDivineShield")) {
@@ -78,7 +92,7 @@ function setAttacked(e) {
     targetHealth -= currentAttackerAttack;
     targetElement.children[1].children[0].style.color = "#f20301";
   }
-  currentAttackerElement.children[1].children[0].innerHTML = currentAttackerHealth;
+  attackerHealth.innerHTML = currentAttackerHealth;
   targetElement.children[1].children[0].innerHTML = targetHealth;
   if ((currentAttackerAttack >= 5) && (isScreenShake == true)) {
     document.getElementById("game").classList.add("bigHitAnim");
@@ -118,7 +132,15 @@ function setAttacked(e) {
       if (currentAttackerElement.classList.contains("hasTaunt")) {
         tauntExists = false;
       }
-      currentAttackerElement.remove();
+      console.log(currentAttackerElement);
+      if (currentAttackerElement.id == "magicCard") {
+        console.log('destroy magic');
+        document.getElementById('magicCardPlaced').remove();
+        // currentAttackerElement.parentElement.remove();
+      }else{
+        console.log('destroy monster');
+        currentAttackerElement.remove();
+      }
     } else if( currentAttackerElement.children[4].innerText.includes('frenesi')){
       frenesi(currentAttackerElement);
     }

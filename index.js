@@ -118,9 +118,11 @@ function placeCardFunc() {
           let ele = document.getElementById('collisionbox');
           ele.appendChild(originalPlayerDeck.cards[i].getPlayerCardsInHandHTML());
           ele.children[0].classList.add("magicCardPlaced");
-          setTimeout(()=>{
-            ele.children[0].remove();
-          }, 2000);
+          ele.children[0].id = "magicCardPlaced";
+          ele.children[0].lastChild.id = "magicCard";
+          // setTimeout(()=>{
+          //   ele.children[0].remove();
+          // }, 2000);
         }
         checkForRequiredMana();
         updateManaGUI();
@@ -258,9 +260,23 @@ function computerCardPlace(numero_cartas) {
       for (let i = 0; i < computerDeck.cards.length; i++) {
         if (computerDeck.cards[i]['mana'] <= mana) {
           setTimeout(function() {
-            computerCardSlot.appendChild(computerDeck.cards[i].getComputerHTML())
-            mana -= computerDeck.cards[i]['mana'];
-            computerDeck.cards.splice(computerDeck.cards.indexOf(i), 1);
+            if(computerDeck.cards[i]['type'] == "Monstro"){
+              let opponentCard = computerDeck.cards[i].getComputerHTML();
+              computerCardSlot.appendChild(opponentCard);
+            }else{
+              let ele = document.getElementById('collisionbox2');
+              ele.appendChild(computerDeck.cards[i].getPlayerCardsInHandHTML());
+              ele.children[0].classList.add("magicComputerCardPlaced");
+              setTimeout(()=>{
+                ele.children[0].remove();
+              }, 2000);
+            }
+            cardPlace('computer',computerDeck.cards[i]);
+            computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
+            numero_cartas--;
+            let cost = parseInt(computerDeck.cards[i]['mana']) ?? 0;
+            mana = mana - cost;
+            hand++;
           }, 800);
           break;
         }
@@ -271,7 +287,7 @@ function computerCardPlace(numero_cartas) {
 
   return new Promise((resolve, reject) => {
     var draw = setInterval(() => {
-      if ((mana > 0) && (hand < 5) && (numero_cartas > 0) && (computerCardSlot.childElementCount < 8)) {
+      if ((mana > 0) && (hand < 5) && (numero_cartas > 0) && (computerDeck.cards.length > 0) && (computerCardSlot.childElementCount < 8)) {
         setTimeout(() => {
           iterate_()
         }, 400);
@@ -351,6 +367,10 @@ function playerTurn() {
 and if so makes the border of the card green */
 function checkForRequiredMana() {
   for (let i=0; i<draggableElements.length; i++) {
+    if (draggableElements[i].children[0] == undefined) {
+      draggableElements[i].remove();
+      continue;
+    }
     if (mana < draggableElements[i].children[0].children[2].innerText) {
       draggableElements[i].style.pointerEvents = "none";
       draggableElements[i].children[0].children[4].style.border = "solid 4px rgb(56, 56, 56)";
