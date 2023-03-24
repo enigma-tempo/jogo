@@ -480,13 +480,13 @@ function getGameData() {
   const opponent_id = new URL(location.href).searchParams.get("id_oponente");
   
   
-  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id);
+  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id)['me'];
   const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id))['hero'];
   
   const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id))['hero'];
 
   const deck_id = new URL(location.href).searchParams.get("id_baralho");
-  const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['id'];
+  const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['deck']['id'];
 
   mockData = [
     {

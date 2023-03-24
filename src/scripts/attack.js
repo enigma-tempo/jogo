@@ -12,7 +12,6 @@ function ilookForTaunts(){
 }
 
 function setAttacker(e){
-  console.log(this);
     playerCardSlot2.style.zIndex = "1"
     computerCardSlot.style.zIndex = "2"
     currentAttacker = this.id
@@ -132,13 +131,10 @@ function setAttacked(e) {
       if (currentAttackerElement.classList.contains("hasTaunt")) {
         tauntExists = false;
       }
-      console.log(currentAttackerElement);
       if (currentAttackerElement.id == "magicCard") {
-        console.log('destroy magic');
         document.getElementById('magicCardPlaced').remove();
         // currentAttackerElement.parentElement.remove();
       }else{
-        console.log('destroy monster');
         currentAttackerElement.remove();
       }
     } else if( currentAttackerElement.children[4].innerText.includes('frenesi')){
@@ -263,7 +259,6 @@ function saveResult(result) {
   gameEndAt = Date.now();
   game_result = {'player': data_game[0]['id'], 'player_hero': data_game[0]['hero_id'], 'enemy_hero': data_game[1]['hero_id'], deck: data_game[0]['deck'], 'starts' : gameStartsAt, 'ends' : gameEndAt, 'result' : result};
   response = postRequest( 'https://api-enigma-tempo.onrender.com/api/matches' , game_result);
-  console.log(response);
 }
 
 function gameWon() {

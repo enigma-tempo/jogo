@@ -277,10 +277,16 @@ class MinionCard {
 }
 // function to create the full deck both the player and the opponent's deck
 function freshDeck(deck_id) {
-	// data = getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+deck_id)
-	data = getRequest("https://api-enigma-tempo.onrender.com/api/cards")
-	data = JSON.parse(data)
-	cards = data['cards']
+	if (deck_id == undefined) {
+		data = getRequest("https://api-enigma-tempo.onrender.com/api/cards")
+		data = JSON.parse(data)
+		cards = data['cards']
+		
+	} else {
+		data = getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+deck_id)
+		data = JSON.parse(data)
+		cards = data['deck']['cards']
+	}
 	listCards = []
 	cards.forEach(element => {
 		let name = element['name'];
@@ -301,12 +307,12 @@ function freshDeck(deck_id) {
 		}
 		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type, card_class,posture,sub_class)
 		listCards.push(card)
-		if(name == "Ronaldo"){
-			listCards.push(card)
-			listCards.push(card)
-			listCards.push(card)
-			listCards.push(card)
-		} 
+		// if(name == "Ronaldo"){
+		// 	listCards.push(card)
+		// 	listCards.push(card)
+		// 	listCards.push(card)
+		// 	listCards.push(card)
+		// } 
 	})
 	return listCards
 }
