@@ -336,11 +336,16 @@ function gameWon() {
     },1000);
   },5000);
 },5000);
-
+  setTimeout(() => {
+    location.href = 'https://daniellydsa.github.io/SiteEnigmaTempo/';
+  }, 10000);
 }
 
 function gameLose() {
   saveResult(false);
   alert("You've Lost!")
   location.reload();
+  setTimeout(() => {
+    location.href = 'https://daniellydsa.github.io/SiteEnigmaTempo/';
+  }, 10000);
 }
