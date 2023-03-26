@@ -1,4 +1,4 @@
-var hero_effect_dict = {"buff" : heroPowerBuff, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies}
+var hero_effect_dict = {"buff" : heroPowerBuff,"summon": summon, "draw" : draw, "dealDamageHero":dealDamageHero, "healHero" : healHero, "damageEnemies" : damageEnemies, "attackEnemy":heroAttackEnemy}
 
 function heroPowerBuff(who, params){
     [atk, health, classe] = params.toString().split(',');
@@ -14,4 +14,12 @@ function heroPowerBuff(who, params){
         target.children[0].children[0].style.color = "#00d70c";
         target.children[1].children[0].style.color = "#00d70c";
     }
+}
+
+function heroAttackEnemy(who, params){
+    if(who == 'computer') return null;
+    let damage = params.split(',')[0];
+    let ele = document.getElementsByClassName('heroPowerAttack')[0];
+    ele.innerHTML = damage;
+    setAttacker(document.getElementById("playerheropower"));
 }

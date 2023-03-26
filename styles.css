@@ -1042,10 +1042,10 @@ svg {
 
 .playerheropower {
 	position: absolute;
-	width: 7%;
-	height: 15%;
-	top: 73%;
-	left: 23%;
+	width: 15%;
+	height: 31%;
+	top: 65%;
+	left: 19%;
 	z-index: 2;
 	/* background-image: url(src/images/heropower.png); */
 	background-repeat: no-repeat;
@@ -1091,7 +1091,10 @@ svg {
 
 #playerheropower {
 	border: none !important;
-	width: 100% !important;
+	width: 46% !important;
+	position: absolute;
+    top: 3.2rem;
+    left: 3.3rem;
 }
 
 .attackValue {
@@ -1255,7 +1258,7 @@ svg {
 	margin: auto;
 	text-align: center;
 	transition: border 0.3s ease, box-shadow 0.3s ease;
-	background-color: rgb(255, 255, 198);
+	/* background-color: rgb(255, 255, 198); */
 	background-size: cover;
 	font-size: 8px;
 	font-weight: bold;
@@ -1403,7 +1406,7 @@ svg {
 
 .collisionbox {
 	width: 90%;
-	height: 37%;
+	height: 28%;
 	position: absolute;
 	left: 5%;
 	top: 52%;
@@ -1420,7 +1423,7 @@ svg {
 .mana {
 	position: absolute;
 	top: 91.25%;
-	left: 64.35%;
+	left: 66.35%;
 	color: white;
 	font-size: 23px;
 	font-weight: bold;
@@ -1469,9 +1472,9 @@ svg {
 /* Mana GUI Related */
 #manacontainer {
 	width: 17.6%;
-	height: 3.4%;
+	height: 5.4%;
 	position: absolute;
-	left: 67%;
+	left: 69%;
 	top: 90.6%;
 	background-color: #234856;
 	border: 4px solid #476e7a;
@@ -2247,24 +2250,24 @@ svg {
 }
 
 #goldborder6 {
-	width: 13.6%;
-	height: 4.75%;
-	position: absolute;
-	top: 28.5%;
-	left: 42.75%;
-	border-top-left-radius: 30px 175%;
-	border-bottom-left-radius: 30px 175%;
+	width: 20.6%;
+    height: 7.75%;
+    position: absolute;
+    top: 34.5%;
+    left: 7.5%;
+	/* border-top-left-radius: 30px 175%;
+	border-bottom-left-radius: 30px 175%; */
 	border-top-right-radius: 30px 175%;
 	border-bottom-right-radius: 30px 175%;
 	background: linear-gradient(to top right, #653517, #e6c279);
 }
 
 #playbutton {
-	width: 13%;
-	height: 3.5%;
-	position: absolute;
-	top: 28.9%;
-	left: 43%;
+	width: 15%;
+    height: 6.5%;
+    position: absolute;
+    top: 35.1%;
+    left: 12.5%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
 	border-top-left-radius: 30px 200%;
@@ -2282,24 +2285,24 @@ svg {
 }
 
 #goldborder7 {
-	width: 16.6%;
-	height: 4.75%;
-	position: absolute;
-	top: 35.5%;
-	left: 41.25%;
-	border-top-left-radius: 30px 175%;
-	border-bottom-left-radius: 30px 175%;
+	width: 20.6%;
+    height: 7.5%;
+    position: absolute;
+    top: 48.5%;
+    left: 7.5%;
+	/* border-top-left-radius: 30px 175%;
+	border-bottom-left-radius: 30px 175%; */
 	border-top-right-radius: 30px 175%;
 	border-bottom-right-radius: 30px 175%;
 	background: linear-gradient(to top right, #653517, #e6c279);
 }
 
 #tutorialbutton {
-	width: 16%;
-	height: 3.5%;
-	position: absolute;
-	top: 35.9%;
-	left: 41.5%;
+	width: 15%;
+    height: 6.5%;
+    position: absolute;
+    top: 49%;
+    left: 12.5%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
 	border-top-left-radius: 30px 200%;

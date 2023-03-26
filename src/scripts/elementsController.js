@@ -15,7 +15,7 @@ var tutorialIntroRunning = new Boolean(false);
 var vol = 0.5;
 var interval = 175; // 200ms interval
 // soundtrack's to be randomly selected in game
-var lichkingOST = new Audio("src/ost/knights_of_the_frozen_throne.mp3");
+var lichkingOST = new Audio("src/ost/duel.mp3");
 var items = [
     "src/ost/mulligan.mp3", 
     "src/ost/bad_reputation.mp3", 

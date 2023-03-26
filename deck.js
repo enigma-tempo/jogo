@@ -173,7 +173,7 @@ class MinionCard {
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id1 += 1
 
-		if (this.rarity == "Legendary") { //Só server pra aplicar a animação. Não nome, mas raridade deveria ser usado aqui
+		if (this.rarity == "Lendária") { //Só server pra aplicar a animação. Não nome, mas raridade deveria ser usado aqui
 			playerCardDiv.classList.add('ragnarosTheFirelord')
 			setTimeout(function() {
 				document.getElementById("game").classList.add("legendaryFlipAnim");
@@ -193,7 +193,7 @@ class MinionCard {
 					},1000);
 				},250)
 			},2000)
-		} else if (this.rarity  == "Epic") {
+		} else if (this.rarity  == "Épica") {
 			setTimeout(function() {
 				playerCardDiv.classList.add("stormwindChampion");
 			},750);
@@ -203,7 +203,7 @@ class MinionCard {
 					document.getElementById("game").classList.remove("epicFlipAnim");
 				},1000);
 			},2000);
-		} else if (this.rarity == "Rare") {
+		} else if (this.rarity == "Rara") {
 			playerCardDiv.classList.add("deathwing");
 			setTimeout(function() {
 				document.getElementById("game").classList.add("deathwingShake");
@@ -219,6 +219,8 @@ class MinionCard {
 	}
 	// function to create the card in hand element for the player
 	getPlayerCardsInHandHTML() {
+		const rarity_colors = {'Comum':"#b5b5b5", "Incomum":"#31c21d", "Raro":"#0249dd", "Lendária":"#", "Épica":"#bd02dd"}
+
 		const playerCardInHandDiv = document.createElement('div');
 		const playerCardFaceInHandDiv = document.createElement('div');
 		const playerCardBorderInHandDiv = document.createElement('div');
@@ -235,6 +237,7 @@ class MinionCard {
 		playerManaValueInHand.classList.add("cardManaValue")
 		playerInfoValueInHand.classList.add("cardInfoValue")
 		playerNameValueInHand.classList.add("cardNameValue")
+		playerNameValueInHand.style.backgroundColor = rarity_colors[this.rarity]
 		tutorialHintValueInHand.classList.add("cardtutorialhint")
 		effectsInHand.classList.add("effects");
 		paramsInHand.classList.add("params");
@@ -242,7 +245,7 @@ class MinionCard {
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		const playerAttackValueInHand = document.createElement('div');
 		const playerHealthValueInHand = document.createElement('div');
-		if(this.type == "Monstro"){
+		if(this.type == "Agente"){
 			playerAttackValueInHand.classList.add("cardAttackValue")
 			playerHealthValueInHand.classList.add("cardHealthValue")
 			playerAttackValueInHand.innerText = this.attack
@@ -295,24 +298,19 @@ function freshDeck(deck_id) {
 		let mana = parseInt(element['mana'])
 		let info = element['description']
 		let imageString =  "src/cards/"+element['sprite'];
-		let rarity = element['rarity'] !== undefined ? element['rarity']['name'] : "commom"
+		let rarity = element['rarity'] !== undefined ? element['rarity']['name'] : "Comum"
 		let effect = element['effect']
 		let params = element['params']
-		let type = element['type'] !== undefined ? element['type']['name'] : "Monstro"
+		let posture = "";
+		let type = element['type'] !== undefined ? element['type']['name'] : "Agente"
 		let card_class = element['card_class'] !== undefined ? element['card_class']['name'] : "Militar"
-		let posture = element['posture'] !== undefined ? element['posture']['name'] : "A"
-		let sub_class = element['sub_class'] !== undefined ? element['sub_class']['name'] : "Colonizador"
+		// params += card_class;
+		let sub_class = element['sub_class'] !== undefined ? element['sub_class']['name'] : "Destrutiva"
 		if (effect == 'taunt') {
 			mana = 1;
 		}
 		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type, card_class,posture,sub_class)
 		listCards.push(card)
-		// if(name == "Ronaldo"){
-		// 	listCards.push(card)
-		// 	listCards.push(card)
-		// 	listCards.push(card)
-		// 	listCards.push(card)
-		// } 
 	})
 	return listCards
 }

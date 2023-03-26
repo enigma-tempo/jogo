@@ -113,7 +113,7 @@ function placeCardFunc() {
         var manaCost = parseInt(originalPlayerDeck.cards[i]['mana']);
         mana -= manaCost;
         manaElement.innerHTML = mana + "/" + manaCapacity;
-        if(originalPlayerDeck.cards[i]['type'] == "Monstro") playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
+        if(originalPlayerDeck.cards[i]['type'] == "Agente") playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML())
         else{
           let ele = document.getElementById('collisionbox');
           ele.appendChild(originalPlayerDeck.cards[i].getPlayerCardsInHandHTML());
@@ -235,7 +235,7 @@ function computerCardPlace(numero_cartas) {
   function iterate_(){
     let card = parseInt(Math.random() * (computerDeck.cards.length - 1));
     if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
-      if(computerDeck.cards[card]['type'] == "Monstro"){
+      if(computerDeck.cards[card]['type'] == "Agente"){
         let opponentCard = computerDeck.cards[card].getComputerHTML();
         computerCardSlot.appendChild(opponentCard);
       }else{
@@ -260,7 +260,7 @@ function computerCardPlace(numero_cartas) {
       for (let i = 0; i < computerDeck.cards.length; i++) {
         if (computerDeck.cards[i]['mana'] <= mana) {
           setTimeout(function() {
-            if(computerDeck.cards[i]['type'] == "Monstro"){
+            if(computerDeck.cards[i]['type'] == "Agente"){
               let opponentCard = computerDeck.cards[i].getComputerHTML();
               computerCardSlot.appendChild(opponentCard);
             }else{
@@ -495,7 +495,7 @@ function getGameData() {
       hero: hero_data['name'], 
       hero_power: hero_data['power'] ?? 'buff', 
       hero_power_cost: hero_data['mana'] ?? '2', 
-      hero_power_params: hero_data['params'] ?? '1,0,Monstro', 
+      hero_power_params: hero_data['params'] ?? '1,0,Agente', 
       hero_txt: hero_data['txt'] ?? 'Olá;Sua vez',
       deck: deck_id
      },
@@ -515,7 +515,7 @@ function setGameConfig(data_game) {
   document.getElementsByClassName('playerhero')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +".png')";
   document.getElementById('playerlabel').innerText = data_game[0]['hero'];
   document.getElementById('playerbubble').innerHTML = data_game[0]['hero_txt'].split(';')[0];
-  document.getElementsByClassName('playerheropower')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero'].replaceAll(' ','-') +"_power.png')";
+  document.getElementsByClassName('playerheropower')[0].style.backgroundImage = "url('src/images/"+ data_game[0]['hero_power']+"_power.png')";
   
   //opponent
   document.getElementsByClassName('opponenthero')[0].style.backgroundImage = "url('src/images/"+ data_game[1]['hero'].replaceAll(' ','-') +".png')";

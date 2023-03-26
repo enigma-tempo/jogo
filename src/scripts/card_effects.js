@@ -1,4 +1,4 @@
-var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy}
+var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy, "healAllied":hpAddRandomAllied}
 
 who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
 
@@ -7,6 +7,16 @@ function getEffectNames(mob){
 }
 function getParamText(mob){
     return mob.children[5].innerText;
+}
+
+function hpAddRandomAllied(who, params){
+    [allieds, health] = params.toString().split(',');
+    if(who_dict[who]['slot'].childElementCount < 2) return null;
+    targetI = Math.floor(Math.random() * who_dict[who]['slot'].childElementCount)
+    target = who_dict[who]['slot'].children[targetI];
+    let h = parseInt(target.children[1].children[0].innerText);
+    target.children[1].children[0].innerText = h + parseInt(health);
+    target.children[1].children[0].style.color = "green";
 }
 
 function damageEnemy(who, params){
@@ -109,7 +119,7 @@ function frenesi(cardHTML){
 
 function buffAllieds(who, params){
     [allied, atk, health] = params.toString().split(',');
-    sub_class = "Colonizador";
+    sub_class = "Destrutiva";
     // [allied, atk, health, sub_class] = params.toString().split(',');
     if(parseInt(allied) == 0){
         n_allieds = 0;
@@ -196,7 +206,8 @@ function charge(who){
 
 //Em construção...
 function setAttib(who, params){
-    [attr, value] = params.split(',');
+    // [attr, value] = params.split(',');
+    value = params.split(',')[0];
     if (who == 'player') {
         who = ".opposingHeroHealth";
     }else{
@@ -296,77 +307,15 @@ function cardPlace(who, card) {
         } 
     });
     setTimeout(function(){
-        if (card['type'] !== "Monstro") {
+        if (card['type'] !== "Agente") {
             if (!effects.split(' ').includes('damageEnemy')) {
                 let ele = document.getElementById('magicCardPlaced');
-                if (ele !== undefined) {
+                if (ele !== undefined && ele !== null) {
                     ele.remove(); 
                 }
             }
         }
     }, 2000);
-
-    // ragnaros the firelord card effects
-    // if (getNameOfElement == "Ragnaros the Firelord") {
-    //     let ragnarosthefirelordSnd = new Audio("src/sounds/cardPlaceSnds/ragnaros_the_firelord_play.mp3")
-    //     ragnarosthefirelordSnd.play();
-    //     ragnarosthefirelordSnd.volume = 0.7;
-    //     fadeOutInMusic();
-    //     who_dict['player']['slot'].lastChild.children[4].style.visibility = "visible";
-    // }
-    // // deathwing card effects
-    // else if (getNameOfElement == "Deathwing") {
-    //     let deathwingSnd = new Audio("src/sounds/cardPlaceSnds/deathwing_play.mp3")
-    //     deathwingSnd.play();
-    //     deathwingSnd.volume = 0.7;
-    //     fadeOutInMusic();
-    //     who_dict['player']['slot'].lastChild.children[4].style.visibility = "visible";
-    //     // discard hand
-    //     for (let i=0; i<hand.childElementCount; i++) {
-    //         hand.children[i].remove();
-    //     }
-    //     // remove all minions on players board
-    //     for (let i=0; i<who_dict['player']['slot'].childElementCount; i++) {
-    //         who_dict['player']['slot'].children[i].remove();
-    //     }
-    //     // remove all minions on computers board
-    //     for (let i=0; i<computerCardSlot.childElementCount; i++) {
-    //         computerCardSlot.children[i].remove();
-    //     }
-    // }
-    // // alexstrasza card effects
-    // else if (getNameOfElement == "Alexstrasza") {
-    //     let alexstraszaSnd = new Audio("src/sounds/cardPlaceSnds/alexstrasza_play.mp3")
-    //     let alexstraszamusicSnd = new Audio("src/sounds/cardPlaceSnds/alexstrasza_music_play.mp3")
-    //     alexstraszaSnd.play();
-    //     who_dict['player']['slot'].lastChild.children[4].style.visibility = "visible";
-    //     setTimeout(function() {
-    //         alexstraszamusicSnd.play();
-    //     },375);
-    // }
-    // // the lich king card effects
-    // else if (getNameOfElement == "The Lich King") {
-    //     let lichkingSnd = new Audio("src/sounds/cardPlaceSnds/lich_king_play.mp3")
-    //     lichkingSnd.play();
-    //     fadeOutInMusic();
-    //     document.getElementById('snowCanvas').style.display = "block";
-    //     document.getElementById('snowCanvas').classList.add("fadeInAnim");
-    //     who_dict['player']['slot'].lastChild.classList.add("hasTaunt");
-    //     setTimeout(function() {
-    //         who_dict['player']['slot'].lastChild.children[4].style.visibility = "visible";
-    //     },1500);
-    //     setTimeout(function() {
-    //         who_dict['player']['slot'].lastChild.children[3].style.visibility = "visible";
-    //     },3300);
-    //     setTimeout(function() {
-    //         document.getElementById('snowCanvas').classList.remove("fadeInAnim");
-    //         document.getElementById('snowCanvas').classList.add("fadeOutAnim");
-    //         setTimeout(function() {
-    //             document.getElementById('snowCanvas').classList.remove("fadeOutAnim");
-    //             document.getElementById('snowCanvas').style.display = "none";
-    //         },1000);
-    //     },3000);
-    // }
 }
 
 // function that fades the music out and back in over a period of 5.3 seconds
