@@ -231,6 +231,7 @@ class MinionCard {
 		const effectsInHand = document.createElement('div');
 		const paramsInHand = document.createElement('div');
 		const typeInHand = document.createElement('div');
+		const subClassInHand = document.createElement('div');
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
@@ -242,6 +243,7 @@ class MinionCard {
 		effectsInHand.classList.add("effects");
 		paramsInHand.classList.add("params");
 		typeInHand.classList.add("type");
+		subClassInHand.classList.add("subClass");
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		const playerAttackValueInHand = document.createElement('div');
 		const playerHealthValueInHand = document.createElement('div');
@@ -261,6 +263,7 @@ class MinionCard {
 		playerCardFaceInHandDiv.appendChild(effectsInHand)
 		playerCardFaceInHandDiv.appendChild(paramsInHand)
 		playerCardFaceInHandDiv.appendChild(typeInHand)
+		playerCardFaceInHandDiv.appendChild(subClassInHand)
 		effectsInHand.style.visibility = "hidden";
 		paramsInHand.style.visibility = "hidden";
 		typeInHand.style.visibility = "hidden";
@@ -274,6 +277,7 @@ class MinionCard {
 		effectsInHand.innerText = this.effect
 		paramsInHand.innerText = this.params
 		typeInHand.innerText = this.type
+		subClassInHand.innerText = this.sub_class
 		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		return playerCardInHandDiv
 	}
