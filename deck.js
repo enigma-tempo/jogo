@@ -23,7 +23,7 @@ class Deck {
 }
 // class to make objects for each card including the card stats and properties
 class MinionCard {
-	constructor(attack, health, mana, info, imageString, name, rarity, effect = "none", params = "none", type = "minion", card_class, posture, sub_class) {
+	constructor(attack, health, mana, info, imageString, name, rarity, effect = "none", params = "none", type = "minion", acting, posture, category) {
 		this.imageString = imageString;
 		this.attack = attack;
 		this.health = health;
@@ -34,9 +34,9 @@ class MinionCard {
 		this.effect = effect;
 		this.params = params;
 		this.type = type;
-		this.card_class = card_class;
+		this.acting = acting;
 		this.posture = posture;
-		this.sub_class = sub_class;
+		this.category = category;
 	}
 	// function to create the card in play element for the opponent
 	getComputerHTML() {
@@ -50,9 +50,9 @@ class MinionCard {
 		const effect = document.createElement('div');
 		const params = document.createElement('div');
 		const type = document.createElement('div');
-		const card_class = document.createElement('div');
+		const acting = document.createElement('div');
 		const posture = document.createElement('div');
-		const sub_class  = document.createElement('div');
+		const category  = document.createElement('div');
 
 		computerCardDiv.id = "cpuCardInPlay" + id2;
 		computerCardDiv.classList.add("cardinplay");
@@ -71,12 +71,12 @@ class MinionCard {
 		params.style.visibility = "hidden";
 		type.classList.add('type');
 		type.style.visibility = "hidden";
-		card_class.classList.add('card_class');
-		card_class.style.visibility = "hidden";
+		acting.classList.add('acting');
+		// acting.style.visibility = "hidden";
 		posture.classList.add('posture');
 		posture.style.visibility = "hidden";
-		sub_class.classList.add('sub_class');
-		sub_class.style.visibility = "hidden";
+		category.classList.add('category');
+		category.style.visibility = "hidden";
 
 		computerCardDiv.classList.add('placeCardAnim')
 
@@ -87,9 +87,9 @@ class MinionCard {
 		computerCardDiv.appendChild(effect)
 		computerCardDiv.appendChild(params)
 		computerCardDiv.appendChild(type)
-		computerCardDiv.appendChild(card_class)
+		computerCardDiv.appendChild(acting)
 		computerCardDiv.appendChild(posture)
-		computerCardDiv.appendChild(sub_class)
+		computerCardDiv.appendChild(category)
 
 		computerAttackValueBackground.appendChild(computerAttackValue)
 		computerHealthValueBackground.appendChild(computerHealthValue)
@@ -99,10 +99,11 @@ class MinionCard {
 		effect.innerText = this.effect;
 		params.innerText = this.params;
 		type.innerText = this.type;
-		card_class.innerText = this.card_class;
+		// acting.innerText = this.acting;
+		acting.style.backgroundImage = "url('src/images'"+this.acting+"')";
 		posture.innerText = this.posture;
-		sub_class.innerText = this.sub_class;
-		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
+		category.innerText = this.category;
+		computerCardDiv.style.backgroundImage = "url('" + this.imageString + ".png')";
 		id2 += 1;
 		return computerCardDiv
 	}
@@ -119,9 +120,9 @@ class MinionCard {
 		const effect = document.createElement('div');
 		const params = document.createElement('div');
 		const type = document.createElement('div');
-		const card_class = document.createElement('div');
+		const acting = document.createElement('div');
 		const posture = document.createElement('div');
-		const sub_class  = document.createElement('div');
+		const category  = document.createElement('div');
 
 		playerCardDiv.id = "playerCardInPlay" + id1;
 		playerCardDiv.classList.add("cardinplay");
@@ -140,12 +141,12 @@ class MinionCard {
 		params.style.visibility = "hidden";
 		type.classList.add('type');
 		type.style.visibility = "hidden";
-		card_class.classList.add('card_class');
-		card_class.style.visibility = "hidden";
+		acting.classList.add('acting');
+		acting.style.visibility = "hidden";
 		posture.classList.add('posture');
 		posture.style.visibility = "hidden";
-		sub_class.classList.add('sub_class');
-		sub_class.style.visibility = "hidden";
+		category.classList.add('category');
+		category.style.visibility = "hidden";
 
 		playerCardDiv.appendChild(playerAttackValueBackground)
 		playerCardDiv.appendChild(playerHealthValueBackground)
@@ -154,9 +155,9 @@ class MinionCard {
 		playerCardDiv.appendChild(effect)
 		playerCardDiv.appendChild(params)
 		playerCardDiv.appendChild(type)
-		playerCardDiv.appendChild(card_class)
+		playerCardDiv.appendChild(acting)
 		playerCardDiv.appendChild(posture)
-		playerCardDiv.appendChild(sub_class)
+		playerCardDiv.appendChild(category)
 		playerCardDiv.appendChild(legendary)
 
 		playerAttackValueBackground.appendChild(playerAttackValue)
@@ -167,9 +168,9 @@ class MinionCard {
 		effect.innerText = this.effect;
 		params.innerText = this.params;
 		type.innerText = this.type;
-		card_class.innerText = this.card_class;
+		acting.innerText = this.acting;
 		posture.innerText = this.posture;
-		sub_class.innerText = this.sub_class;
+		category.innerText = this.category;
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id1 += 1
 
@@ -277,7 +278,7 @@ class MinionCard {
 		effectsInHand.innerText = this.effect
 		paramsInHand.innerText = this.params
 		typeInHand.innerText = this.type
-		subClassInHand.innerText = this.sub_class
+		subClassInHand.innerText = this.category
 		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		return playerCardInHandDiv
 	}
@@ -288,6 +289,18 @@ function freshDeck(deck_id) {
 		data = getRequest("https://api-enigma-tempo.onrender.com/api/cards")
 		data = JSON.parse(data)
 		cards = data['cards']
+		const N = cards.length;
+		let random_card_list = [];
+		let generic_deck = [];
+		for (let i = 0; i < 30; i++) {
+			let num;
+			do {
+				num = Math.floor(Math.random() * (N + 1));
+			} while (random_card_list.filter(n => n === num).length >= 3);
+			random_card_list.push(num);
+			generic_deck.push(cards[num]);
+		}
+		cards = generic_deck;
 		
 	} else {
 		data = getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+deck_id)
@@ -307,13 +320,10 @@ function freshDeck(deck_id) {
 		let params = element['params']
 		let posture = "";
 		let type = element['type'] !== undefined ? element['type']['name'] : "Agente"
-		let card_class = element['card_class'] !== undefined ? element['card_class']['name'] : "Militar"
-		// params += card_class;
-		let sub_class = element['sub_class'] !== undefined ? element['sub_class']['name'] : "Destrutiva"
-		if (effect == 'taunt') {
-			mana = 1;
-		}
-		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type, card_class,posture,sub_class)
+		let acting = element['acting'] !== undefined ? element['acting']['name'] : "Militar"
+		// params += acting;
+		let category = element['category'] !== undefined ? element['category']['name'] : "Destrutiva"
+		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type, acting,posture,category)
 		listCards.push(card)
 	})
 	return listCards

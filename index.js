@@ -474,16 +474,25 @@ screenshakebtn.onclick = function () {
 function getGameData() {
   //getFromDB
   //Stock model = {player_id, hero_id, deck_id, enemy_id} <- fromGet
-  const opponent_user_default = "640b648ee7c1910330a7be5d";
+  const opponent_user_default = "6420b5a32fc1037c60c6f6cd";
   const player_id = new URL(location.href).searchParams.get("id_jogador");
   const hero_id = new URL(location.href).searchParams.get("id_personalidade");
   const opponent_id = new URL(location.href).searchParams.get("id_oponente");
   
   
   const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id)['me'];
+  if (player_data == undefined || player_data == '') {
+    loading_error();
+  }
   const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id))['hero'];
+  if (hero_data == undefined || hero_data == '') {
+    loading_error();
+  }
   
   const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id))['hero'];
+  if (opponent_data == undefined || opponent_data == '') {
+    loading_error();
+  }
 
   const deck_id = new URL(location.href).searchParams.get("id_baralho");
   const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['deck']['id'];
@@ -534,4 +543,12 @@ function postRequest(url, json){
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(json));
   return request.responseText;
+}
+function loading_error(){
+  let ele = document.getElementById('preventCORS');
+  ele.innerHTML = "Ocorreu um erro ao tentar carregar o jogo.";
+  ele.addEventListener('click', () =>{
+    window.location = "https://daniellydsa.github.io/SiteEnigmaTempo/";
+  });
+  ele.visibility = "visible";
 }

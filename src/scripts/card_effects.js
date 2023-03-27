@@ -90,12 +90,12 @@ function damageEnemies(who, params){
 }
 
 function buffSelf(who, params){
-    // [atk, hp, sub_class] = params.toString().split(',');
+    // [atk, hp, category] = params.toString().split(',');
     [atk, hp] = params.toString().split(',');
-    sub_class = "Colonizador";
+    category = "Destrutiva";
     n_allieds = 0;
     for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
-        if (who_dict[who]['slot'].children[index].children[9].innerHTML == sub_class) {
+        if (who_dict[who]['slot'].children[index].children[9].innerHTML == category) {
             n_allieds++;
         } 
     }
@@ -119,8 +119,8 @@ function frenesi(cardHTML){
 
 function buffAllieds(who, params){
     [allied, atk, health] = params.toString().split(',');
-    sub_class = "Destrutiva";
-    // [allied, atk, health, sub_class] = params.toString().split(',');
+    category = "Destrutiva";
+    // [allied, atk, health, category] = params.toString().split(',');
     if(parseInt(allied) == 0){
         n_allieds = 0;
     }else{
@@ -131,7 +131,7 @@ function buffAllieds(who, params){
         if (target == null) {
             continue
         }
-        if(target.children[9].innerHTML == sub_class){
+        if(target.children[9].innerHTML == category){
             let attackPlusOne = parseInt(target.children[0].children[0].innerText);
             let healthPlusOne = parseInt(target.children[1].children[0].innerText);
             target.children[0].children[0].innerText = attackPlusOne + parseInt(atk);

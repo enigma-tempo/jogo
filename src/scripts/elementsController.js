@@ -1,9 +1,6 @@
 var openmenuSnd = new Audio("src/sounds/openmenu.mp3");
 var menubtnsSnd = new Audio("src/sounds/menubtnpress.mp3");
-// var purchaseSnd = new Audio("src/sounds/purchase.mp3");
 var menuhoverSnd = new Audio("src/sounds/menuselect.mp3");
-// var shophoverSnd = new Audio("src/sounds/shophover.mp3");
-// var shoponclickSnd = new Audio("src/sounds/shoponclick.mp3")
 var startTutorialSnd = new Audio("src/voiceovers/innkeeper_starttutorial.mp3");
 var battlebeginSnd = new Audio("src/voiceovers/innkeeper_tutorialbattle.mp3");
 var jainathreatSnd = new Audio("src/voiceovers/jaina_tutorialbattle.mp3");
