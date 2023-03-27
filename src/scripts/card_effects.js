@@ -1,5 +1,5 @@
-var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy, "healAllied":hpAddRandomAllied, "lifeSteal":lifeSteal,"legado:summon": summon, "buffSelfByEnemyActing":buffSelfByEnemyActing, "end_turn:hpAddRandomAllied": hpAddRandomAllied}
-var effect_in_fight = ["frenesi", "lifeSteal", "legado:summon", "end_turn:hpAddRandomAllied"];
+var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy, "healAllied":hpAddRandomAllied, "lifeSteal":lifeSteal,"legado:summon": summon, "buffSelfByEnemyActing":buffSelfByEnemyActing, "end_turn:hpAddRandomAllied": hpAddRandomAllied, "legado:draw":draw}
+var effect_in_fight = ["frenesi", "lifeSteal", "legado:summon", "end_turn:hpAddRandomAllied", "legado:draw"];
 var who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
 
 function getEffectNames(mob){
