@@ -134,7 +134,6 @@ function setAttacked(e) {
       }
       if (currentAttackerElement.id == "magicCard") {
         document.getElementById('magicCardPlaced').remove();
-        // currentAttackerElement.parentElement.remove();
       }else{
         currentAttackerElement.remove();
       }

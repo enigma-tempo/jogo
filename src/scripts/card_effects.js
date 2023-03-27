@@ -11,13 +11,13 @@ function getParamText(mob){
 
 
 function hpAddRandomAllied(who, params){
-    [allieds, health, category] = params.toString().split(',');
-    let hit = category.toLowerCase() == "todos" || category.toLowerCase() == "todas";
+    [allieds, health, acting] = params.toString().split(',');
+    let hit = acting.toLowerCase() == "todos" || acting.toLowerCase() == "todas";
     if(who_dict[who]['slot'].childElementCount < 2) return null;
     if (allieds == 0) {
         for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
             const target = who_dict[who]['slot'].children[index];
-            if(!hit || target.children[8] == category){
+            if(!hit || target.children[7] == acting){
                 let h = parseInt(target.children[1].children[0].innerText);
                 target.children[1].children[0].innerText = h + parseInt(health);
                 target.children[1].children[0].style.color = "green";
@@ -27,7 +27,7 @@ function hpAddRandomAllied(who, params){
         n_allieds = 0;
         for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
             const target = who_dict[who]['slot'].children[index];
-            if(!hit || target.children[8] == category){
+            if(!hit || target.children[7] == acting){
                 n_allieds++;
             }
         }
