@@ -481,18 +481,18 @@ function getGameData() {
   
   
   const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id)['me'];
-  if (player_data == undefined || player_data == '') {
-    loading_error();
-  }
+  // if (player_data == undefined || player_data == '') {
+  //   loading_error();
+  // }
   const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id))['hero'];
-  if (hero_data == undefined || hero_data == '') {
-    loading_error();
-  }
+  // if (hero_data == undefined || hero_data == '') {
+  //   loading_error();
+  // }
   
   const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id))['hero'];
-  if (opponent_data == undefined || opponent_data == '') {
-    loading_error();
-  }
+  // if (opponent_data == undefined || opponent_data == '') {
+  //   loading_error();
+  // }
 
   const deck_id = new URL(location.href).searchParams.get("id_baralho");
   const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['deck']['id'];
