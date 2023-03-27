@@ -1,6 +1,6 @@
-var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy, "healAllied":hpAddRandomAllied}
-
-who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
+var effect_dict = {"buff" : buffAllieds, "taunt": taunt, "summon": summon, "draw" : draw, "divineshield" : divineShield, "charge":charge, "dealDamageHero":dealDamageHero, "healHero" : healHero, "setAttib": setAttib, "buffSelf": buffSelf, "damageEnemies" : damageEnemies, "damageEnemy":damageEnemy, "healAllied":hpAddRandomAllied, "lifeSteal":lifeSteal,"legado:summon": summon, "buffSelfByEnemyActing":buffSelfByEnemyActing, "end_turn:hpAddRandomAllied": hpAddRandomAllied, "legado:draw":draw}
+var effect_in_fight = ["frenesi", "lifeSteal", "legado:summon", "end_turn:hpAddRandomAllied", "legado:draw"];
+var who_dict = { 'player': {'slot':playerCardSlot2, 'deck': playerDeck, 'original_deck':originalPlayerDeck}, 'computer': {'slot':computerCardSlot, 'deck':computerDeck, 'original_deck':computerDeck} }
 
 function getEffectNames(mob){
     return mob.children[4].innerText;
@@ -9,14 +9,40 @@ function getParamText(mob){
     return mob.children[5].innerText;
 }
 
+
 function hpAddRandomAllied(who, params){
-    [allieds, health] = params.toString().split(',');
+    [allieds, health, acting] = params.toString().split(',');
+    let hit = acting.toLowerCase() == "todos" || acting.toLowerCase() == "todas";
     if(who_dict[who]['slot'].childElementCount < 2) return null;
-    targetI = Math.floor(Math.random() * who_dict[who]['slot'].childElementCount)
-    target = who_dict[who]['slot'].children[targetI];
-    let h = parseInt(target.children[1].children[0].innerText);
-    target.children[1].children[0].innerText = h + parseInt(health);
-    target.children[1].children[0].style.color = "green";
+    if (allieds == 0) {
+        for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
+            const target = who_dict[who]['slot'].children[index];
+            if(!hit || target.children[7] == acting){
+                let h = parseInt(target.children[1].children[0].innerText);
+                target.children[1].children[0].innerText = h + parseInt(health);
+                target.children[1].children[0].style.color = "green";
+            }
+        }
+    } else {
+        n_allieds = 0;
+        for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
+            const target = who_dict[who]['slot'].children[index];
+            if(!hit || target.children[7] == acting){
+                n_allieds++;
+            }
+        }
+        targetI = Math.floor(Math.random() * n_allieds)
+        for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
+            const target = who_dict[who]['slot'].children[index];
+            if (!hit || n_allieds == targetI) {
+                target = who_dict[who]['slot'].children[index];
+                let h = parseInt(target.children[1].children[0].innerText);
+                target.children[1].children[0].innerText = h + parseInt(health);
+                target.children[1].children[0].style.color = "green";
+                break;
+            }
+        }
+    }
 }
 
 function damageEnemy(who, params){
@@ -90,9 +116,7 @@ function damageEnemies(who, params){
 }
 
 function buffSelf(who, params){
-    // [atk, hp, category] = params.toString().split(',');
-    [atk, hp] = params.toString().split(',');
-    category = "Destrutiva";
+    [atk, hp, category] = params.toString().split(',');
     n_allieds = 0;
     for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
         if (who_dict[who]['slot'].children[index].children[9].innerHTML == category) {
@@ -108,6 +132,26 @@ function buffSelf(who, params){
     target.children[1].children[0].style.color = "#00d70c";
 }
 
+function buffSelfByEnemyActing(who, params){
+    [atk, hp, acting] = params.toString().split(',');
+    let hit = false;
+    for (let index = 0; index < who_dict[who]['slot'].childElementCount; index++) {
+        if (who_dict[who]['slot'].children[index].children[7].innerHTML == acting) {
+            hit = true;
+            break;
+        } 
+    }
+    if (hit) {
+        let target = who_dict[who]['slot'].lastChild;
+        let attackPlus = parseInt(target.children[0].children[0].innerText);
+        let healthPlus = parseInt(target.children[1].children[0].innerText);
+        target.children[0].children[0].innerText = attackPlus + (parseInt(atk)* n_allieds);
+        target.children[1].children[0].innerText = healthPlus + (parseInt(hp)* n_allieds);
+        target.children[0].children[0].style.color = "#00d70c";
+        target.children[1].children[0].style.color = "#00d70c";
+    }
+}
+
 function frenesi(cardHTML){
     atk = parseInt(cardHTML.children[5].innerHTML);
     let target = cardHTML;
@@ -116,10 +160,18 @@ function frenesi(cardHTML){
     target.children[0].children[0].style.color = "#00d70c";
 }
 
+function lifeSteal(cardHTML, damageDone){
+    hp = parseInt(cardHTML.children[1].children[0].innerText);
+    let target = cardHTML;
+    target.children[1].children[0].innerText = hp + damageDone;
+    target.children[1].children[0].style.color = "#00d70c";
+}
+
 
 function buffAllieds(who, params){
-    [allied, atk, health] = params.toString().split(',');
-    category = "Destrutiva";
+    [allied, atk, health, category] = params.toString().split(',');
+    affectAll = category.toLowerCase() == "todas" || category.toLowerCase() == "todos";
+    hit = true;
     // [allied, atk, health, category] = params.toString().split(',');
     if(parseInt(allied) == 0){
         n_allieds = 0;
@@ -131,7 +183,10 @@ function buffAllieds(who, params){
         if (target == null) {
             continue
         }
-        if(target.children[9].innerHTML == category){
+        if (!affectAll) {
+            hit = target.children[9].innerHTML == category
+        }
+        if (hit) {
             let attackPlusOne = parseInt(target.children[0].children[0].innerText);
             let healthPlusOne = parseInt(target.children[1].children[0].innerText);
             target.children[0].children[0].innerText = attackPlusOne + parseInt(atk);
@@ -169,6 +224,7 @@ function summon(who, params){
                 }
                 who_dict[who]['slot'].appendChild(mob_html);
                 mob['effect'] = mob['effect'].replace("summon", ""); 
+                mob['effect'] = mob['effect'].replace("legado:summon", ""); 
                 setTimeout(function() {
                     cardPlace(who, mob);
                 },400);
@@ -300,10 +356,18 @@ function cardPlace(who, card) {
     let effects = card['effect'];
     let params = card['params'];
     effects.split(' ').forEach(element => {
-        if(element in effect_dict && element != 'frenesi'){
-            setTimeout(function() {
-                effect_dict[element](who, params);
-            },400);
+        if(element in effect_dict && !effect_in_fight.includes(element) ){
+            let run = true;
+            if (card.info.split(":")[0] == "Bradante") {
+                if (mana < (card.mana*2)) {
+                    run = false;
+                }
+            }
+            if (run) {
+                setTimeout(function() {
+                    effect_dict[element](who, params);
+                },400);
+            }
         } 
     });
     setTimeout(function(){

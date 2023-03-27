@@ -71,6 +71,7 @@ function setAttacked(e) {
   }
   var targetAttack = targetElement.children[0].children[0].innerHTML;
   var targetHealth = targetElement.children[1].children[0].innerHTML;
+  var targetBaseHealth = targetElement.children[1].children[0].innerHTML;
 
   if (currentAttackerElement.classList.contains("hasDivineShield")) {
     currentAttackerElement.classList.remove("hasDivineShield");
@@ -133,12 +134,14 @@ function setAttacked(e) {
       }
       if (currentAttackerElement.id == "magicCard") {
         document.getElementById('magicCardPlaced').remove();
-        // currentAttackerElement.parentElement.remove();
       }else{
         currentAttackerElement.remove();
       }
     } else if( currentAttackerElement.children[4].innerText.includes('frenesi')){
       frenesi(currentAttackerElement);
+    } else if( currentAttackerElement.children[4].innerText.includes('lifeSteal')){
+      let damageDone = targetBaseHealth - (targetBaseHealth-currentAttackerAttack < 0 ? 0 : targetBaseHealth-currentAttackerAttack)
+      lifeSteal(currentAttackerElement, damageDone);
     }
     if(targetHealth <= 0) {
       if (document.querySelector('.opposingHeroHealth').innerText <= 0) {

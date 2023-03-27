@@ -181,14 +181,27 @@ function updateDeckCount() {
 /* adds an event listener to the end turn button where when clicked plays an audio file and calls the 
 opponentTurn function then checks if the audio has been played yet and if not plays it and sets audioIsPlayed to false */
 document.getElementById("endturn").addEventListener("click", function() {
-  var endturn = new Audio("src/sounds/endturn.mp3");
-  endturn.play();
-  document.querySelector("#endturn").style.zIndex = "50";
-  document.getElementById("gifhint").style.backgroundImage = "url('src/hints/attack.gif')";
-  document.getElementById("texthint").innerText = "Click on an green glowing allied card then click on an enemy to attack.";
-  document.getElementById('opposinghero').removeEventListener('mousedown', setAttacked);
-  document.getElementById("playerheropower").removeEventListener('click', useHeroPower);
-  opponentTurn()
+  let t = 500;
+  for (let index = 0; index < playerCardSlot2.childElementCount; index++) {
+    const element = playerCardSlot2.children[index];
+    let player_card_effects = element.children[4].split(":");
+    if (player_card_effects[0] == "end_turn") {
+      t += 1000
+      effect_dict[player_card_effects[1]]("player", element.children[5])
+    }
+  }
+
+  setTimeout(() => {
+    var endturn = new Audio("src/sounds/endturn.mp3");
+    endturn.play();
+    document.querySelector("#endturn").style.zIndex = "50";
+    document.getElementById("gifhint").style.backgroundImage = "url('src/hints/attack.gif')";
+    document.getElementById("texthint").innerText = "Click on an green glowing allied card then click on an enemy to attack.";
+    document.getElementById('opposinghero').removeEventListener('mousedown', setAttacked);
+    document.getElementById("playerheropower").removeEventListener('click', useHeroPower);
+    opponentTurn()
+    
+  }, t);
 });
 /* defines new function that calls the getComputerHTML function from deck.js using the first card at the top of the computers' deck and appends as a child to 
 the computers board and uses the shift method to remove the first card in the array then proceeds to call both updateDeckCount and playerTurn functions. */
