@@ -23,7 +23,7 @@ class Deck {
 }
 // class to make objects for each card including the card stats and properties
 class MinionCard {
-	constructor(attack, health, mana, info, imageString, name, rarity, effect = "none", params = "none", type = "minion", acting, posture, category) {
+	constructor(attack, health, mana, info, imageString, name, rarity, effect, params, type, acting, category) {
 		this.imageString = imageString;
 		this.attack = attack;
 		this.health = health;
@@ -35,7 +35,6 @@ class MinionCard {
 		this.params = params;
 		this.type = type;
 		this.acting = acting;
-		this.posture = posture;
 		this.category = category;
 	}
 	// function to create the card in play element for the opponent
@@ -99,11 +98,11 @@ class MinionCard {
 		effect.innerText = this.effect;
 		params.innerText = this.params;
 		type.innerText = this.type;
-		// acting.innerText = this.acting;
+		acting.innerText = this.acting;
 		acting.style.backgroundImage = "url('src/images'"+this.acting+"')";
-		posture.innerText = this.posture;
+		// posture.innerText = this.posture;
 		category.innerText = this.category;
-		computerCardDiv.style.backgroundImage = "url('" + this.imageString + ".png')";
+		computerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		id2 += 1;
 		return computerCardDiv
 	}
@@ -285,7 +284,7 @@ class MinionCard {
 }
 // function to create the full deck both the player and the opponent's deck
 function freshDeck(deck_id) {
-	if (deck_id == undefined) {
+	if (deck_id == undefined || deck_id == "") {
 		data = getRequest("https://api-enigma-tempo.onrender.com/api/cards")
 		data = JSON.parse(data)
 		cards = data['cards']
@@ -295,7 +294,7 @@ function freshDeck(deck_id) {
 		for (let i = 0; i < 30; i++) {
 			let num;
 			do {
-				num = Math.floor(Math.random() * (N + 1));
+				num = Math.floor(Math.random() * (N));
 			} while (random_card_list.filter(n => n === num).length >= 3);
 			random_card_list.push(num);
 			generic_deck.push(cards[num]);
@@ -309,20 +308,19 @@ function freshDeck(deck_id) {
 	}
 	listCards = []
 	cards.forEach(element => {
-		let name = element['name'];
+		let name = element['name'] ?? 'Bug nome';
 		let attack = parseInt(element['attack'])
 		let health = parseInt(element['health'])
 		let mana = parseInt(element['mana'])
 		let info = element['description']
-		let imageString =  "src/cards/"+element['sprite'];
-		let rarity = element['rarity'] !== undefined ? element['rarity']['name'] : "Comum"
+		let imageString =  element['sprite'];
+		let rarity = element['rarity']['name']
 		let effect = element['effect']
 		let params = element['params']
 		let posture = "";
-		let type = element['type'] !== undefined ? element['type']['name'] : "Agente"
-		let acting = element['acting'] !== undefined ? element['acting']['name'] : "Militar"
-		// params += acting;
-		let category = element['category'] !== undefined ? element['category']['name'] : "Destrutiva"
+		let type = element['type']['name']
+		let acting = element['acting']['name']
+		let category = element['category']['name']
 		let card = new MinionCard(attack, health, mana, info, imageString, name, rarity, effect, params, type, acting,posture,category)
 		listCards.push(card)
 	})
