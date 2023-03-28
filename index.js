@@ -120,9 +120,6 @@ function placeCardFunc() {
           ele.children[0].classList.add("magicCardPlaced");
           ele.children[0].id = "magicCardPlaced";
           ele.children[0].lastChild.id = "magicCard";
-          // setTimeout(()=>{
-          //   ele.children[0].remove();
-          // }, 2000);
         }
         checkForRequiredMana();
         updateManaGUI();
@@ -493,19 +490,19 @@ function getGameData() {
   const opponent_id = new URL(location.href).searchParams.get("id_oponente");
   
   
-  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id)['me'];
-  // if (player_data == undefined || player_data == '') {
-  //   loading_error();
-  // }
-  const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id))['hero'];
-  // if (hero_data == undefined || hero_data == '') {
-  //   loading_error();
-  // }
+  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/'+player_id);
+  if (player_data == undefined || player_data == '') {
+    loading_error();
+  }
+  const hero_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/'+hero_id));
+  if (hero_data == undefined || hero_data == '') {
+    loading_error();
+  }
   
-  const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id))['hero'];
-  // if (opponent_data == undefined || opponent_data == '') {
-  //   loading_error();
-  // }
+  const opponent_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/heroes/' +opponent_id));
+  if (opponent_data == undefined || opponent_data == '') {
+    loading_error();
+  }
 
   const deck_id = new URL(location.href).searchParams.get("id_baralho");
   const opponent_deck_id = JSON.parse(getRequest("https://api-enigma-tempo.onrender.com/api/decks/"+opponent_user_default+"/"+opponent_id))['deck']['id'];
@@ -514,17 +511,17 @@ function getGameData() {
     {
       id: player_id, 
       hero_id: hero_id, 
-      hero: hero_data['name'], 
-      hero_power: hero_data['power'] ?? 'buff', 
-      hero_power_cost: hero_data['mana'] ?? '2', 
-      hero_power_params: hero_data['params'] ?? '1,0,Agente', 
-      hero_txt: hero_data['txt'] ?? 'Olá;Sua vez',
+      hero: hero_data['hero']['name'], 
+      hero_power: hero_data['hero']['power'] ?? 'buff', 
+      hero_power_cost: hero_data['hero']['mana'] ?? '2', 
+      hero_power_params: hero_data['hero']['params'] ?? '1,0,Agente', 
+      hero_txt: hero_data['hero']['txt'] ?? 'Olá;Sua vez',
       deck: deck_id
      },
     {
       hero_id: opponent_id, 
-      hero: opponent_data['name'], 
-      hero_txt: opponent_data['txt'] ?? 'Olá;Sua vez',
+      hero: opponent_data['hero']['name'], 
+      hero_txt: opponent_data['hero']['txt'] ?? 'Olá;Sua vez',
       deck: opponent_deck_id
     }
   ]

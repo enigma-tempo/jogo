@@ -205,8 +205,9 @@ head {
 }
 
 .card-face {
-	background-size: contain;
-	background-repeat: no-repeat;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 	bottom: 0;
 	content: '';
 	left: 0;
@@ -580,6 +581,11 @@ head {
     text-align: center;
 }
 
+@media only screen and (max-width: 1000px) {
+	.deck{
+		left: 90.5%;
+	}
+}
 @media only screen and (min-width: 1000px) {
 	.cardinplay {
 		width: 4.8rem;
@@ -615,6 +621,7 @@ head {
 	.deck {
 		height: 115px;
 		width: 95px;
+		left: 90.5%;
 	}
 
 	#concedebutton {
@@ -821,6 +828,7 @@ head {
 	.deck {
 		height: 150px;
 		width: 100px;
+		left: 88.5%;
 	}
 
 	#concedebutton {
@@ -1297,6 +1305,8 @@ svg {
 	/* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 	left: 81.5%;
+	min-width: 6rem;
+    min-height: 7rem;
 }
 
 .player-deck {
