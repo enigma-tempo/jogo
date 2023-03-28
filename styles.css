@@ -39,7 +39,7 @@ head {
 	left: 0;
 	right: 0;
 	background-image: url(src/images/background.png) !important;
-	background-size: contain;
+	background-size: cover;
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -123,7 +123,7 @@ head {
 	padding: 0 50px;
 	justify-content: center;
 	position: relative;
-	left: 12%;
+	left: 16%;
 	right: 0;
 	z-index: 5;
 }
@@ -534,7 +534,7 @@ head {
 	justify-content: space-between;
 	width: 80%;
 	height: 17%;
-	max-width: 50%;
+	max-width: 55%;
 	margin-left: auto;
 	margin-right: auto;
 	transform: translateY(55%);
@@ -545,6 +545,7 @@ head {
 }
 
 .board--opponent {
+	transform: translateY(-3.5%);
 	z-index: 1;
 }
 
@@ -561,8 +562,8 @@ head {
 
 .magicCardPlaced{
 	float: right;
-	margin-right: 19%;
-	margin-top: 11%;
+	margin-right: 2%;
+	margin-bottom: 10%;
 }
 .magicComputerCardPlaced{
 	float: right;
@@ -570,15 +571,20 @@ head {
 	/* margin-bottom: 11%; */
 }
 
-.subClass{
-	position: absolute;
-    top: 91%;
+.acting{
+    position: absolute;
+    top: 2%;
+    background-color: white;
     z-index: 10;
-    left: 21%;
-    height: 10%;
+    left: 73%;
+    height: 15%;
+    border-radius: 1rem;
+    border: grey 1px solid;
     font-size: xx-small;
-    width: 58%;
+    width: 24%;
     text-align: center;
+	background-position: center;
+    background-size: contain;
 }
 
 @media only screen and (max-width: 1000px) {
@@ -594,12 +600,12 @@ head {
 
 	.board {
 		padding: 7.75rem;
-		left: 16.75%;
+		left: 11.75%;
 		top: 6%;
 	}
 
 	#endturn {
-		left: 79%;
+		left: 87%;
 		top: 48.75%;
 	}
 
@@ -1250,7 +1256,7 @@ svg {
 }
 
 .cardInfoValue {
-	width: 100px;
+	width: 96%;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1258,18 +1264,20 @@ svg {
 	margin: auto;
 	text-align: center;
 	transition: border 0.3s ease, box-shadow 0.3s ease;
+	border-radius: 0 0 0.8rem 0.8rem;
 	background-color: rgb(139, 69, 19);
 	background-size: cover;
 	font-size: 8px;
 	font-weight: bold;
 	letter-spacing: -0.025em;
 	color: rgb(51, 26, 0);
-	z-index: 4;
+	z-index: -1;
 	user-select: none;
+	padding: 2%;
 }
 
 .cardNameValue {
-	width: 95px;
+	width: 95%;
 	position: absolute;
 	top: 60%;
 	left: 2.5px;
@@ -1279,11 +1287,12 @@ svg {
 	transition: border 0.3s ease, box-shadow 0.3s ease;
 	/* background-color: rgb(255, 255, 198); */
 	background-size: cover;
-	font-size: 8px;
+	font-size: 0.5rem;
 	font-weight: bold;
 	letter-spacing: -0.025em;
 	color: rgb(51, 26, 0);
 	user-select: none;
+	z-index: -2;
 }
 
 .deck {
@@ -1304,7 +1313,7 @@ svg {
 	user-select: none;
 	/* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-	left: 81.5%;
+	left: 90%;
 	min-width: 6rem;
     min-height: 7rem;
 }
@@ -1426,18 +1435,18 @@ svg {
 }
 
 .collisionbox {
-	width: 90%;
+	width: 78%;
 	height: 28%;
 	position: absolute;
-	left: 5%;
-	top: 52%;
+	left: 8%;
+	top: 62%;
 }
 .collisionbox2 {
-	width: 90%;
+	width: 78%;
 	height: 37%;
 	position: absolute;
-	left: 5%;
-	top: 12%;
+	left: 8%;
+	top: 0%;
 	z-index: -1;
 }
 
@@ -1555,9 +1564,9 @@ svg {
 
 /* In Game Menu (Press Esc) */
 #game {
-	width: 90%;
+	width: 100%;
 	height: 100%;
-	padding-left: 9%;
+	/* padding-left: 9%; */
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -2263,7 +2272,7 @@ svg {
 	left: 0;
 	right: 0;
 	background-image: url(src/images/mainmenubackground.jpg) !important;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -2275,7 +2284,7 @@ svg {
     height: 7.75%;
     position: absolute;
     top: 34.5%;
-    left: 7.5%;
+    /* left: 7.5%; */
 	/* border-top-left-radius: 30px 175%;
 	border-bottom-left-radius: 30px 175%; */
 	border-top-right-radius: 30px 175%;
@@ -2288,7 +2297,7 @@ svg {
     height: 6.5%;
     position: absolute;
     top: 35.1%;
-    left: 12.5%;
+    left: 4.5%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
 	border-top-left-radius: 30px 200%;
@@ -2310,7 +2319,7 @@ svg {
     height: 7.5%;
     position: absolute;
     top: 48.5%;
-    left: 7.5%;
+    /* left: 7.5%; */
 	/* border-top-left-radius: 30px 175%;
 	border-bottom-left-radius: 30px 175%; */
 	border-top-right-radius: 30px 175%;
@@ -2323,7 +2332,7 @@ svg {
     height: 6.5%;
     position: absolute;
     top: 49%;
-    left: 12.5%;
+    left: 4.5%;
 	background-color: #e6c4a9;
 	color: #4f3a1b;
 	border-top-left-radius: 30px 200%;

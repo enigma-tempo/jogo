@@ -71,7 +71,7 @@ class MinionCard {
 		type.classList.add('type');
 		type.style.visibility = "hidden";
 		acting.classList.add('acting');
-		// acting.style.visibility = "hidden";
+		acting.style.visibility = "hidden";
 		posture.classList.add('posture');
 		posture.style.visibility = "hidden";
 		category.classList.add('category');
@@ -167,7 +167,7 @@ class MinionCard {
 		effect.innerText = this.effect;
 		params.innerText = this.params;
 		type.innerText = this.type;
-		acting.innerText = this.acting;
+		// acting.innerText = this.acting;
 		posture.innerText = this.posture;
 		category.innerText = this.category;
 		playerCardDiv.style.backgroundImage = "url('" + this.imageString + "')";
@@ -232,18 +232,20 @@ class MinionCard {
 		const paramsInHand = document.createElement('div');
 		const typeInHand = document.createElement('div');
 		const subClassInHand = document.createElement('div');
+		const actingInHand = document.createElement('div');
 		playerCardInHandDiv.classList.add("card")
 		playerCardFaceInHandDiv.classList.add("card-face")
 		playerCardBorderInHandDiv.classList.add("card-border")
 		playerManaValueInHand.classList.add("cardManaValue")
 		playerInfoValueInHand.classList.add("cardInfoValue")
 		playerNameValueInHand.classList.add("cardNameValue")
-		playerNameValueInHand.style.backgroundColor = rarity_colors[this.rarity]
+		playerNameValueInHand.style.backgroundColor = rarity_colors[this.rarity]??"#b5b5b5"
 		tutorialHintValueInHand.classList.add("cardtutorialhint")
 		effectsInHand.classList.add("effects");
 		paramsInHand.classList.add("params");
 		typeInHand.classList.add("type");
 		subClassInHand.classList.add("subClass");
+		actingInHand.classList.add("acting");
 		playerCardInHandDiv.appendChild(playerCardFaceInHandDiv)
 		const playerAttackValueInHand = document.createElement('div');
 		const playerHealthValueInHand = document.createElement('div');
@@ -264,6 +266,7 @@ class MinionCard {
 		playerCardFaceInHandDiv.appendChild(paramsInHand)
 		playerCardFaceInHandDiv.appendChild(typeInHand)
 		playerCardFaceInHandDiv.appendChild(subClassInHand)
+		playerCardFaceInHandDiv.appendChild(actingInHand)
 		effectsInHand.style.visibility = "hidden";
 		paramsInHand.style.visibility = "hidden";
 		typeInHand.style.visibility = "hidden";
@@ -278,6 +281,7 @@ class MinionCard {
 		paramsInHand.innerText = this.params
 		typeInHand.innerText = this.type
 		subClassInHand.innerText = this.category
+		actingInHand.style.backgroundImage = "url('src/images/'"+this.acting+".png')";
 		playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
 		return playerCardInHandDiv
 	}

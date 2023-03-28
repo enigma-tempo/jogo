@@ -227,7 +227,7 @@ function opponentTurn() {
       let opponentCardsInPlay = computerCardSlot.childElementCount;
       if(opponentCardsInPlay < maxOpponentCardsInPlay) {
         if(opponentCardsInPlay >= 0) {
-          computerCardSlot.style.transform = "translateY(17.5%)"; 
+          computerCardSlot.style.transform = "translateY(-3.5%)"; 
         }
         await computerCardPlace( maxOpponentCardsInPlay - opponentCardsInPlay );
         // to fix position of board GUI onclick
@@ -259,8 +259,8 @@ function computerCardPlace(numero_cartas) {
       cardPlace('computer',computerDeck.cards[card]);
       computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
       numero_cartas--;
-      let cost = parseInt(computerDeck.cards[card]['mana']) ?? 0;
-      mana = mana - cost;
+      let cost = parseInt(computerDeck.cards[card]['mana']);
+      mana -= cost;
       hand++;
     }
   }   
@@ -268,7 +268,7 @@ function computerCardPlace(numero_cartas) {
   function complement(){
     if(mana > 0){
       for (let i = 0; i < computerDeck.cards.length; i++) {
-        if (computerDeck.cards[i]['mana'] <= mana) {
+        if (parseInt(computerDeck.cards[i]['mana']) <= mana) {
           setTimeout(function() {
             if(computerDeck.cards[i]['type'] == "Agente"){
               let opponentCard = computerDeck.cards[i].getComputerHTML();
@@ -284,8 +284,8 @@ function computerCardPlace(numero_cartas) {
             cardPlace('computer',computerDeck.cards[i]);
             computerDeck.cards.splice(computerDeck.cards.indexOf(card),1)
             numero_cartas--;
-            let cost = parseInt(computerDeck.cards[i]['mana']) ?? 0;
-            mana = mana - cost;
+            let cost = parseInt(computerDeck.cards[i]['mana']);
+            mana -= cost;
             hand++;
           }, 800);
           break;
@@ -301,7 +301,7 @@ function computerCardPlace(numero_cartas) {
         setTimeout(() => {
           iterate_()
         }, 400);
-      }else{
+      }else if((computerDeck.cards.length > 0) && (computerCardSlot.childElementCount < 8) && (mana > 0)){
         clearInterval(draw);
         complement();
         resolve();

@@ -353,9 +353,11 @@ function playCardSound(name){
 function cardPlace(who, card) {
 
     // playCardSound(getNameOfElement);
-    let effects = card['effect'];
+    // let effects = card['effect'];
+    let element = card['effect'];
+    console.log(element)
     let params = card['params'];
-    effects.split(' ').forEach(element => {
+    // effects.split(' ').forEach(element => {
         if(element in effect_dict && !effect_in_fight.includes(element) ){
             let run = true;
             if (card.info.split(":")[0] == "Bradante") {
@@ -369,10 +371,11 @@ function cardPlace(who, card) {
                 },400);
             }
         } 
-    });
+    // });
     setTimeout(function(){
         if (card['type'] !== "Agente") {
-            if (!effects.split(' ').includes('damageEnemy')) {
+            // if (!effects.split(' ').includes('damageEnemy')) {
+            if (element !== 'damageEnemy') {
                 let ele = document.getElementById('magicCardPlaced');
                 if (ele !== undefined && ele !== null) {
                     ele.remove(); 
