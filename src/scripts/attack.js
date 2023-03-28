@@ -197,9 +197,9 @@ function setAttacked(e) {
       if (playerCardSlot2.children[i].classList.contains('canAttack')) {
         break;
       }
-      if (i == oldNumOfChild - 1 && gameIsWon == false) {
-        jobsdoneSnd.play();
-      }
+      // if (i == oldNumOfChild - 1 && gameIsWon == false) {
+      //   jobsdoneSnd.play();
+      // }
     }
   }
   if (currentAttackersElement.classList.contains('player-cardinplay')) {
