@@ -43,7 +43,7 @@ const collisionbox = document.getElementById('collisionbox');
 const draggableElements = document.getElementsByClassName('card');
 const manaElement = document.getElementById('mana');
 let originalPlayerDeck, originalComputerDeck, playerDeck, computerDeck, inRound;
-
+const win_coin = 10;
 let data_game = getGameData();
 
 /* calls and defines the startGame function to perform 
@@ -482,6 +482,7 @@ function getGameData() {
   }
 
   const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/' + player_id);
+  console.log(player_data['me']);
   if (player_data == undefined || player_data == '') {
     loading_error();
   }
@@ -500,6 +501,7 @@ function getGameData() {
 
   mockData = [
     {
+      player: player_data['me'],
       id: player_id,
       hero_id: hero_id,
       hero: hero_data['hero']['name'],
@@ -546,6 +548,15 @@ function postRequest(url, json) {
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify(json));
   return request.responseText;
+}
+function patchRequest(url, json) {
+  return new Promise((resolve) => {
+    let request = new XMLHttpRequest();
+    request.open('PATCH', url, false);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify(json));
+    resolve(request);
+  });
 }
 function loading_error() {
   let ele = document.getElementById('preventCORS');

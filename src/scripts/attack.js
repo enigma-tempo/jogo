@@ -269,6 +269,9 @@ function clearAttackEvents() {
 }
 
 function saveResult(result) {
+  win_coin = result ? win_coin : win_coin * -1;
+  coin_update = { match_points: data_game['player'].match_points + win_coin };
+  response = patchRequest('https://api-enigma-tempo.onrender.com/api/player/' + data_game['id'], coin_update);
   gameEndAt = Date.now();
   game_result = { player: data_game[0]['id'], player_hero: data_game[0]['hero_id'], enemy_hero: data_game[1]['hero_id'], deck: data_game[0]['deck'], starts: gameStartsAt, ends: gameEndAt, result: result };
   response = postRequest('https://api-enigma-tempo.onrender.com/api/matches', game_result);
