@@ -590,6 +590,13 @@ head {
 	box-shadow: -5px 5px 5px rgb(0 0 0 / 15%), inset 0 0 0 1px rgb(208 208 208 / 75%);
 }
 
+.hero-acting{
+	top: 65%;
+	left: 40%;
+	height: 20%;
+	width: 21%;
+}
+
 @media only screen and (max-width: 1000px) {
 	.deck{
 		left: 90.5%;
@@ -830,13 +837,13 @@ head {
 	}
 
 	.playerHeroHealth {
-		left: 55%;
+		left: 84%;
 		top: 85%;
 	}
 
 	.opposingHeroHealth {
-		left: 55%;
-		top: 80%;
+		left: 84%;
+		top: 85%;
 	}
 
 	.deck {
@@ -1062,8 +1069,8 @@ svg {
 
 .playerhero {
 	position: absolute;
-	width: 11%;
-	height: 17%;
+	/* width: 11%;
+	height: 17%; */
 	left: 13.5%;
 	top: 60%;
 	z-index: 20;
@@ -1077,8 +1084,8 @@ svg {
 	position: absolute;
 	width: 6%;
 	height: 12%;
-	top: 76%;
-	left: 24%;
+	top: 82%;
+	left: 16%;
 	z-index: 2;
 	/* background-image: url(src/images/heropower.png); */
 	background-repeat: no-repeat;
@@ -1098,28 +1105,41 @@ svg {
 
 .opponenthero {
 	position: absolute;
-	width: 11%;
-	height: 17%;
+	/* width: 11%;
+	height: 17%; */
 	left: 13.5%;
 	top: 24%;
 	z-index: 11;
 	/* background-image: url(src/images/zumbi.png); */
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat; */
 	/* Do not repeat the image */
-	background-size: contain;
+	/* background-size: contain; */
 }
 
 #opposinghero {
-	border: none !important;
+	border: 2px double black;
+	padding: 0.2%;
 	width: 100% !important;
-	height: 100% !important;
+	/* height: 100% !important; */
 	box-shadow: none !important;
+	background-position: center;
+	background-size: cover;
+	border-radius: 0;
 }
 
 #playerhero {
-	border: none !important;
+	border: 2px double black;
+	padding: 0.2%;
 	width: 100% !important;
 	box-shadow: none !important;
+	background-position: center;
+	background-size: cover;
+	border-radius: 0;
+}
+
+.hero{
+	width: 10%;
+	height: 20%;
 }
 
 #playerheropower {

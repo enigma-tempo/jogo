@@ -117,7 +117,7 @@
   <body oncontextmenu="return false" id="body">
     <div id="mainmenu" class="mainmenu">
       <div id="myGoldBackground"></div>
-      <div id="myGold">0 🪙</div>
+      <div id="myGold"><span id="match_coins">0</span>🪙</div>
       <div id="goldborder6"></div>
       <button id="playbutton">Jogar</button>
       <div id="goldborder7"></div>
@@ -166,7 +166,7 @@
       <div class="player-deck deck" id="playerDeck"></div>
       <div class="player-card-slot card-slot"></div>
       <div class="board board--opponent"></div>
-      <div class="opponenthero">
+      <div class="opponenthero hero">
         <div class="cardinplay" id="opposinghero">
           <div>
             <div></div>
@@ -175,12 +175,14 @@
             <div class="opposingHeroHealth">30</div>
           </div>
         </div>
+        <div class="acting hero-acting" id="opposing-acting"></div>
       </div>
-      <div class="playerhero">
+      <div class="playerhero hero">
         <div class="cardinplay" id="playerhero">
           <div></div>
           <div class="playerHeroHealth">30</div>
         </div>
+        <div class="acting hero-acting" id="player-acting"></div>
       </div>
       <button id="endturn">Encerrar Turno</button>
       <div id="block"></div>

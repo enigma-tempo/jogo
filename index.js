@@ -481,7 +481,7 @@ function getGameData() {
     loading_error();
   }
 
-  const player_data = getRequest('https://api-enigma-tempo.onrender.com/api/user/' + player_id);
+  const player_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/user/' + player_id));
   console.log(player_data['me']);
   if (player_data == undefined || player_data == '') {
     loading_error();
@@ -508,15 +508,17 @@ function getGameData() {
       hero_power: hero_data['hero']['power'] ?? 'buff',
       hero_power_cost: hero_data['hero']['mana'] ?? '2',
       hero_power_params: hero_data['hero']['params'] ?? '1,0,Agente',
-      hero_txt: hero_data['hero']['txt'] ?? 'Olá;Sua vez',
+      hero_txt: hero_data['hero']['hero_lines'] ?? 'Olá;Sua vez',
       hero_img: hero_data['hero']['sprite'] ?? 'src/images/Dom-Pedro-II.png',
+      hero_acting: hero_data['hero']['acting']['name'] ?? 'Transgressor',
       deck: deck_id,
     },
     {
       hero_id: opponent_id,
       hero: opponent_data['hero']['name'],
-      hero_txt: opponent_data['hero']['txt'] ?? 'Olá;Sua vez',
-      hero_img: hero_data['hero']['sprite'] ?? 'src/images/Dom-Pedro-II.png',
+      hero_txt: opponent_data['hero']['hero_lines'] ?? 'Olá;Sua vez',
+      hero_img: opponent_data['hero']['sprite'] ?? 'src/images/Dom-Pedro-II.png',
+      hero_acting: opponent_data['hero']['acting']['name'] ?? 'Transgressor',
       deck: opponent_deck_id,
     },
   ];
@@ -524,15 +526,18 @@ function getGameData() {
 }
 
 function setGameConfig(data_game) {
+  document.getElementById('match_coins').innerHTML = data_game[0]['player']['match_points'] ?? 0;
   gameStartsAt = Date.now();
   //player
-  document.getElementsByClassName('playerhero')[0].style.backgroundImage = "url('" + data_game[0]['hero_img'] + "')";
+  document.getElementById('playerhero').style.backgroundImage = "url('" + data_game[0]['hero_img'] + "')";
+  document.getElementById('player-acting').style.backgroundImage = "url('src/images/" + data_game[0]['hero_acting'].toLowerCase() + ".png')";
   document.getElementById('playerlabel').innerText = data_game[0]['hero'];
   document.getElementById('playerbubble').innerHTML = data_game[0]['hero_txt'].split(';')[0];
   document.getElementsByClassName('playerheropower')[0].style.backgroundImage = "url('src/images/" + data_game[0]['hero_power'] + "_power.png')";
 
   //opponent
-  document.getElementsByClassName('opponenthero')[0].style.backgroundImage = "url('" + data_game[1]['hero_img'] + "')";
+  document.getElementById('opposinghero').style.backgroundImage = "url('" + data_game[1]['hero_img'] + "')";
+  document.getElementById('opposing-acting').style.backgroundImage = "url('src/images/" + data_game[1]['hero_acting'].toLowerCase() + ".png')";
   document.getElementById('opponentlabel').innerText = data_game[1]['hero'];
   document.getElementById('computerbubble').innerHTML = data_game[1]['hero_txt'].split(';')[0];
 }
