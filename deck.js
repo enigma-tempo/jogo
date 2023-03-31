@@ -275,7 +275,7 @@ class MinionCard {
     // let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
     // tutorialHintValueInHand.innerText = tutorialHintText
     playerManaValueInHand.innerText = this.mana;
-    playerInfoValueInHand.innerText = this.info;
+    playerInfoValueInHand.innerHTML = this.info;
     playerNameValueInHand.innerText = this.name;
     effectsInHand.innerText = this.effect;
     paramsInHand.innerText = this.params;

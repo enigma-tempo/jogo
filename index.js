@@ -42,6 +42,7 @@ const cardinplay = document.getElementsByClassName('cardinplay');
 const collisionbox = document.getElementById('collisionbox');
 const draggableElements = document.getElementsByClassName('card');
 const manaElement = document.getElementById('mana');
+const player_max_card_number = 7;
 let originalPlayerDeck, originalComputerDeck, playerDeck, computerDeck, inRound;
 const win_coin = 10;
 let data_game = getGameData();
@@ -112,8 +113,11 @@ function placeCardFunc() {
           var manaCost = parseInt(originalPlayerDeck.cards[i]['mana']);
           mana -= manaCost;
           manaElement.innerHTML = mana + '/' + manaCapacity;
-          if (originalPlayerDeck.cards[i]['type'] == 'Agente') playerCardSlot2.appendChild(originalPlayerDeck.cards[i].getPlayerHTML());
-          else {
+          if (originalPlayerDeck.cards[i]['type'] == 'Agente'){
+            let item = originalPlayerDeck.cards[i].getPlayerHTML();            
+            playerCardSlot2.appendChild(item);
+
+          } else {
             let ele = document.getElementById('collisionbox');
             let item = originalPlayerDeck.cards[i].getPlayerCardsInHandHTML();
             ele.appendChild(item);
@@ -234,6 +238,26 @@ function opponentTurn() {
   }
   e();
 }
+
+function getCardTip(card){
+  let d = document.createElement('div');
+  d.classList.add('card-tip', 'd-none');
+  let c = card.getPlayerCardsInHandHTML();
+  c.classList.add('card-tip-v');
+  c.classList.remove('card');
+  c.children[0].children[0].classList.add('card-tip-attr');
+  c.children[0].children[1].classList.add('card-tip-attr');
+  c.children[0].children[2].classList.add('card-tip-mana');
+  c.children[0].children[3].classList.add('card-tip-info');
+  c.children[0].children[4].style.border = "solid 4px rgb(56, 56, 56)";
+  c.children[0].children[4].classList.add('card-tip-border');
+  c.children[0].children[5].classList.add('card-tip-name');
+  c.children[0].children[10].classList.add('card-tip-category');
+  // c.removeEventListener('');
+  d.appendChild(c);
+  return d;
+}
+
 /* places a card onto the computers board whose mana is equal 
 to the player's mana capacity */
 function computerCardPlace(numero_cartas) {
@@ -244,6 +268,16 @@ function computerCardPlace(numero_cartas) {
     if (parseInt(computerDeck.cards[card]['mana']) <= mana) {
       if (computerDeck.cards[card]['type'] == 'Agente') {
         let opponentCard = computerDeck.cards[card].getComputerHTML();
+        let cardTip = getCardTip(computerDeck.cards[card]);
+        opponentCard.appendChild(cardTip);
+        opponentCard.addEventListener("mouseover", (event) => {
+          if(event.srcElement.id != '')
+            event.srcElement.lastChild.classList.remove('d-none');
+        });
+        opponentCard.addEventListener("mouseout", (event) => {
+          if(event.srcElement.id != '')
+          event.srcElement.lastChild.classList.add('d-none');
+        });
         computerCardSlot.appendChild(opponentCard);
       } else {
         let item = computerDeck.cards[card].getPlayerCardsInHandHTML();
@@ -270,6 +304,16 @@ function computerCardPlace(numero_cartas) {
           setTimeout(function () {
             if (computerDeck.cards[i]['type'] == 'Agente') {
               let opponentCard = computerDeck.cards[i].getComputerHTML();
+              let cardTip = getCardTip(computerDeck.cards[i]);
+              opponentCard.appendChild(cardTip);
+              opponentCard.addEventListener("mouseover", (event) => {
+                if(event.srcElement.id != '')
+                  event.srcElement.lastChild.classList.remove('d-none');
+              });
+              opponentCard.addEventListener("mouseout", (event) => {
+                if(event.srcElement.id != '')
+                event.srcElement.lastChild.classList.add('d-none');
+              });
               computerCardSlot.appendChild(opponentCard);
             } else {
               let ele = document.getElementById('collisionbox2');
@@ -353,8 +397,9 @@ function playerTurn() {
     }
   }, 30000);
   // the player draws a card if their hand is not full (max cards in hand 10 cards)
-  if (hand.childElementCount != 10) {
-    hand.appendChild(playerDeck.cards[0].getPlayerCardsInHandHTML());
+  if (hand.childElementCount <= player_max_card_number) {
+    let card = playerDeck.cards.shift();
+    hand.appendChild(card.getPlayerCardsInHandHTML());
   }
   checkForRequiredMana();
   clearAttackEvents();
@@ -366,7 +411,6 @@ function playerTurn() {
     e.removeEventListener('mouseup', placeCardFunc);
   });
   placeCard();
-  playerDeck.cards.shift();
   updateDeckCount();
 }
 /* checks if the player has enough mana to play each card in their hand 
@@ -482,7 +526,6 @@ function getGameData() {
   }
 
   const player_data = JSON.parse(getRequest('https://api-enigma-tempo.onrender.com/api/user/' + player_id));
-  console.log(player_data['me']);
   if (player_data == undefined || player_data == '') {
     loading_error();
   }

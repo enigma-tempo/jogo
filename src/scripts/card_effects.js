@@ -219,7 +219,7 @@ function taunt(who, mob) {
 function summon(who, params) {
   [card_name, quantity] = params.toString().split(',');
   for (var i = 0; i < who_dict[who]['original_deck'].cards.length; i++) {
-    if (who_dict[who]['original_deck'].cards[i]['name'] == card_name && who_dict[who]['slot'].childElementCount != 7) {
+    if (who_dict[who]['original_deck'].cards[i]['name'] == card_name && who_dict[who]['slot'].childElementCount != player_max_card_number) {
       for (let j = 0; j < quantity; j++) {
         let mob = who_dict[who]['original_deck'].cards[i];
         let mob_html = null;
@@ -244,9 +244,9 @@ function draw(who, params) {
   if (who == 'computer') return null;
   quantity = parseInt(params);
   for (let index = 0; index < quantity; index++) {
-    if (hand.childElementCount < 10) {
-      hand.appendChild(who_dict['player']['deck'].cards[index].getPlayerCardsInHandHTML());
-      who_dict['player']['deck'].cards.shift();
+    if (hand.childElementCount < player_max_card_number) {
+      let card =  who_dict['player']['deck'].cards.shift();
+      hand.appendChild(card.getPlayerCardsInHandHTML());
     }
   }
   checkForRequiredMana();
