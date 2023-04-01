@@ -142,7 +142,7 @@ function placeCardFunc() {
 whenever mana is spent or the player's turn has just started  WTF*/
 function updateManaGUI() {
   var manaCrystals = document.getElementsByClassName('manabox');
-  for (let i = 0; i < manaCrystals.length; i++) {
+  for (let i = 0; i < mana; i++) {
     if (i == manaCost) {
       break;
     }

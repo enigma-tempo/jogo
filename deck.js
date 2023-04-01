@@ -174,7 +174,6 @@ class MinionCard {
     id1 += 1;
 
     if (this.rarity == 'Lendária') {
-      //Só server pra aplicar a animação. Não nome, mas raridade deveria ser usado aqui
       playerCardDiv.classList.add('ragnarosTheFirelord');
       setTimeout(function () {
         document.getElementById('game').classList.add('legendaryFlipAnim');
@@ -182,18 +181,6 @@ class MinionCard {
           document.getElementById('game').classList.remove('legendaryFlipAnim');
         }, 1000);
       }, 1900);
-    } else if (this.name == 'The Lich King') {
-      playerCardDiv.style.visibility = 'hidden';
-      setTimeout(function () {
-        playerCardDiv.classList.add('theLichKing');
-        playerCardDiv.style.visibility = 'visible';
-        setTimeout(function () {
-          document.getElementById('game').classList.add('theLichKingShake');
-          setTimeout(function () {
-            document.getElementById('game').classList.remove('theLichKingShake');
-          }, 1000);
-        }, 250);
-      }, 2000);
     } else if (this.rarity == 'Épica') {
       setTimeout(function () {
         playerCardDiv.classList.add('stormwindChampion');
@@ -270,10 +257,6 @@ class MinionCard {
     effectsInHand.style.visibility = 'hidden';
     paramsInHand.style.visibility = 'hidden';
     typeInHand.style.visibility = 'hidden';
-    // effectsInHand.appendChild(paramsInHand)
-    // if (isTutorial == true) {}
-    // let tutorialHintText = 'Mana Cost\nAttack' + '                     ' + 'Health';
-    // tutorialHintValueInHand.innerText = tutorialHintText
     playerManaValueInHand.innerText = this.mana;
     playerInfoValueInHand.innerText = this.info;
     playerNameValueInHand.innerText = this.name;
@@ -281,7 +264,7 @@ class MinionCard {
     paramsInHand.innerText = this.params;
     typeInHand.innerText = this.type;
     subClassInHand.innerText = this.category;
-    actingInHand.style.backgroundImage = "url('src/images/" + this.acting + ".png')";
+    actingInHand.style.backgroundImage = "url('src/images/" + this.acting.toLowerCase() + ".png')";
     playerCardFaceInHandDiv.style.backgroundImage = "url('" + this.imageString + "')";
     return playerCardInHandDiv;
   }
