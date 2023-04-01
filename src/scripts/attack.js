@@ -349,7 +349,7 @@ function gameWon() {
     }, 5000);
   }, 5000);
   setTimeout(() => {
-    location.href = 'https://daniellydsa.github.io/SiteEnigmaTempo/';
+    location.href = "https://enigma-tempo.github.io/site/";
   }, 10000);
 }
 
@@ -357,6 +357,6 @@ function gameLose() {
   saveResult(false);
   alert('Você foi derrotado!');
   setTimeout(() => {
-    location.href = 'https://daniellydsa.github.io/SiteEnigmaTempo/';
+    location.href = "https://enigma-tempo.github.io/site/";
   }, 10000);
 }
