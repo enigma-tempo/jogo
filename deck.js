@@ -258,7 +258,7 @@ class MinionCard {
     paramsInHand.style.visibility = 'hidden';
     typeInHand.style.visibility = 'hidden';
     playerManaValueInHand.innerText = this.mana;
-    playerInfoValueInHand.innerText = this.info;
+    playerInfoValueInHand.innerHTML = this.info;
     playerNameValueInHand.innerText = this.name;
     effectsInHand.innerText = this.effect;
     paramsInHand.innerText = this.params;

@@ -269,6 +269,9 @@ function clearAttackEvents() {
 }
 
 function saveResult(result) {
+  let prize = result ? win_coin : win_coin / 5;
+  coin_update = { match_points: data_game[0]['player']['match_points'] + prize };
+  response = patchRequest('https://api-enigma-tempo.onrender.com/api/user/' + data_game[0]['id'], coin_update);
   gameEndAt = Date.now();
   game_result = { player: data_game[0]['id'], player_hero: data_game[0]['hero_id'], enemy_hero: data_game[1]['hero_id'], deck: data_game[0]['deck'], starts: gameStartsAt, ends: gameEndAt, result: result };
   response = postRequest('https://api-enigma-tempo.onrender.com/api/matches', game_result);
@@ -284,18 +287,18 @@ function gameWon() {
     lichkingOST.pause();
     let victorySnd = new Audio('src/sounds/victory.mp3');
     victorySnd.play();
-    var myGold = Number(localStorage.getItem('myGold'));
-    myGold += 10; // number of gold earned per win
-    localStorage.setItem('myGold', myGold.toString());
+    // var myGold = Number(localStorage.getItem('myGold'));
+    // myGold += 10; // number of gold earned per win
+    // localStorage.setItem('myGold', myGold.toString());
     // 20% or 1/5 chance of getting a pack on win
-    var chanceGetPack = Math.random();
-    if (chanceGetPack < 0.2) {
-      var myPacks = Number(localStorage.getItem('myPacks'));
-      myPacks++;
-      localStorage.setItem('myPacks', myPacks.toString());
-    }
+    // var chanceGetPack = Math.random();
+    // if (chanceGetPack < 0.2) {
+    //   var myPacks = Number(localStorage.getItem('myPacks'));
+    //   myPacks++;
+    //   localStorage.setItem('myPacks', myPacks.toString());
+    // }
     setTimeout(function () {
-      document.querySelector('#computerbubble').innerText = 'I see... only\ndarkness\nbefore me...';
+      document.querySelector('#computerbubble').innerText = data_game[1].hero_txt.split(';')[2];
       document.querySelector('#computerbubble').style.visibility = 'visible';
       document.querySelector('#computerbubble').classList.add('openMenuAnim');
       setTimeout(function () {

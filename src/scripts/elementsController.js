@@ -3,7 +3,7 @@ var menubtnsSnd = new Audio('src/sounds/menubtnpress.mp3');
 var menuhoverSnd = new Audio('src/sounds/menuselect.mp3');
 var startTutorialSnd = new Audio('src/voiceovers/innkeeper_1.mp3');
 var battlebeginSnd = new Audio('src/voiceovers/innkeeper_1.mp3');
-var jainathreatSnd = new Audio('src/voiceovers/innkeeper_1.mp3');
+// var jainathreatSnd = new Audio('src/voiceovers/innkeeper_1.mp3');
 var hasPlayedBattleBeginSnd = new Boolean(false);
 var isInGame = new Boolean(false);
 var tutorialIntroRunning = new Boolean(false);
@@ -529,7 +529,7 @@ starttutorialbtn.onclick = function () {
   document.querySelector('#tutorialmenuContent').classList.add('straightEaseOutAnim');
   setTimeout(function () {
     battlebeginSnd.onended = function () {
-      jainathreatSnd.play();
+      // jainathreatSnd.play();
       document.querySelector('#playerbubble').innerHTML = '...';
       document.querySelector('#playerbubble').style.visibility = 'visible';
       document.querySelector('#playerbubble').classList.add('openMenuAnim');
