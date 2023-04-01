@@ -294,8 +294,8 @@ playbtn.onclick = function () {
     document.getElementById('playerclasslabel').style.visibility = 'visible';
     document.getElementById('opponentlabel').style.visibility = 'visible';
     document.getElementById('vs').style.visibility = 'visible';
-    let onloadSnd = new Audio('src/sounds/ongameload.mp3');
-    onloadSnd.play();
+    // let onloadSnd = new Audio('src/sounds/ongameload.mp3');
+    // onloadSnd.play();
     document.querySelector('.playerhero').classList.add('onLoadPlayerAnim');
     document.querySelector('.opponenthero').classList.add('onLoadComputerAnim');
     setTimeout(function () {
@@ -328,7 +328,7 @@ playbtn.onclick = function () {
           setTimeout(function () {
             document.querySelector('#computerbubble').style.visibility = 'visible';
             document.querySelector('#computerbubble').classList.add('openMenuAnim');
-          }, 250);
+          }, 1500);
           document.querySelector('.opponenthero').style.zIndex = '11';
           document.querySelector('.playerhero').style.zIndex = '9';
           setTimeout(function () {
@@ -340,8 +340,8 @@ playbtn.onclick = function () {
             }, 250);
             document.querySelector('.opponenthero').style.zIndex = '9';
             document.querySelector('#confirm').style.display = 'block';
-          }, 5500);
-        }, 1500);
+          }, 5000);
+        }, 4250);
       }, 2000);
     }, 6000);
   }, 1000);
@@ -504,203 +504,203 @@ tutorialbtn.onclick = function () {
 //     }
 // };
 // start tutorial button on click
-starttutorialbtn.onclick = function () {
-  openmenuSnd.play();
-  document.querySelector('#endturn').style.zIndex = '1';
-  document.querySelector('#triangle').classList.remove('triangleOpenMenuAnim');
-  document.querySelector('#hintbackbackground').classList.remove('openMenuAnim');
-  document.querySelector('#hintbackground').classList.remove('openMenuAnim');
-  document.querySelector('#hint').classList.remove('openMenuAnim');
-  document.querySelector('.opponenthero').style.zIndex = '2';
-  document.querySelector('.playerhero').style.zIndex = '0';
-  document.getElementById('game').classList.remove('shakeScreenAnim');
-  startTutorialSnd.addEventListener('ended', function () {
-    if (hasPlayedBattleBeginSnd == false) {
-      battlebeginSnd.play();
-      hasPlayedBattleBeginSnd = true;
-    }
-  });
+// starttutorialbtn.onclick = function () {
+//   openmenuSnd.play();
+//   document.querySelector('#endturn').style.zIndex = '1';
+//   document.querySelector('#triangle').classList.remove('triangleOpenMenuAnim');
+//   document.querySelector('#hintbackbackground').classList.remove('openMenuAnim');
+//   document.querySelector('#hintbackground').classList.remove('openMenuAnim');
+//   document.querySelector('#hint').classList.remove('openMenuAnim');
+//   document.querySelector('.opponenthero').style.zIndex = '2';
+//   document.querySelector('.playerhero').style.zIndex = '0';
+//   document.getElementById('game').classList.remove('shakeScreenAnim');
+//   startTutorialSnd.addEventListener('ended', function () {
+//     if (hasPlayedBattleBeginSnd == false) {
+//       battlebeginSnd.play();
+//       hasPlayedBattleBeginSnd = true;
+//     }
+//   });
 
-  if (hasPlayedBattleBeginSnd == false && startTutorialSnd.paused) {
-    battlebeginSnd.play();
-  }
-  document.querySelector('.playerhero').style.zIndex = '8';
-  document.querySelector('#endturn').style.zIndex = '21';
-  document.querySelector('#tutorialmenuContent').classList.add('straightEaseOutAnim');
-  setTimeout(function () {
-    battlebeginSnd.onended = function () {
-      // jainathreatSnd.play();
-      document.querySelector('#playerbubble').innerHTML = '...';
-      document.querySelector('#playerbubble').style.visibility = 'visible';
-      document.querySelector('#playerbubble').classList.add('openMenuAnim');
-      setTimeout(function () {
-        document.querySelector('#playerbubble').classList.add('easeOutAnim');
-        document.querySelector('#playerbubble').classList.remove('openMenuAnim');
-        setTimeout(function () {
-          document.querySelector('#playerbubble').style.visibility = 'hidden';
-          document.querySelector('#playerbubble').classList.remove('easeOutAnim');
-          setTimeout(function () {
-            // start tutorial
-            document.querySelector('#block').style.visibility = 'hidden';
-            document.getElementById('gifhint').style.display = 'block';
-            document.getElementById('texthint').style.display = 'block';
-            endturnbtn.disabled = false;
-            setTimeout(function () {
-              document.querySelector('#triangle').style.visibility = 'visible';
-              document.querySelector('#triangle').style.opacity = '1';
-              document.querySelector('#triangle').style.transition = 'none';
-              document.querySelector('#triangle').style.top = '82.75%';
-              document.querySelector('#triangle').style.left = '56%';
-              document.querySelector('#hintbackbackground').style.visibility = 'visible';
-              document.querySelector('#hintbackbackground').style.opacity = '1';
-              document.querySelector('#hintbackbackground').style.transition = 'none';
-              document.querySelector('#hintbackbackground').style.top = '78.8%';
-              document.querySelector('#hintbackbackground').style.left = '58.5%';
-              document.querySelector('#hintbackground').style.visibility = 'visible';
-              document.querySelector('#hintbackground').style.opacity = '1';
-              document.querySelector('#hintbackground').style.transition = 'none';
-              document.querySelector('#hintbackground').style.top = '79%';
-              document.querySelector('#hintbackground').style.left = '58.7%';
-              document.querySelector('#hint').style.opacity = '1';
-              document.querySelector('#hint').style.transition = 'none';
-              document.querySelector('#hint').style.visibility = 'visible';
-              document.querySelector('#hint').style.opacity = '1';
-              document.querySelector('#hint').style.transition = 'none';
-              document.querySelector('#hint').style.top = '80%';
-              document.querySelector('#hint').style.left = '59.25%';
-              document.querySelector('#hintlabel').style.left = '10%';
-              document.querySelector('#hintlabel').style.top = '17%';
-              document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
-              document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
-              document.querySelector('#hintbackground').classList.add('openMenuAnim');
-              document.querySelector('#hint').classList.add('openMenuAnim');
-              document.querySelector('#hintlabel').innerText = 'If you run out of\nHealth, you lose.';
-              setTimeout(function () {
-                document.querySelector('#triangle').style.visibility = 'hidden';
-                document.querySelector('#triangle').style.opacity = '0';
-                document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                document.querySelector('#hintbackbackground').style.visibility = 'hidden';
-                document.querySelector('#hintbackbackground').style.opacity = '0';
-                document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                document.querySelector('#hintbackground').style.visibility = 'hidden';
-                document.querySelector('#hintbackground').style.opacity = '0';
-                document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                document.querySelector('#hint').style.visibility = 'hidden';
-                document.querySelector('#hint').style.opacity = '0';
-                document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                document.querySelector('#triangle').classList.remove('triangleOpenMenuAnim');
-                document.querySelector('#hintbackbackground').classList.remove('openMenuAnim');
-                document.querySelector('#hintbackground').classList.remove('openMenuAnim');
-                document.querySelector('#hint').classList.remove('openMenuAnim');
-                setTimeout(function () {
-                  setTimeout(function () {
-                    document.querySelector('#triangle').style.visibility = 'visible';
-                    document.querySelector('#triangle').style.opacity = '1';
-                    document.querySelector('#triangle').style.transition = 'none';
-                    document.querySelector('#triangle').style.top = '24.75%';
-                    document.querySelector('#triangle').style.left = '56%';
-                    document.querySelector('#hintbackbackground').style.visibility = 'visible';
-                    document.querySelector('#hintbackbackground').style.opacity = '1';
-                    document.querySelector('#hintbackbackground').style.transition = 'none';
-                    document.querySelector('#hintbackbackground').style.top = '21.3%';
-                    document.querySelector('#hintbackbackground').style.left = '58.5%';
-                    document.querySelector('#hintbackground').style.visibility = 'visible';
-                    document.querySelector('#hintbackground').style.opacity = '1';
-                    document.querySelector('#hintbackground').style.transition = 'none';
-                    document.querySelector('#hintbackground').style.top = '21.5%';
-                    document.querySelector('#hintbackground').style.left = '58.7%';
-                    document.querySelector('#hint').style.opacity = '1';
-                    document.querySelector('#hint').style.transition = 'none';
-                    document.querySelector('#hint').style.visibility = 'visible';
-                    document.querySelector('#hint').style.opacity = '1';
-                    document.querySelector('#hint').style.transition = 'none';
-                    document.querySelector('#hint').style.top = '22.5%';
-                    document.querySelector('#hint').style.left = '59.25%';
-                    document.querySelector('#hintlabel').style.left = '10%';
-                    document.querySelector('#hintlabel').style.top = '17%';
-                    document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
-                    document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
-                    document.querySelector('#hintbackground').classList.add('openMenuAnim');
-                    document.querySelector('#hint').classList.add('openMenuAnim');
-                    document.querySelector('#hintlabel').style.width = '100%';
-                    document.querySelector('#hintlabel').style.left = '0';
-                    document.querySelector('#hintlabel').innerText = 'When Hogger has\nno Health, you win.';
-                    setTimeout(function () {
-                      document.querySelector('#triangle').style.visibility = 'hidden';
-                      document.querySelector('#triangle').style.opacity = '0';
-                      document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                      document.querySelector('#hintbackbackground').style.visibility = 'hidden';
-                      document.querySelector('#hintbackbackground').style.opacity = '0';
-                      document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                      document.querySelector('#hintbackground').style.visibility = 'hidden';
-                      document.querySelector('#hintbackground').style.opacity = '0';
-                      document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                      document.querySelector('#hint').style.visibility = 'hidden';
-                      document.querySelector('#hint').style.opacity = '0';
-                      document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                      setTimeout(function () {
-                        document.querySelector('#triangle').style.visibility = 'visible';
-                        document.querySelector('#triangle').style.opacity = '1';
-                        document.querySelector('#triangle').style.transition = 'none';
-                        document.querySelector('#triangle').style.top = '74%';
-                        document.querySelector('#triangle').style.left = '63%';
-                        document.querySelector('#hintbackbackground').style.visibility = 'visible';
-                        document.querySelector('#hintbackbackground').style.opacity = '1';
-                        document.querySelector('#hintbackbackground').style.transition = 'none';
-                        document.querySelector('#hintbackbackground').style.top = '70.3%';
-                        document.querySelector('#hintbackbackground').style.left = '64.9%';
-                        document.querySelector('#hintbackground').style.visibility = 'visible';
-                        document.querySelector('#hintbackground').style.opacity = '1';
-                        document.querySelector('#hintbackground').style.transition = 'none';
-                        document.querySelector('#hintbackground').style.top = '70.5%';
-                        document.querySelector('#hintbackground').style.left = '65.1%';
-                        document.querySelector('#hint').style.opacity = '1';
-                        document.querySelector('#hint').style.transition = 'none';
-                        document.querySelector('#hint').style.visibility = 'visible';
-                        document.querySelector('#hint').style.opacity = '1';
-                        document.querySelector('#hint').style.transition = 'none';
-                        document.querySelector('#hint').style.top = '71.5%';
-                        document.querySelector('#hint').style.left = '65.7%';
-                        document.querySelector('#hintlabel').style.left = '0%';
-                        document.querySelector('#hintlabel').style.top = '17%';
-                        document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
-                        document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
-                        document.querySelector('#hintbackground').classList.add('openMenuAnim');
-                        document.querySelector('#hint').classList.add('openMenuAnim');
-                        document.querySelector('#hintlabel').style.width = '100%';
-                        document.querySelector('#hintlabel').style.left = '0';
-                        document.querySelector('#hintlabel').innerText = 'Spend 2 mana to deal 1 damage to an opponent!';
-                        setTimeout(function () {
-                          document.querySelector('#triangle').style.visibility = 'hidden';
-                          document.querySelector('#triangle').style.opacity = '0';
-                          document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                          document.querySelector('#hintbackbackground').style.visibility = 'hidden';
-                          document.querySelector('#hintbackbackground').style.opacity = '0';
-                          document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                          document.querySelector('#hintbackground').style.visibility = 'hidden';
-                          document.querySelector('#hintbackground').style.opacity = '0';
-                          document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                          document.querySelector('#hint').style.visibility = 'hidden';
-                          document.querySelector('#hint').style.opacity = '0';
-                          document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
-                        }, 4000);
-                      }, 1000);
-                    }, 4000);
-                  }, 1000);
-                }, 1000);
-              }, 4000);
-            }, 2000);
-          }, 1000);
-        }, 250);
-      }, 1000);
-      setTimeout(function () {
-        song.play();
-      }, 1000);
-    };
-    document.querySelector('#tutorialmenuContent').style.display = 'none';
-    document.querySelector('#tutorialmenu').style.display = 'none';
-  }, 125);
-};
+//   if (hasPlayedBattleBeginSnd == false && startTutorialSnd.paused) {
+//     battlebeginSnd.play();
+//   }
+//   document.querySelector('.playerhero').style.zIndex = '8';
+//   document.querySelector('#endturn').style.zIndex = '21';
+//   document.querySelector('#tutorialmenuContent').classList.add('straightEaseOutAnim');
+//   setTimeout(function () {
+//     battlebeginSnd.onended = function () {
+//       // jainathreatSnd.play();
+//       document.querySelector('#playerbubble').innerHTML = '...';
+//       document.querySelector('#playerbubble').style.visibility = 'visible';
+//       document.querySelector('#playerbubble').classList.add('openMenuAnim');
+//       setTimeout(function () {
+//         document.querySelector('#playerbubble').classList.add('easeOutAnim');
+//         document.querySelector('#playerbubble').classList.remove('openMenuAnim');
+//         setTimeout(function () {
+//           document.querySelector('#playerbubble').style.visibility = 'hidden';
+//           document.querySelector('#playerbubble').classList.remove('easeOutAnim');
+//           setTimeout(function () {
+//             // start tutorial
+//             document.querySelector('#block').style.visibility = 'hidden';
+//             document.getElementById('gifhint').style.display = 'block';
+//             document.getElementById('texthint').style.display = 'block';
+//             endturnbtn.disabled = false;
+//             setTimeout(function () {
+//               document.querySelector('#triangle').style.visibility = 'visible';
+//               document.querySelector('#triangle').style.opacity = '1';
+//               document.querySelector('#triangle').style.transition = 'none';
+//               document.querySelector('#triangle').style.top = '82.75%';
+//               document.querySelector('#triangle').style.left = '56%';
+//               document.querySelector('#hintbackbackground').style.visibility = 'visible';
+//               document.querySelector('#hintbackbackground').style.opacity = '1';
+//               document.querySelector('#hintbackbackground').style.transition = 'none';
+//               document.querySelector('#hintbackbackground').style.top = '78.8%';
+//               document.querySelector('#hintbackbackground').style.left = '58.5%';
+//               document.querySelector('#hintbackground').style.visibility = 'visible';
+//               document.querySelector('#hintbackground').style.opacity = '1';
+//               document.querySelector('#hintbackground').style.transition = 'none';
+//               document.querySelector('#hintbackground').style.top = '79%';
+//               document.querySelector('#hintbackground').style.left = '58.7%';
+//               document.querySelector('#hint').style.opacity = '1';
+//               document.querySelector('#hint').style.transition = 'none';
+//               document.querySelector('#hint').style.visibility = 'visible';
+//               document.querySelector('#hint').style.opacity = '1';
+//               document.querySelector('#hint').style.transition = 'none';
+//               document.querySelector('#hint').style.top = '80%';
+//               document.querySelector('#hint').style.left = '59.25%';
+//               document.querySelector('#hintlabel').style.left = '10%';
+//               document.querySelector('#hintlabel').style.top = '17%';
+//               document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
+//               document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
+//               document.querySelector('#hintbackground').classList.add('openMenuAnim');
+//               document.querySelector('#hint').classList.add('openMenuAnim');
+//               document.querySelector('#hintlabel').innerText = 'If you run out of\nHealth, you lose.';
+//               setTimeout(function () {
+//                 document.querySelector('#triangle').style.visibility = 'hidden';
+//                 document.querySelector('#triangle').style.opacity = '0';
+//                 document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                 document.querySelector('#hintbackbackground').style.visibility = 'hidden';
+//                 document.querySelector('#hintbackbackground').style.opacity = '0';
+//                 document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                 document.querySelector('#hintbackground').style.visibility = 'hidden';
+//                 document.querySelector('#hintbackground').style.opacity = '0';
+//                 document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                 document.querySelector('#hint').style.visibility = 'hidden';
+//                 document.querySelector('#hint').style.opacity = '0';
+//                 document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                 document.querySelector('#triangle').classList.remove('triangleOpenMenuAnim');
+//                 document.querySelector('#hintbackbackground').classList.remove('openMenuAnim');
+//                 document.querySelector('#hintbackground').classList.remove('openMenuAnim');
+//                 document.querySelector('#hint').classList.remove('openMenuAnim');
+//                 setTimeout(function () {
+//                   setTimeout(function () {
+//                     document.querySelector('#triangle').style.visibility = 'visible';
+//                     document.querySelector('#triangle').style.opacity = '1';
+//                     document.querySelector('#triangle').style.transition = 'none';
+//                     document.querySelector('#triangle').style.top = '24.75%';
+//                     document.querySelector('#triangle').style.left = '56%';
+//                     document.querySelector('#hintbackbackground').style.visibility = 'visible';
+//                     document.querySelector('#hintbackbackground').style.opacity = '1';
+//                     document.querySelector('#hintbackbackground').style.transition = 'none';
+//                     document.querySelector('#hintbackbackground').style.top = '21.3%';
+//                     document.querySelector('#hintbackbackground').style.left = '58.5%';
+//                     document.querySelector('#hintbackground').style.visibility = 'visible';
+//                     document.querySelector('#hintbackground').style.opacity = '1';
+//                     document.querySelector('#hintbackground').style.transition = 'none';
+//                     document.querySelector('#hintbackground').style.top = '21.5%';
+//                     document.querySelector('#hintbackground').style.left = '58.7%';
+//                     document.querySelector('#hint').style.opacity = '1';
+//                     document.querySelector('#hint').style.transition = 'none';
+//                     document.querySelector('#hint').style.visibility = 'visible';
+//                     document.querySelector('#hint').style.opacity = '1';
+//                     document.querySelector('#hint').style.transition = 'none';
+//                     document.querySelector('#hint').style.top = '22.5%';
+//                     document.querySelector('#hint').style.left = '59.25%';
+//                     document.querySelector('#hintlabel').style.left = '10%';
+//                     document.querySelector('#hintlabel').style.top = '17%';
+//                     document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
+//                     document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
+//                     document.querySelector('#hintbackground').classList.add('openMenuAnim');
+//                     document.querySelector('#hint').classList.add('openMenuAnim');
+//                     document.querySelector('#hintlabel').style.width = '100%';
+//                     document.querySelector('#hintlabel').style.left = '0';
+//                     document.querySelector('#hintlabel').innerText = 'When Hogger has\nno Health, you win.';
+//                     setTimeout(function () {
+//                       document.querySelector('#triangle').style.visibility = 'hidden';
+//                       document.querySelector('#triangle').style.opacity = '0';
+//                       document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                       document.querySelector('#hintbackbackground').style.visibility = 'hidden';
+//                       document.querySelector('#hintbackbackground').style.opacity = '0';
+//                       document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                       document.querySelector('#hintbackground').style.visibility = 'hidden';
+//                       document.querySelector('#hintbackground').style.opacity = '0';
+//                       document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                       document.querySelector('#hint').style.visibility = 'hidden';
+//                       document.querySelector('#hint').style.opacity = '0';
+//                       document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                       setTimeout(function () {
+//                         document.querySelector('#triangle').style.visibility = 'visible';
+//                         document.querySelector('#triangle').style.opacity = '1';
+//                         document.querySelector('#triangle').style.transition = 'none';
+//                         document.querySelector('#triangle').style.top = '74%';
+//                         document.querySelector('#triangle').style.left = '63%';
+//                         document.querySelector('#hintbackbackground').style.visibility = 'visible';
+//                         document.querySelector('#hintbackbackground').style.opacity = '1';
+//                         document.querySelector('#hintbackbackground').style.transition = 'none';
+//                         document.querySelector('#hintbackbackground').style.top = '70.3%';
+//                         document.querySelector('#hintbackbackground').style.left = '64.9%';
+//                         document.querySelector('#hintbackground').style.visibility = 'visible';
+//                         document.querySelector('#hintbackground').style.opacity = '1';
+//                         document.querySelector('#hintbackground').style.transition = 'none';
+//                         document.querySelector('#hintbackground').style.top = '70.5%';
+//                         document.querySelector('#hintbackground').style.left = '65.1%';
+//                         document.querySelector('#hint').style.opacity = '1';
+//                         document.querySelector('#hint').style.transition = 'none';
+//                         document.querySelector('#hint').style.visibility = 'visible';
+//                         document.querySelector('#hint').style.opacity = '1';
+//                         document.querySelector('#hint').style.transition = 'none';
+//                         document.querySelector('#hint').style.top = '71.5%';
+//                         document.querySelector('#hint').style.left = '65.7%';
+//                         document.querySelector('#hintlabel').style.left = '0%';
+//                         document.querySelector('#hintlabel').style.top = '17%';
+//                         document.querySelector('#triangle').classList.add('triangleOpenMenuAnim');
+//                         document.querySelector('#hintbackbackground').classList.add('openMenuAnim');
+//                         document.querySelector('#hintbackground').classList.add('openMenuAnim');
+//                         document.querySelector('#hint').classList.add('openMenuAnim');
+//                         document.querySelector('#hintlabel').style.width = '100%';
+//                         document.querySelector('#hintlabel').style.left = '0';
+//                         document.querySelector('#hintlabel').innerText = 'Spend 2 mana to deal 1 damage to an opponent!';
+//                         setTimeout(function () {
+//                           document.querySelector('#triangle').style.visibility = 'hidden';
+//                           document.querySelector('#triangle').style.opacity = '0';
+//                           document.querySelector('#triangle').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                           document.querySelector('#hintbackbackground').style.visibility = 'hidden';
+//                           document.querySelector('#hintbackbackground').style.opacity = '0';
+//                           document.querySelector('#hintbackbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                           document.querySelector('#hintbackground').style.visibility = 'hidden';
+//                           document.querySelector('#hintbackground').style.opacity = '0';
+//                           document.querySelector('#hintbackground').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                           document.querySelector('#hint').style.visibility = 'hidden';
+//                           document.querySelector('#hint').style.opacity = '0';
+//                           document.querySelector('#hint').style.transition = 'visibility 0s 0.5s, opacity 0.5s linear';
+//                         }, 4000);
+//                       }, 1000);
+//                     }, 4000);
+//                   }, 1000);
+//                 }, 1000);
+//               }, 4000);
+//             }, 2000);
+//           }, 1000);
+//         }, 250);
+//       }, 1000);
+//       setTimeout(function () {
+//         song.play();
+//       }, 1000);
+//     };
+//     document.querySelector('#tutorialmenuContent').style.display = 'none';
+//     document.querySelector('#tutorialmenu').style.display = 'none';
+//   }, 125);
+// };
 // done pack button on click
 // donepackbtn.onclick = function () {
 //     document.getElementById('openpacks').classList.remove("openPackShakeScreenAnim");

@@ -1117,15 +1117,9 @@ svg {
 
 .opponenthero {
 	position: absolute;
-	/* width: 11%;
-	height: 17%; */
 	left: 13.5%;
 	top: 24%;
 	z-index: 11;
-	/* background-image: url(src/images/zumbi.png); */
-	/* background-repeat: no-repeat; */
-	/* Do not repeat the image */
-	/* background-size: contain; */
 }
 
 #opposinghero {
