@@ -285,8 +285,8 @@ function dealDamageHero(who, params) {
   let target = 'computer';
   let targethealth = 'opposing';
   if (who == 'computer') {
-    let target = 'player';
-    let targethealth = 'player';
+    target = 'player';
+    targethealth = 'player';
   }
   let damage = params.split(',')[0];
   let opponentHeroHealth = parseInt(document.querySelector('.' + targethealth + 'HeroHealth').innerText);
