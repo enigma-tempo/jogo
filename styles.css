@@ -3834,3 +3834,55 @@ svg {
 .card-tip-category{
 	top:89.5%
 }
+
+#tutorial_screen {
+	visibility: hidden;
+	z-index: 25;
+	background-color: #9d4b1c;
+	position: absolute;
+	top: 8%;
+	left: 2%;
+	width: 94%;
+	min-width: 50rem;
+	height: 85%;
+	border: 0.2rem #4f3a1b solid;
+	padding: 1%;
+	border-radius: 1rem;
+}
+
+.tutorial_concept {
+	display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
+
+.tutorial_concept div{
+	text-align: center;
+	width: 49%;
+	font-size: small;
+	margin-right: 1%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 1%;
+}
+
+.tutorial_concept img{
+	width: 70%;
+margin: 0 auto;
+}
+
+#tutorial_close{
+	color: #4f3a1b;
+	border-top-left-radius: 30px 200%;
+	border-bottom-left-radius: 30px 200%;
+	border-top-right-radius: 30px 200%;
+	border-bottom-right-radius: 30px 200%;
+	font-family: BelweBdBTBold;
+	user-select: none;
+	z-index: 20;
+	outline: none;
+	height: fit-content;
+	padding: 1%;
+	background-color: #c3af7f;
+}
