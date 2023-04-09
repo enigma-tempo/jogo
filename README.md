@@ -28,7 +28,7 @@ The Personalities powers assets were created by Craftpix, available [here](https
 To play the Enigma Tempo click [here](https://diogoasp.github.io/enigmaTempo/).
 
 The hearthstone-web preview of the game:
-![This image failed to load.](https://github.com/Rymedy/hearthstone-web/blob/master/src/images/gamepreview.PNG)
+![This image failed to load.](https://github.com/enigma-tempo/jogo/blob/master/src/images/Atacar%20carta%20inimiga.gif)
 
 ## User Manual
 
